@@ -1,0 +1,45 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "button": {
+    "base": {
+      "padding-x":     { "$value": "{spacing.6}", "$type": "dimension" },
+      "padding-y":     { "$value": "{spacing.3}", "$type": "dimension" },
+      "border-radius": { "$value": "{radius.sm}", "$type": "dimension" },
+      "border-width":  { "$value": "1px",         "$type": "dimension" },
+      "font":          { "$value": "{type.eyebrow}", "$type": "typography" },
+      "transition":    { "$value": "{motion.duration.ui} {motion.ease.axial}", "$type": "transition" },
+      "min-height":    { "$value": "44px",        "$type": "dimension" }
+    },
+    "primary": {
+      "$description": "Primary CTA. Voltage outline on Black. Inverts on hover.",
+      "bg":           { "$value": "transparent",        "$type": "color" },
+      "color":        { "$value": "{color.axial.voltage}", "$type": "color" },
+      "border-color": { "$value": "{color.axial.voltage}", "$type": "color" },
+      "hover-bg":     { "$value": "{color.axial.voltage}", "$type": "color" },
+      "hover-color":  { "$value": "{color.axial.black}",   "$type": "color" },
+      "hover-shadow": { "$value": "{shadow.glow-soft}",    "$type": "shadow" },
+      "focus-shadow": { "$value": "{shadow.focus-ring}",   "$type": "shadow" }
+    },
+    "ghost": {
+      "$description": "Secondary action. Bone text, transparent bg, hover gets bone-08 overlay.",
+      "bg":           { "$value": "transparent",         "$type": "color" },
+      "color":        { "$value": "{color.axial.bone}",  "$type": "color" },
+      "border-color": { "$value": "{color.graphite.700}","$type": "color" },
+      "hover-bg":     { "$value": "{color.alpha.bone-08}","$type": "color" },
+      "hover-color":  { "$value": "{color.axial.bone}",  "$type": "color" }
+    },
+    "solid": {
+      "$description": "High-emphasis solid button. Bone bg, Black text. Use sparingly.",
+      "bg":           { "$value": "{color.axial.bone}",  "$type": "color" },
+      "color":        { "$value": "{color.axial.black}", "$type": "color" },
+      "border-color": { "$value": "{color.axial.bone}",  "$type": "color" },
+      "hover-bg":     { "$value": "{color.graphite.100}","$type": "color" },
+      "hover-color":  { "$value": "{color.axial.black}", "$type": "color" }
+    },
+    "size": {
+      "sm": { "padding-x": "{spacing.4}", "padding-y": "{spacing.2}", "min-height": "32px" },
+      "md": { "padding-x": "{spacing.6}", "padding-y": "{spacing.3}", "min-height": "44px" },
+      "lg": { "padding-x": "{spacing.8}", "padding-y": "{spacing.4}", "min-height": "56px" }
+    }
+  }
+}

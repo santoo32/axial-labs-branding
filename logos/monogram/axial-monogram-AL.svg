@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+<text font-family="'Inter Display', 'Neue Haas Grotesk Display', system-ui, sans-serif" font-weight="600" font-size="144" letter-spacing="-0.02em" fill="currentColor" x="120" y="170" text-anchor="middle">AL</text>
+<g stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-opacity="0.5">
+<line x1="12" y1="16" x2="20" y2="16"/>
+<line x1="16" y1="12" x2="16" y2="20"/>
+<line x1="220" y1="16" x2="228" y2="16"/>
+<line x1="224" y1="12" x2="224" y2="20"/>
+<line x1="12" y1="224" x2="20" y2="224"/>
+<line x1="16" y1="220" x2="16" y2="228"/>
+<line x1="220" y1="224" x2="228" y2="224"/>
+<line x1="224" y1="220" x2="224" y2="228"/>
+</g>
+</svg>

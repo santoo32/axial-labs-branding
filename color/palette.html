@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Axial Labs — Color System Palette</title>
+    <style>
+      :root {
+        /* Color · Axial palette */
+        --axial-black: #0a0a0b;
+        --axial-bone: #f4f2ec;
+        --axial-voltage: #c6f24e;
+        --axial-voltage-dim: #9dc23a;
+        --axial-ion: #3d5bff;
+        --axial-plasma: #ff4d2e;
+        --axial-mercury: #b8c2cc;
+
+        /* Color · Graphite ramp */
+        --graphite-900: #0a0a0b;
+        --graphite-800: #1a1b1e;
+        --graphite-700: #26282d;
+        --graphite-600: #3a3d44;
+        --graphite-500: #5a5e68;
+        --graphite-400: #878c97;
+        --graphite-300: #b5b9c2;
+        --graphite-200: #d8dae0;
+        --graphite-100: #ecedef;
+
+        /* Typography · Families */
+        --font-display: "Inter Display", system-ui, sans-serif;
+        --font-body: "Inter", system-ui, sans-serif;
+        --font-editorial: "Source Serif 4", Georgia, serif;
+        --font-mono: "JetBrains Mono", monospace;
+
+        /* Typography · Sizes */
+        --size-12: 0.75rem;
+        --size-14: 0.875rem;
+        --size-16: 1rem;
+        --size-20: 1.25rem;
+        --size-24: 1.5rem;
+        --size-32: 2rem;
+        --size-56: 3.5rem;
+        --size-96: 6rem;
+        --size-160: 10rem;
+
+        /* Typography · Line height */
+        --lh-tight: 1;
+        --lh-snug: 1.1;
+        --lh-normal: 1.5;
+        --lh-loose: 1.7;
+
+        /* Typography · Tracking */
+        --track-tight: -0.02em;
+        --track-normal: 0em;
+        --track-wider: 0.06em;
+
+        /* Spacing (4px base) */
+        --space-1: 4px;
+        --space-2: 8px;
+        --space-3: 12px;
+        --space-4: 16px;
+        --space-6: 24px;
+        --space-8: 32px;
+        --space-12: 48px;
+        --space-16: 64px;
+        --space-24: 96px;
+        --space-32: 128px;
+
+        /* Motion */
+        --ease-axial: cubic-bezier(0.32, 0.72, 0, 1);
+        --duration-ui: 240ms;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+        background: var(--axial-black);
+        color: var(--axial-bone);
+      }
+
+      html[data-theme="light"] {
+        background: var(--axial-bone);
+        color: var(--axial-black);
+      }
+
+      body {
+        margin: 0;
+        background: var(--axial-black);
+        color: var(--axial-bone);
+        font-family: var(--font-body);
+        font-size: 16px;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      html[data-theme="light"] body {
+        background: var(--axial-bone);
+        color: var(--axial-black);
+      }
+
+      .page-wrapper {
+        position: relative;
+        padding: clamp(24px, 5vw, 96px);
+        padding-left: clamp(24px, 5vw, 96px);
+      }
+
+      .axis-line {
+        position: fixed;
+        left: clamp(24px, 5vw, 96px);
+        top: 0;
+        width: 1px;
+        height: 100vh;
+        background: var(--graphite-700);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      html[data-theme="light"] .axis-line {
+        background: var(--graphite-200);
+      }
+
+      .content {
+        position: relative;
+        z-index: 1;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+
+      section {
+        margin-bottom: var(--space-24);
+        padding-bottom: var(--space-24);
+      }
+
+      .eyebrow {
+        font-family: var(--font-mono);
+        font-size: var(--size-12);
+        font-weight: 500;
+        letter-spacing: var(--track-wider);
+        text-transform: uppercase;
+        color: var(--graphite-400);
+        margin-bottom: var(--space-12);
+      }
+
+      html[data-theme="light"] .eyebrow {
+        color: var(--graphite-500);
+      }
+
+      h1 {
+        font-family: var(--font-display);
+        font-size: var(--size-96);
+        font-weight: 600;
+        letter-spacing: var(--track-tight);
+        margin: 0 0 var(--space-6) 0;
+        line-height: var(--lh-tight);
+      }
+
+      .subhead {
+        font-size: var(--size-20);
+        color: var(--axial-bone);
+        font-weight: 400;
+        margin: 0;
+      }
+
+      html[data-theme="light"] .subhead {
+        color: var(--axial-black);
+      }
+
+      /* Color swatches */
+      .swatch-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--space-8);
+        margin-bottom: var(--space-12);
+      }
+
+      .swatch {
+        aspect-ratio: 1;
+        border: 1px solid var(--graphite-700);
+        position: relative;
+        cursor: pointer;
+        transition: all var(--duration-ui) var(--ease-axial);
+      }
+
+      html[data-theme="light"] .swatch {
+        border-color: var(--graphite-200);
+      }
+
+      .swatch:hover {
+        border-color: var(--axial-voltage);
+      }
+
+      html[data-theme="light"] .swatch:hover {
+        border-color: var(--axial-voltage-dim);
+      }
+
+      .swatch-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: var(--space-4);
+        background: rgba(10, 10, 11, 0.9);
+        opacity: 0;
+        transition: opacity var(--duration-ui) var(--ease-axial);
+      }
+
+      html[data-theme="light"] .swatch-info {
+        background: rgba(244, 242, 236, 0.95);
+      }
+
+      .swatch:hover .swatch-info {
+        opacity: 1;
+      }
+
+      .swatch-token {
+        font-family: var(--font-mono);
+        font-size: var(--size-12);
+        letter-spacing: var(--track-wider);
+        text-transform: uppercase;
+        color: var(--axial-voltage);
+        margin-bottom: var(--space-1);
+        font-weight: 500;
+      }
+
+      .swatch-hex {
+        font-family: var(--font-mono);
+        font-size: var(--size-12);
+        color: var(--graphite-300);
+        margin-bottom: var(--space-1);
+      }
+
+      html[data-theme="light"] .swatch-hex {
+        color: var(--graphite-600);
+      }
+
+      .swatch-usage {
+        font-family: var(--font-mono);
+        font-size: var(--size-12);
+        color: var(--graphite-400);
+        line-height: var(--lh-snug);
+      }
+
+      html[data-theme="light"] .swatch-usage {
+        color: var(--graphite-500);
+      }
+
+      .swatch-contrast {
+        font-family: var(--font-mono);
+        font-size: var(--size-12);
+        color: var(--graphite-500);
+        margin-top: var(--space-1);
+      }
+
+      html[data-theme="light"] .swatch-contrast {
+        color: var(--graphite-400);
+      }
+
+      /* Graphite ramp */
+      .graphite-ramp {
+        display: flex;
+        gap: var(--space-2);
+        margin-bottom: var(--space-12);
+        flex-wrap: wrap;
+      }
+
+      .graphite-swatch {
+        flex: 1;
+        min-width: 60px;
+        aspect-ratio: 1;
+        border: 1px solid var(--graphite-700);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: var(--space-2);
+        position: relative;
+      }
+
+      html[data-theme="light"] .graphite-swatch {
+        border-color: var(--graphite-200);
+      }
+
+      .graphite-label {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: var(--track-wider);
+        text-transform: uppercase;
+        color: var(--graphite-300);
+        text-align: center;
+        line-height: var(--lh-snug);
+      }
+
+      html[data-theme="light"] .graphite-label {
+        color: var(--graphite-600);
+      }
+
+      /* Semantic mappings */
+      .semantic-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-8);
+        margin-bottom: var(--space-12);
+      }
+
+      .semantic-column {
+        border: 1px solid var(--graphite-700);
+        padding: var(--space-6);
+      }
+
+      html[data-theme="light"] .semantic-column {
+        border-color: var(--graphite-200);
+      }
+
+      .semantic-title {
+        font-family: var(--font-mono);
+        font-size: var(--size-12);
+        letter-spacing: var(--track-wider);
+        text-transform: uppercase;
+        color: var(--graphite-400);
+        margin-bottom: var(--space-6);
+        font-weight: 500;
+      }
+
+      html[data-theme="light"] .semantic-title {
+        color: var(--graphite-500);
+      }
+
+      .semantic-item {
+        margin-bottom: var(--space-6);
+        font-family: var(--font-mono);
+        font-size: var(--size-14);
+        color: var(--graphite-300);
+        line-height: var(--lh-snug);
+      }
+
+      html[data-theme="light"] .semantic-item {
+        color: var(--graphite-600);
+      }
+
+      .semantic-arrow {
+        color: var(--graphite-500);
+      }
+
+      /* Gradients */
+      .gradient-hero {
+        width: 100%;
+        height: 240px;
+        border: 1px solid var(--graphite-700);
+        margin-bottom: var(--space-6);
+      }
+
+      html[data-theme="light"] .gradient-hero {
+        border-color: var(--graphite-200);
+      }
+
+      .gradient-axis-mesh {
+        background: radial-gradient(circle at 50% 50%, #c6f24e 0%, #0a0a0b 70%);
+      }
+
+      .gradient-glow-field {
+        background: linear-gradient(135deg, #3d5bff 0%, #0a0a0b 100%);
+      }
+
+      .gradient-ion-mist {
+        background: radial-gradient(circle at 30% 30%, #3d5bff 0%, #0a0a0b 60%);
+      }
+
+      .gradient-caption {
+        font-family: var(--font-mono);
+        font-size: var(--size-12);
+        color: var(--graphite-400);
+        margin-bottom: var(--space-12);
+        line-height: var(--lh-snug);
+      }
+
+      html[data-theme="light"] .gradient-caption {
+        color: var(--graphite-500);
+      }
+
+      /* Rules */
+      .rules-list {
+        font-family: var(--font-mono);
+        font-size: var(--size-14);
+        color: var(--graphite-300);
+        line-height: var(--lh-normal);
+      }
+
+      html[data-theme="light"] .rules-list {
+        color: var(--graphite-600);
+      }
+
+      .rules-list li {
+        margin-bottom: var(--space-4);
+      }
+
+      /* Theme toggle */
+      .theme-toggle {
+        position: fixed;
+        top: clamp(24px, 5vw, 96px);
+        right: clamp(24px, 5vw, 96px);
+        font-family: var(--font-mono);
+        font-size: var(--size-12);
+        letter-spacing: var(--track-wider);
+        text-transform: uppercase;
+        background: transparent;
+        border: 1px solid var(--graphite-700);
+        color: var(--graphite-400);
+        padding: var(--space-2) var(--space-4);
+        cursor: pointer;
+        transition: all var(--duration-ui) var(--ease-axial);
+        z-index: 10;
+      }
+
+      html[data-theme="light"] .theme-toggle {
+        border-color: var(--graphite-200);
+        color: var(--graphite-600);
+      }
+
+      .theme-toggle:hover {
+        border-color: var(--axial-voltage);
+        color: var(--axial-voltage);
+      }
+
+      html[data-theme="light"] .theme-toggle:hover {
+        border-color: var(--axial-voltage-dim);
+        color: var(--axial-voltage-dim);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .semantic-grid {
+          grid-template-columns: 1fr;
+        }
+        .swatch-grid {
+          grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        }
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="axis-line"></div>
+
+    <button
+      class="theme-toggle"
+      onclick="toggleTheme()"
+      aria-label="Toggle theme"
+    >
+      THEME / DARK ↔ LIGHT
+    </button>
+
+    <div class="page-wrapper">
+      <div class="content">
+        <!-- Cover -->
+        <section>
+          <div class="eyebrow">→ AXIAL LABS · COLOR SYSTEM · v1.0</div>
+          <h1>Color / system.</h1>
+          <p class="subhead">One signal. One ratio. No exceptions.</p>
+        </section>
+
+        <!-- Axial primary -->
+        <section>
+          <div class="eyebrow">→ 01 / 06 AXIAL PRIMARY</div>
+
+          <div class="swatch-grid">
+            <!-- Black -->
+            <div
+              class="swatch"
+              style="background: #0a0a0b; border: 1px solid #26282d"
+            >
+              <div class="swatch-info">
+                <div class="swatch-token">AXIAL.BLACK</div>
+                <div class="swatch-hex">#0A0A0B</div>
+                <div class="swatch-usage">Dark surface · text on bone</div>
+                <div class="swatch-contrast">Contrast: 17.5:1</div>
+              </div>
+            </div>
+
+            <!-- Bone -->
+            <div class="swatch" style="background: #f4f2ec">
+              <div class="swatch-info">
+                <div class="swatch-token">AXIAL.BONE</div>
+                <div class="swatch-hex">#F4F2EC</div>
+                <div class="swatch-usage">Light surface · text on black</div>
+                <div class="swatch-contrast">Contrast: 17.5:1</div>
+              </div>
+            </div>
+
+            <!-- Voltage -->
+            <div class="swatch" style="background: #c6f24e">
+              <div class="swatch-info">
+                <div class="swatch-token">AXIAL.VOLTAGE</div>
+                <div class="swatch-hex">#C6F24E</div>
+                <div class="swatch-usage">Signal accent · on black only</div>
+                <div class="swatch-contrast">Contrast: 5.2:1 with black</div>
+              </div>
+            </div>
+
+            <!-- Voltage-dim -->
+            <div class="swatch" style="background: #9dc23a">
+              <div class="swatch-info">
+                <div class="swatch-token">AXIAL.VOLTAGE-DIM</div>
+                <div class="swatch-hex">#9DC23A</div>
+                <div class="swatch-usage">
+                  Voltage on bone · reduced saturation
+                </div>
+                <div class="swatch-contrast">Contrast: 5.1:1 with bone</div>
+              </div>
+            </div>
+
+            <!-- Ion -->
+            <div class="swatch" style="background: #3d5bff">
+              <div class="swatch-info">
+                <div class="swatch-token">AXIAL.ION</div>
+                <div class="swatch-hex">#3D5BFF</div>
+                <div class="swatch-usage">
+                  Alt accent · cobalt · fintech mood
+                </div>
+                <div class="swatch-contrast">Contrast: 3.1:1 with black</div>
+              </div>
+            </div>
+
+            <!-- Plasma -->
+            <div class="swatch" style="background: #ff4d2e">
+              <div class="swatch-info">
+                <div class="swatch-token">AXIAL.PLASMA</div>
+                <div class="swatch-hex">#FF4D2E</div>
+                <div class="swatch-usage">
+                  Alt accent · coral · error · alert
+                </div>
+                <div class="swatch-contrast">Contrast: 4.1:1 with black</div>
+              </div>
+            </div>
+
+            <!-- Mercury -->
+            <div class="swatch" style="background: #b8c2cc">
+              <div class="swatch-info">
+                <div class="swatch-token">AXIAL.MERCURY</div>
+                <div class="swatch-hex">#B8C2CC</div>
+                <div class="swatch-usage">
+                  Quiet support · instrumentation grey
+                </div>
+                <div class="swatch-contrast">Contrast: 3.9:1 with black</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Graphite ramp -->
+        <section>
+          <div class="eyebrow">→ 02 / 06 GRAPHITE RAMP</div>
+
+          <div class="graphite-ramp">
+            <div
+              class="graphite-swatch"
+              style="background: #0a0a0b; border-color: #26282d"
+            >
+              <span class="graphite-label">900</span>
+            </div>
+            <div
+              class="graphite-swatch"
+              style="background: #1a1b1e; border-color: #26282d"
+            >
+              <span class="graphite-label">800</span>
+            </div>
+            <div
+              class="graphite-swatch"
+              style="background: #26282d; border-color: #26282d"
+            >
+              <span class="graphite-label">700</span>
+            </div>
+            <div
+              class="graphite-swatch"
+              style="background: #3a3d44; border-color: #26282d"
+            >
+              <span class="graphite-label">600</span>
+            </div>
+            <div
+              class="graphite-swatch"
+              style="background: #5a5e68; border-color: #26282d"
+            >
+              <span class="graphite-label">500</span>
+            </div>
+            <div
+              class="graphite-swatch"
+              style="background: #878c97; border-color: #26282d"
+            >
+              <span class="graphite-label">400</span>
+            </div>
+            <div
+              class="graphite-swatch"
+              style="background: #b5b9c2; border-color: #26282d"
+            >
+              <span class="graphite-label">300</span>
+            </div>
+            <div
+              class="graphite-swatch"
+              style="background: #d8dae0; border-color: #26282d"
+            >
+              <span class="graphite-label">200</span>
+            </div>
+            <div
+              class="graphite-swatch"
+              style="background: #ecedef; border-color: #26282d"
+            >
+              <span class="graphite-label">100</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Semantic mappings -->
+        <section>
+          <div class="eyebrow">→ 03 / 06 SEMANTIC MAPPINGS</div>
+
+          <div class="semantic-grid">
+            <div class="semantic-column">
+              <div class="semantic-title">Dark</div>
+              <div class="semantic-item">
+                surface.bg <span class="semantic-arrow">→</span> graphite.900 →
+                #0A0A0B
+              </div>
+              <div class="semantic-item">
+                surface.elev-1
+                <span class="semantic-arrow">→</span> graphite.800 → #1A1B1E
+              </div>
+              <div class="semantic-item">
+                surface.border
+                <span class="semantic-arrow">→</span> graphite.700 → #26282D
+              </div>
+              <div class="semantic-item">
+                text.primary <span class="semantic-arrow">→</span> axial.bone →
+                #F4F2EC
+              </div>
+              <div class="semantic-item">
+                text.secondary
+                <span class="semantic-arrow">→</span> graphite.300 → #B5B9C2
+              </div>
+              <div class="semantic-item">
+                text.accent <span class="semantic-arrow">→</span> axial.voltage
+                → #C6F24E
+              </div>
+            </div>
+
+            <div class="semantic-column">
+              <div class="semantic-title">Light</div>
+              <div class="semantic-item">
+                surface.bg <span class="semantic-arrow">→</span> axial.bone →
+                #F4F2EC
+              </div>
+              <div class="semantic-item">
+                surface.elev-1 <span class="semantic-arrow">→</span> #FFFFFF
+              </div>
+              <div class="semantic-item">
+                surface.border
+                <span class="semantic-arrow">→</span> graphite.200 → #D8DAE0
+              </div>
+              <div class="semantic-item">
+                text.primary <span class="semantic-arrow">→</span> axial.black →
+                #0A0A0B
+              </div>
+              <div class="semantic-item">
+                text.secondary
+                <span class="semantic-arrow">→</span> graphite.600 → #3A3D44
+              </div>
+              <div class="semantic-item">
+                text.accent
+                <span class="semantic-arrow">→</span> axial.voltage-dim →
+                #9DC23A
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Gradients -->
+        <section>
+          <div class="eyebrow">→ 04 / 06 GRADIENTS</div>
+
+          <div class="gradient-hero gradient-axis-mesh"></div>
+          <div class="gradient-caption">
+            AXIS-MESH: radial-gradient(circle at 50% 50%, #C6F24E 0%, #0A0A0B
+            70%)
+          </div>
+
+          <div class="gradient-hero gradient-glow-field"></div>
+          <div class="gradient-caption">
+            GLOW-FIELD: linear-gradient(135deg, #3D5BFF 0%, #0A0A0B 100%)
+          </div>
+
+          <div class="gradient-hero gradient-ion-mist"></div>
+          <div class="gradient-caption">
+            ION-MIST: radial-gradient(circle at 30% 30%, #3D5BFF 0%, #0A0A0B
+            60%)
+          </div>
+        </section>
+
+        <!-- Rules -->
+        <section>
+          <div class="eyebrow">→ 05 / 06 COLOR RULES</div>
+
+          <ul class="rules-list">
+            <li>60% surface (black or bone) · 35% neutrals · 5% accent</li>
+            <li>Voltage covers ≤ 5% of pixels in any composition</li>
+            <li>
+              Voltage is a signal, not a paint — use only on black backgrounds
+            </li>
+            <li>voltage-dim (#9DC23A) required for voltage on bone surfaces</li>
+            <li>
+              Body text contrast: AA minimum (4.5:1), AAA (7:1) for editorial
+            </li>
+            <li>Never rely on color alone — pair with text or iconography</li>
+            <li>
+              Alternate accents (ion, plasma, mercury) for seasonal or sub-brand
+              moments
+            </li>
+            <li>
+              All gradients use approved palette only — no custom intermediates
+            </li>
+          </ul>
+        </section>
+
+        <!-- Footer spacer -->
+        <section></section>
+      </div>
+    </div>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute("data-theme") || "dark";
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+        html.setAttribute("data-theme", newTheme);
+        localStorage.setItem("axial-theme", newTheme);
+      }
+
+      // Restore saved theme
+      const saved = localStorage.getItem("axial-theme") || "dark";
+      document.documentElement.setAttribute("data-theme", saved);
+
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              axial: {
+                black: "#0A0A0B",
+                bone: "#F4F2EC",
+                voltage: "#C6F24E",
+                "voltage-dim": "#9DC23A",
+                ion: "#3D5BFF",
+                plasma: "#FF4D2E",
+                mercury: "#B8C2CC",
+              },
+              graphite: {
+                900: "#0A0A0B",
+                800: "#1A1B1E",
+                700: "#26282D",
+                600: "#3A3D44",
+                500: "#5A5E68",
+                400: "#878C97",
+                300: "#B5B9C2",
+                200: "#D8DAE0",
+                100: "#ECEDEF",
+              },
+            },
+            fontFamily: {
+              display: [
+                '"Inter Display"',
+                '"Neue Haas Grotesk Display"',
+                "system-ui",
+              ],
+              body: ["Inter", "system-ui", "sans-serif"],
+              editorial: ['"Source Serif 4"', "Georgia", "serif"],
+              mono: ['"JetBrains Mono"', "monospace"],
+            },
+          },
+        },
+      };
+    </script>
+  </body>
+</html>

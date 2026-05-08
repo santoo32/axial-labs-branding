@@ -1,0 +1,103 @@
+{
+  "$description": "Axial Labs · Tokens Studio for Figma compatible JSON. Import via Tokens Studio plugin.",
+  "$themes": ["dark", "light"],
+  "global": {
+    "color": {
+      "axial": {
+        "black":        { "value": "#0A0A0B", "type": "color" },
+        "bone":         { "value": "#F4F2EC", "type": "color" },
+        "voltage":      { "value": "#C6F24E", "type": "color" },
+        "voltage-dim":  { "value": "#9DC23A", "type": "color" },
+        "ion":          { "value": "#3D5BFF", "type": "color" },
+        "plasma":       { "value": "#FF4D2E", "type": "color" },
+        "mercury":      { "value": "#B8C2CC", "type": "color" }
+      },
+      "graphite": {
+        "900": { "value": "#0A0A0B", "type": "color" },
+        "800": { "value": "#1A1B1E", "type": "color" },
+        "700": { "value": "#26282D", "type": "color" },
+        "600": { "value": "#3A3D44", "type": "color" },
+        "500": { "value": "#5A5E68", "type": "color" },
+        "400": { "value": "#878C97", "type": "color" },
+        "300": { "value": "#B5B9C2", "type": "color" },
+        "200": { "value": "#D8DAE0", "type": "color" },
+        "100": { "value": "#ECEDEF", "type": "color" },
+        "50":  { "value": "#F4F2EC", "type": "color" }
+      }
+    },
+    "size": {
+      "12":  { "value": "12", "type": "fontSizes" },
+      "14":  { "value": "14", "type": "fontSizes" },
+      "16":  { "value": "16", "type": "fontSizes" },
+      "20":  { "value": "20", "type": "fontSizes" },
+      "24":  { "value": "24", "type": "fontSizes" },
+      "32":  { "value": "32", "type": "fontSizes" },
+      "40":  { "value": "40", "type": "fontSizes" },
+      "56":  { "value": "56", "type": "fontSizes" },
+      "72":  { "value": "72", "type": "fontSizes" },
+      "96":  { "value": "96", "type": "fontSizes" },
+      "128": { "value": "128", "type": "fontSizes" },
+      "160": { "value": "160", "type": "fontSizes" }
+    },
+    "spacing": {
+      "1":  { "value": "4",   "type": "spacing" },
+      "2":  { "value": "8",   "type": "spacing" },
+      "3":  { "value": "12",  "type": "spacing" },
+      "4":  { "value": "16",  "type": "spacing" },
+      "6":  { "value": "24",  "type": "spacing" },
+      "8":  { "value": "32",  "type": "spacing" },
+      "12": { "value": "48",  "type": "spacing" },
+      "16": { "value": "64",  "type": "spacing" },
+      "24": { "value": "96",  "type": "spacing" },
+      "32": { "value": "128", "type": "spacing" }
+    },
+    "borderRadius": {
+      "none": { "value": "0",  "type": "borderRadius" },
+      "sm":   { "value": "4",  "type": "borderRadius" },
+      "md":   { "value": "8",  "type": "borderRadius" },
+      "full": { "value": "9999","type": "borderRadius" }
+    },
+    "fontFamilies": {
+      "display":   { "value": "Inter Display", "type": "fontFamilies" },
+      "body":      { "value": "Inter", "type": "fontFamilies" },
+      "editorial": { "value": "Source Serif 4", "type": "fontFamilies" },
+      "mono":      { "value": "JetBrains Mono", "type": "fontFamilies" }
+    },
+    "letterSpacing": {
+      "tightest": { "value": "-3%", "type": "letterSpacing" },
+      "tight":    { "value": "-2%", "type": "letterSpacing" },
+      "tighter":  { "value": "-1%", "type": "letterSpacing" },
+      "normal":   { "value": "0%",  "type": "letterSpacing" },
+      "wide":     { "value": "2%",  "type": "letterSpacing" },
+      "wider":    { "value": "6%",  "type": "letterSpacing" }
+    }
+  },
+  "dark": {
+    "surface": {
+      "bg":     { "value": "{color.graphite.900}", "type": "color" },
+      "elev-1": { "value": "{color.graphite.800}", "type": "color" },
+      "elev-2": { "value": "{color.graphite.700}", "type": "color" },
+      "border": { "value": "{color.graphite.700}", "type": "color" }
+    },
+    "text": {
+      "primary":   { "value": "{color.axial.bone}",   "type": "color" },
+      "secondary": { "value": "{color.graphite.300}", "type": "color" },
+      "tertiary":  { "value": "{color.graphite.500}", "type": "color" },
+      "accent":    { "value": "{color.axial.voltage}","type": "color" }
+    }
+  },
+  "light": {
+    "surface": {
+      "bg":     { "value": "{color.axial.bone}", "type": "color" },
+      "elev-1": { "value": "#FFFFFF",            "type": "color" },
+      "elev-2": { "value": "#FFFFFF",            "type": "color" },
+      "border": { "value": "{color.graphite.200}","type": "color" }
+    },
+    "text": {
+      "primary":   { "value": "{color.axial.black}",       "type": "color" },
+      "secondary": { "value": "{color.graphite.600}",      "type": "color" },
+      "tertiary":  { "value": "{color.graphite.500}",      "type": "color" },
+      "accent":    { "value": "{color.axial.voltage-dim}", "type": "color" }
+    }
+  }
+}

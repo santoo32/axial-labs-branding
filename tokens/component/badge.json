@@ -1,0 +1,44 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "badge": {
+    "base": {
+      "padding-x":     { "$value": "{spacing.2}",  "$type": "dimension" },
+      "padding-y":     { "$value": "2px",          "$type": "dimension" },
+      "border-radius": { "$value": "{radius.sm}",  "$type": "dimension" },
+      "border-width":  { "$value": "1px",          "$type": "dimension" },
+      "font":          { "$value": "{type.eyebrow}", "$type": "typography" },
+      "min-height":    { "$value": "20px",         "$type": "dimension" }
+    },
+    "live": {
+      "$description": "Live status. Voltage dot + Mono UPPERCASE text.",
+      "bg":           { "$value": "transparent", "$type": "color" },
+      "color":        { "$value": "{color.axial.voltage}", "$type": "color" },
+      "border-color": { "$value": "{color.axial.voltage}", "$type": "color" },
+      "dot":          { "$value": "{color.axial.voltage}", "$type": "color" }
+    },
+    "idle": {
+      "bg":           { "$value": "transparent", "$type": "color" },
+      "color":        { "$value": "{color.axial.mercury}", "$type": "color" },
+      "border-color": { "$value": "{color.axial.mercury}", "$type": "color" },
+      "dot":          { "$value": "{color.axial.mercury}", "$type": "color" }
+    },
+    "error": {
+      "bg":           { "$value": "transparent", "$type": "color" },
+      "color":        { "$value": "{color.axial.plasma}", "$type": "color" },
+      "border-color": { "$value": "{color.axial.plasma}", "$type": "color" },
+      "dot":          { "$value": "{color.axial.plasma}", "$type": "color" }
+    },
+    "info": {
+      "bg":           { "$value": "transparent", "$type": "color" },
+      "color":        { "$value": "{color.axial.ion}", "$type": "color" },
+      "border-color": { "$value": "{color.axial.ion}", "$type": "color" },
+      "dot":          { "$value": "{color.axial.ion}", "$type": "color" }
+    },
+    "neutral": {
+      "bg":           { "$value": "transparent", "$type": "color" },
+      "color":        { "$value": "{text.secondary}", "$type": "color" },
+      "border-color": { "$value": "{surface.border}", "$type": "color" },
+      "dot":          { "$value": "{text.tertiary}", "$type": "color" }
+    }
+  }
+}

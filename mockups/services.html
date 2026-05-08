@@ -1,0 +1,948 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Axial Labs — Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              axial: {
+                black: "#0A0A0B",
+                bone: "#F4F2EC",
+                voltage: "#C6F24E",
+                "voltage-dim": "#9DC23A",
+                ion: "#3D5BFF",
+                plasma: "#FF4D2E",
+                mercury: "#B8C2CC",
+              },
+              graphite: {
+                900: "#0A0A0B",
+                800: "#1A1B1E",
+                700: "#26282D",
+                600: "#3A3D44",
+                500: "#5A5E68",
+                400: "#878C97",
+                300: "#B5B9C2",
+                200: "#D8DAE0",
+                100: "#ECEDEF",
+              },
+            },
+            fontFamily: {
+              display: ["Inter Display", "Inter", "system-ui"],
+              body: ["Inter", "system-ui", "sans-serif"],
+              editorial: ["Source Serif 4", "Georgia", "serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+            transitionTimingFunction: {
+              axial: "cubic-bezier(0.32, 0.72, 0, 1)",
+            },
+            boxShadow: {
+              "glow-soft": "0 0 24px rgba(198, 242, 78, 0.35)",
+              "glow-strong":
+                "0 0 48px rgba(198, 242, 78, 0.55), 0 0 96px rgba(198, 242, 78, 0.25)",
+            },
+            screens: {
+              sm: "480px",
+              md: "768px",
+              lg: "1024px",
+              xl: "1280px",
+              "2xl": "1440px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --axial-black: #0a0a0b;
+        --axial-bone: #f4f2ec;
+        --axial-voltage: #c6f24e;
+        --axial-voltage-dim: #9dc23a;
+        --axial-ion: #3d5bff;
+        --axial-plasma: #ff4d2e;
+        --axial-mercury: #b8c2cc;
+        --graphite-900: #0a0a0b;
+        --graphite-800: #1a1b1e;
+        --graphite-700: #26282d;
+        --graphite-600: #3a3d44;
+        --graphite-500: #5a5e68;
+        --graphite-400: #878c97;
+        --graphite-300: #b5b9c2;
+        --graphite-200: #d8dae0;
+        --graphite-100: #ecedef;
+        --bone-50: #f4f2ec;
+        --alpha-voltage-35: rgba(198, 242, 78, 0.35);
+        --alpha-voltage-55: rgba(198, 242, 78, 0.55);
+        --alpha-voltage-25: rgba(198, 242, 78, 0.25);
+        --alpha-black-60: rgba(10, 10, 11, 0.6);
+        --alpha-black-80: rgba(10, 10, 11, 0.8);
+        --alpha-bone-08: rgba(244, 242, 236, 0.08);
+        --font-display: "Inter Display", "Inter", system-ui, sans-serif;
+        --font-body: "Inter", system-ui, sans-serif;
+        --font-editorial: "Source Serif 4", Georgia, serif;
+        --font-mono: "JetBrains Mono", "Berkeley Mono", monospace;
+        --weight-regular: 400;
+        --weight-medium: 500;
+        --weight-semibold: 600;
+        --weight-bold: 700;
+        --size-12: 0.75rem;
+        --size-14: 0.875rem;
+        --size-16: 1rem;
+        --size-20: 1.25rem;
+        --size-24: 1.5rem;
+        --size-32: 2rem;
+        --size-40: 2.5rem;
+        --size-56: 3.5rem;
+        --size-72: 4.5rem;
+        --size-96: 6rem;
+        --size-128: 8rem;
+        --size-160: 10rem;
+        --lh-tight: 1;
+        --lh-snug: 1.1;
+        --lh-normal: 1.5;
+        --lh-loose: 1.7;
+        --track-tightest: -0.03em;
+        --track-tight: -0.02em;
+        --track-tighter: -0.01em;
+        --track-normal: 0em;
+        --track-wide: 0.02em;
+        --track-wider: 0.06em;
+        --space-0: 0px;
+        --space-1: 4px;
+        --space-2: 8px;
+        --space-3: 12px;
+        --space-4: 16px;
+        --space-5: 20px;
+        --space-6: 24px;
+        --space-8: 32px;
+        --space-10: 40px;
+        --space-12: 48px;
+        --space-16: 64px;
+        --space-20: 80px;
+        --space-24: 96px;
+        --space-32: 128px;
+        --space-48: 192px;
+        --space-64: 256px;
+        --max-prose: 640px;
+        --max-container: 1280px;
+        --max-wide: 1440px;
+        --gutter-mkt: 24px;
+        --radius-none: 0px;
+        --radius-sm: 4px;
+        --shadow-none: none;
+        --shadow-z1-dark: inset 0 0 0 1px var(--graphite-700);
+        --shadow-z1-light: inset 0 0 0 1px var(--graphite-200);
+        --shadow-z2-dark:
+          0 8px 24px rgba(10, 10, 11, 0.4), inset 0 0 0 1px var(--graphite-700);
+        --shadow-glow-soft: 0 0 24px rgba(198, 242, 78, 0.35);
+        --shadow-glow-strong:
+          0 0 48px rgba(198, 242, 78, 0.55), 0 0 96px rgba(198, 242, 78, 0.25);
+        --shadow-focus:
+          0 0 0 2px var(--axial-black), 0 0 0 4px var(--axial-voltage);
+        --blur-scrim: 12px;
+        --ease-axial: cubic-bezier(0.32, 0.72, 0, 1);
+        --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+        --ease-out: cubic-bezier(0, 0, 0.35, 1);
+        --duration-instant: 120ms;
+        --duration-ui: 240ms;
+        --duration-hero: 600ms;
+        --duration-epic: 1200ms;
+        --z-0: 0;
+        --z-1: 10;
+        --z-2: 100;
+        --z-3: 1000;
+        --z-4: 10000;
+        --surface-bg: var(--graphite-900);
+        --surface-elev-1: var(--graphite-800);
+        --surface-elev-2: var(--graphite-700);
+        --surface-border: var(--graphite-700);
+        --surface-border-strong: var(--graphite-600);
+        --surface-border-accent: var(--axial-voltage);
+        --surface-scrim: var(--alpha-black-60);
+        --surface-hover: var(--alpha-bone-08);
+        --text-primary: var(--axial-bone);
+        --text-secondary: var(--graphite-300);
+        --text-tertiary: var(--graphite-500);
+        --text-accent: var(--axial-voltage);
+        --text-danger: var(--axial-plasma);
+        --text-inverse: var(--axial-black);
+        --icon-primary: var(--axial-bone);
+        --icon-secondary: var(--graphite-400);
+        --icon-accent: var(--axial-voltage);
+        --focus: var(--axial-voltage);
+        --shadow-z1: var(--shadow-z1-dark);
+        --shadow-z2: var(--shadow-z2-dark);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+        background: var(--axial-black);
+        color: var(--axial-bone);
+        font-family: var(--font-body);
+        font-size: var(--size-16);
+        line-height: var(--lh-normal);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :focus-visible {
+        outline: none;
+        box-shadow: var(--shadow-focus);
+      }
+
+      /* --- Axis line fixed left --- */
+      .axis-fixed {
+        position: fixed;
+        top: 0;
+        left: clamp(24px, 5vw, 96px);
+        width: 1px;
+        height: 100vh;
+        background: var(--graphite-700);
+        z-index: var(--z-1);
+        pointer-events: none;
+      }
+
+      /* --- Page layout --- */
+      .page-outer {
+        padding-left: clamp(24px, 5vw, 96px);
+        padding-right: clamp(24px, 5vw, 96px);
+        margin-left: 24px;
+      }
+
+      .container-max {
+        max-width: var(--max-container);
+        margin: 0 auto;
+      }
+
+      /* --- NAV --- */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 56px;
+        background: transparent;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--graphite-700);
+        z-index: var(--z-3);
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-inner {
+        width: 100%;
+        padding: 0 clamp(24px, 5vw, 96px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: var(--axial-bone);
+        flex-shrink: 0;
+      }
+
+      .nav-wordmark {
+        font-family: var(--font-display);
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: var(--track-tight);
+        color: var(--axial-bone);
+        line-height: 1;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-links a {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: var(--track-wider);
+        text-transform: uppercase;
+        color: var(--graphite-400);
+        text-decoration: none;
+        transition: color var(--duration-ui) var(--ease-axial);
+      }
+
+      .nav-links a:hover,
+      .nav-links a[aria-current="page"] {
+        color: var(--axial-bone);
+      }
+
+      .btn-voltage {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: var(--track-wider);
+        text-transform: uppercase;
+        color: var(--axial-voltage);
+        border: 1px solid var(--axial-voltage);
+        background: transparent;
+        padding: 8px 16px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition:
+          background var(--duration-ui) var(--ease-axial),
+          box-shadow var(--duration-ui) var(--ease-axial);
+        white-space: nowrap;
+      }
+
+      .btn-voltage:hover {
+        background: rgba(198, 242, 78, 0.08);
+        box-shadow: var(--shadow-glow-soft);
+      }
+
+      /* --- Eyebrow --- */
+      .eyebrow {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: var(--track-wider);
+        text-transform: uppercase;
+        color: var(--graphite-400);
+        display: block;
+      }
+
+      /* --- Hero --- */
+      .hero {
+        padding-top: calc(56px + 96px);
+        padding-bottom: 96px;
+        position: relative;
+        min-height: 480px;
+      }
+
+      .hero-h1 {
+        font-family: var(--font-display);
+        font-size: clamp(72px, 10vw, 128px);
+        font-weight: 600;
+        letter-spacing: var(--track-tight);
+        line-height: var(--lh-snug);
+        color: var(--axial-bone);
+        margin: 16px 0 24px;
+      }
+
+      .hero-subhead {
+        font-family: var(--font-body);
+        font-size: 22px;
+        font-weight: 400;
+        line-height: var(--lh-normal);
+        color: var(--graphite-300);
+        max-width: 60ch;
+        margin: 0;
+      }
+
+      /* Voltage dot at bottom of hero axis */
+      .hero-axis-dot {
+        position: absolute;
+        left: 0;
+        bottom: 96px;
+        width: 8px;
+        height: 8px;
+        background: var(--axial-voltage);
+        border-radius: 50%;
+        transform: translateX(-3.5px);
+      }
+
+      /* --- Section divider --- */
+      .axis-h {
+        height: 1px;
+        background: var(--graphite-700);
+      }
+
+      /* --- Practices section --- */
+      .practices-section {
+        padding-top: 96px;
+      }
+
+      .practice-block {
+        padding-top: 96px;
+        padding-bottom: 96px;
+        border-bottom: 1px solid var(--graphite-700);
+      }
+
+      .practice-block:first-of-type {
+        border-top: 1px solid var(--graphite-700);
+      }
+
+      .practice-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      @media (min-width: 1024px) {
+        .practice-grid {
+          grid-template-columns: 4fr 8fr;
+          gap: 64px;
+        }
+      }
+
+      .practice-index {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: var(--track-wider);
+        text-transform: uppercase;
+        color: var(--graphite-400);
+        margin-bottom: 20px;
+        display: block;
+      }
+
+      .practice-name {
+        font-family: var(--font-display);
+        font-size: clamp(40px, 4vw, 56px);
+        font-weight: 500;
+        letter-spacing: var(--track-tight);
+        line-height: var(--lh-snug);
+        color: var(--axial-bone);
+        margin: 0;
+      }
+
+      .practice-desc {
+        font-family: var(--font-body);
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.5;
+        color: var(--graphite-300);
+        margin: 0 0 24px;
+      }
+
+      .practice-desc + .practice-desc {
+        margin-top: 0;
+      }
+
+      .practice-divider {
+        height: 1px;
+        background: var(--graphite-700);
+        margin: 32px 0;
+      }
+
+      .practice-bullets {
+        list-style: none;
+        margin: 0 0 40px;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .practice-bullets li {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: var(--track-wider);
+        text-transform: uppercase;
+        color: var(--graphite-400);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .practice-bullets li::before {
+        content: "→";
+        color: var(--axial-voltage);
+        font-size: 12px;
+      }
+
+      /* --- Process section --- */
+      .process-section {
+        padding-top: 96px;
+        padding-bottom: 96px;
+      }
+
+      .process-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+        margin-top: 64px;
+        border-top: 1px solid var(--graphite-700);
+      }
+
+      @media (min-width: 768px) {
+        .process-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .process-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      .process-step {
+        padding: 40px 32px;
+        border-right: 1px solid var(--graphite-700);
+        border-bottom: 1px solid var(--graphite-700);
+      }
+
+      .process-step:last-child {
+        border-right: none;
+      }
+
+      @media (max-width: 1023px) {
+        .process-step:nth-child(even) {
+          border-right: none;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .process-step {
+          border-right: none;
+        }
+      }
+
+      .process-num {
+        font-family: var(--font-mono);
+        font-size: 40px;
+        font-weight: 400;
+        letter-spacing: var(--track-tight);
+        color: var(--graphite-400);
+        line-height: 1;
+        margin-bottom: 24px;
+        display: block;
+      }
+
+      .process-name {
+        font-family: var(--font-display);
+        font-size: 32px;
+        font-weight: 500;
+        letter-spacing: var(--track-tight);
+        line-height: var(--lh-snug);
+        color: var(--axial-bone);
+        margin: 0 0 12px;
+      }
+
+      .process-duration {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: var(--track-wider);
+        text-transform: uppercase;
+        color: var(--axial-voltage);
+        margin-bottom: 12px;
+        display: block;
+      }
+
+      .process-desc {
+        font-family: var(--font-body);
+        font-size: 14px;
+        color: var(--graphite-400);
+        margin: 0;
+      }
+
+      /* --- CTA strip --- */
+      .cta-strip {
+        padding-top: 192px;
+        padding-bottom: 192px;
+        border-top: 1px solid var(--graphite-700);
+      }
+
+      .cta-h2 {
+        font-family: var(--font-display);
+        font-size: clamp(64px, 8vw, 96px);
+        font-weight: 600;
+        letter-spacing: var(--track-tight);
+        line-height: var(--lh-snug);
+        color: var(--axial-bone);
+        margin: 16px 0 48px;
+      }
+
+      /* --- FOOTER --- */
+      footer {
+        border-top: 1px solid var(--graphite-700);
+      }
+
+      .footer-wordmark-wrap {
+        overflow: hidden;
+        padding: 64px 0 0;
+      }
+
+      .footer-wordmark {
+        font-family: var(--font-display);
+        font-size: clamp(96px, 18vw, 192px);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        color: var(--axial-bone);
+        white-space: nowrap;
+        display: block;
+        width: 100%;
+      }
+
+      .footer-cols {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 48px;
+        padding: 64px 0 48px;
+        border-top: 1px solid var(--graphite-700);
+        margin-top: 32px;
+      }
+
+      @media (max-width: 767px) {
+        .footer-cols {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+      }
+
+      .footer-col-head {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: var(--track-wider);
+        text-transform: uppercase;
+        color: var(--axial-bone);
+        margin-bottom: 20px;
+        display: block;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .footer-links a {
+        font-family: var(--font-body);
+        font-size: 14px;
+        color: var(--graphite-300);
+        text-decoration: none;
+        transition: color var(--duration-ui) var(--ease-axial);
+      }
+
+      .footer-links a:hover {
+        color: var(--axial-bone);
+      }
+
+      .footer-bottom {
+        border-top: 1px solid var(--graphite-700);
+        padding: 20px 0;
+      }
+
+      .footer-copy {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: var(--track-wider);
+        text-transform: uppercase;
+        color: var(--graphite-400);
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Fixed left axis line -->
+    <div class="axis-fixed" aria-hidden="true"></div>
+
+    <!-- NAV -->
+    <nav role="navigation" aria-label="Main navigation">
+      <div class="nav-inner">
+        <a href="/" class="nav-brand" aria-label="Axial Labs home">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <rect x="10" y="1" width="4" height="26" fill="currentColor" />
+            <rect x="2" y="10" width="20" height="4" fill="currentColor" />
+          </svg>
+          <span class="nav-wordmark">AXIAL LABS</span>
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="/work">Work</a></li>
+          <li><a href="/services" aria-current="page">Services</a></li>
+          <li><a href="/pricing">Pricing</a></li>
+          <li><a href="/writing">Writing</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+        <a href="/contact" class="btn-voltage">Get in touch →</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="page-outer" aria-labelledby="hero-heading">
+      <div class="container-max hero" style="position: relative">
+        <span class="eyebrow">→ Services</span>
+        <h1 class="hero-h1" id="hero-heading">What we do.</h1>
+        <p class="hero-subhead">
+          Four practices. One operating model. Modular outputs you can ship.
+        </p>
+        <!-- Voltage dot on axis -->
+        <div
+          class="hero-axis-dot"
+          aria-hidden="true"
+          style="left: calc(-1 * clamp(24px, 5vw, 96px))"
+        ></div>
+      </div>
+    </section>
+
+    <!-- PRACTICES -->
+    <section
+      class="page-outer practices-section"
+      aria-labelledby="practices-heading"
+    >
+      <div class="container-max">
+        <span class="eyebrow" id="practices-heading"
+          >→ 01 / 04 &nbsp; Practices</span
+        >
+
+        <!-- 01 / 04 — Brand systems -->
+        <article class="practice-block" aria-labelledby="practice-01-name">
+          <div class="practice-grid">
+            <div>
+              <span class="practice-index">01 / 04</span>
+              <h2 class="practice-name" id="practice-01-name">Brand systems</h2>
+            </div>
+            <div>
+              <p class="practice-desc">
+                We don't make brand books. We make brand operating systems —
+                tokenized, versionable, regeneratable. Every color, every type
+                style, every spacing decision compiles into CSS, JavaScript,
+                Figma, and prompts. Once it's in tokens, it scales without us.
+              </p>
+              <p class="practice-desc">
+                Outputs include strategy, voice, identity system, and a
+                repository your team can extend. We hand off a Git remote, not a
+                PDF.
+              </p>
+              <div class="practice-divider" aria-hidden="true"></div>
+              <ul class="practice-bullets" aria-label="Deliverables">
+                <li>Tokens</li>
+                <li>Voice playbook</li>
+                <li>Component library</li>
+                <li>Repository handoff</li>
+              </ul>
+              <a href="/contact" class="btn-voltage">Start a project →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 02 / 04 — Product UI -->
+        <article class="practice-block" aria-labelledby="practice-02-name">
+          <div class="practice-grid">
+            <div>
+              <span class="practice-index">02 / 04</span>
+              <h2 class="practice-name" id="practice-02-name">Product UI</h2>
+            </div>
+            <div>
+              <p class="practice-desc">
+                Production-grade interfaces designed and engineered together. We
+                treat dashboards, settings panels, and onboarding flows as
+                first-class brand surfaces — built on the token system that
+                powers your marketing site.
+              </p>
+              <p class="practice-desc">
+                Ships in 4–8 weeks. Built in Next.js, Tailwind, shadcn/ui, or
+                your existing stack. Storybook included.
+              </p>
+              <div class="practice-divider" aria-hidden="true"></div>
+              <ul class="practice-bullets" aria-label="Deliverables">
+                <li>Wireframes</li>
+                <li>Component library</li>
+                <li>Storybook</li>
+                <li>Production deploy</li>
+              </ul>
+              <a href="/contact" class="btn-voltage">Start a project →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 03 / 04 — Tokens & components -->
+        <article class="practice-block" aria-labelledby="practice-03-name">
+          <div class="practice-grid">
+            <div>
+              <span class="practice-index">03 / 04</span>
+              <h2 class="practice-name" id="practice-03-name">
+                Tokens &amp; components
+              </h2>
+            </div>
+            <div>
+              <p class="practice-desc">
+                If your team is already designing and shipping, we'll set up the
+                system underneath. Design tokens in W3C format. Style Dictionary
+                build pipeline. Figma library. Storybook. npm package.
+              </p>
+              <p class="practice-desc">
+                Versionable, scoped to your team, and built so anyone —
+                including AI — can extend it.
+              </p>
+              <div class="practice-divider" aria-hidden="true"></div>
+              <ul class="practice-bullets" aria-label="Deliverables">
+                <li>Token packages</li>
+                <li>Figma library</li>
+                <li>Storybook</li>
+                <li>npm release</li>
+              </ul>
+              <a href="/contact" class="btn-voltage">Start a project →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 04 / 04 — Automation -->
+        <article class="practice-block" aria-labelledby="practice-04-name">
+          <div class="practice-grid">
+            <div>
+              <span class="practice-index">04 / 04</span>
+              <h2 class="practice-name" id="practice-04-name">Automation</h2>
+            </div>
+            <div>
+              <p class="practice-desc">
+                Internal tooling, AI workflows, prompt systems, CI pipelines. We
+                treat automation as a deliverable: not a side service, the side
+                service.
+              </p>
+              <p class="practice-desc">
+                Common engagements: AI-native asset generation, design-system
+                CI, content pipelines, and custom internal tools that compound.
+              </p>
+              <div class="practice-divider" aria-hidden="true"></div>
+              <ul class="practice-bullets" aria-label="Deliverables">
+                <li>AI workflows</li>
+                <li>Prompt systems</li>
+                <li>Design-sys CI</li>
+                <li>Internal tools</li>
+              </ul>
+              <a href="/contact" class="btn-voltage">Start a project →</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section
+      class="page-outer process-section"
+      aria-labelledby="process-heading"
+    >
+      <div class="container-max">
+        <span class="eyebrow" id="process-heading"
+          >→ 02 / 04 &nbsp; How we work</span
+        >
+        <div class="process-grid" role="list">
+          <div class="process-step" role="listitem">
+            <span class="process-num" aria-hidden="true">01</span>
+            <h3 class="process-name">Discovery</h3>
+            <span class="process-duration">1 week</span>
+            <p class="process-desc">Strategy, audit, brief.</p>
+          </div>
+
+          <div class="process-step" role="listitem">
+            <span class="process-num" aria-hidden="true">02</span>
+            <h3 class="process-name">Tokens</h3>
+            <span class="process-duration">3 days</span>
+            <p class="process-desc">Color, type, spacing, motion.</p>
+          </div>
+
+          <div class="process-step" role="listitem">
+            <span class="process-num" aria-hidden="true">03</span>
+            <h3 class="process-name">System</h3>
+            <span class="process-duration">2 weeks</span>
+            <p class="process-desc">Components, repos, docs.</p>
+          </div>
+
+          <div class="process-step" role="listitem" style="border-right: none">
+            <span class="process-num" aria-hidden="true">04</span>
+            <h3 class="process-name">Ship</h3>
+            <span class="process-duration">Week 4</span>
+            <p class="process-desc">Deploy, transfer, train.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA STRIP -->
+    <section class="page-outer cta-strip" aria-labelledby="cta-heading">
+      <div class="container-max">
+        <span class="eyebrow">→ Next</span>
+        <h2 class="cta-h2" id="cta-heading">Start a project.</h2>
+        <a href="/contact" class="btn-voltage">Book a call →</a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="page-outer" role="contentinfo">
+      <div class="container-max">
+        <div class="footer-wordmark-wrap" aria-hidden="true">
+          <span class="footer-wordmark">AXIAL LABS</span>
+        </div>
+        <div class="footer-cols">
+          <div>
+            <span class="footer-col-head">Services</span>
+            <ul class="footer-links" role="list">
+              <li><a href="/services/brand-systems">Brand systems</a></li>
+              <li><a href="/services/product-ui">Product UI</a></li>
+              <li><a href="/services/tokens">Tokens &amp; components</a></li>
+              <li><a href="/services/automation">Automation</a></li>
+            </ul>
+          </div>
+          <div>
+            <span class="footer-col-head">Company</span>
+            <ul class="footer-links" role="list">
+              <li><a href="/about">About</a></li>
+              <li><a href="/work">Work</a></li>
+              <li><a href="/writing">Writing</a></li>
+              <li><a href="/pricing">Pricing</a></li>
+            </ul>
+          </div>
+          <div>
+            <span class="footer-col-head">Contact</span>
+            <ul class="footer-links" role="list">
+              <li><a href="/contact">Get in touch</a></li>
+              <li><a href="mailto:santiagot.roa@gmail.com">Email</a></li>
+              <li><a href="https://github.com/axiallabs">GitHub</a></li>
+              <li><a href="https://twitter.com/axiallabs">X / Twitter</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="footer-copy">
+            © 2026 — Axial Labs &nbsp;//&nbsp; Systems for ambitious software
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axial Labs — Pricing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:wght@400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            axial: {
+              black: '#0A0A0B',
+              bone: '#F4F2EC',
+              voltage: '#C6F24E',
+              'voltage-dim': '#9DC23A',
+              ion: '#3D5BFF',
+              plasma: '#FF4D2E',
+              mercury: '#B8C2CC',
+            },
+            graphite: {
+              900: '#0A0A0B', 800: '#1A1B1E', 700: '#26282D',
+              600: '#3A3D44', 500: '#5A5E68', 400: '#878C97',
+              300: '#B5B9C2', 200: '#D8DAE0', 100: '#ECEDEF',
+            },
+          },
+          fontFamily: {
+            display: ['Inter Display', 'Inter', 'system-ui'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+            editorial: ['Source Serif 4', 'Georgia', 'serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          transitionTimingFunction: {
+            axial: 'cubic-bezier(0.32, 0.72, 0, 1)',
+          },
+          boxShadow: {
+            'glow-soft': '0 0 24px rgba(198, 242, 78, 0.35)',
+            'glow-strong': '0 0 48px rgba(198, 242, 78, 0.55), 0 0 96px rgba(198, 242, 78, 0.25)',
+          },
+          screens: {
+            sm: '480px',
+            md: '768px',
+            lg: '1024px',
+            xl: '1280px',
+            '2xl': '1440px',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    :root {
+      --axial-black: #0A0A0B;
+      --axial-bone: #F4F2EC;
+      --axial-voltage: #C6F24E;
+      --axial-voltage-dim: #9DC23A;
+      --axial-ion: #3D5BFF;
+      --axial-plasma: #FF4D2E;
+      --axial-mercury: #B8C2CC;
+      --graphite-900: #0A0A0B; --graphite-800: #1A1B1E; --graphite-700: #26282D;
+      --graphite-600: #3A3D44; --graphite-500: #5A5E68; --graphite-400: #878C97;
+      --graphite-300: #B5B9C2; --graphite-200: #D8DAE0; --graphite-100: #ECEDEF;
+      --bone-50: #F4F2EC;
+      --alpha-voltage-35: rgba(198, 242, 78, 0.35);
+      --alpha-voltage-55: rgba(198, 242, 78, 0.55);
+      --alpha-voltage-25: rgba(198, 242, 78, 0.25);
+      --alpha-black-60: rgba(10, 10, 11, 0.6);
+      --alpha-black-80: rgba(10, 10, 11, 0.8);
+      --alpha-bone-08: rgba(244, 242, 236, 0.08);
+      --font-display: 'Inter Display', 'Inter', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-editorial: 'Source Serif 4', Georgia, serif;
+      --font-mono: 'JetBrains Mono', 'Berkeley Mono', monospace;
+      --weight-regular: 400;
+      --weight-medium: 500;
+      --weight-semibold: 600;
+      --weight-bold: 700;
+      --size-12: 0.75rem;
+      --size-14: 0.875rem;
+      --size-16: 1rem;
+      --size-20: 1.25rem;
+      --size-24: 1.5rem;
+      --size-32: 2rem;
+      --size-40: 2.5rem;
+      --size-56: 3.5rem;
+      --size-72: 4.5rem;
+      --size-96: 6rem;
+      --size-128: 8rem;
+      --size-160: 10rem;
+      --lh-tight: 1.0;
+      --lh-snug: 1.1;
+      --lh-normal: 1.5;
+      --lh-loose: 1.7;
+      --track-tightest: -0.03em;
+      --track-tight: -0.02em;
+      --track-tighter: -0.01em;
+      --track-normal: 0em;
+      --track-wide: 0.02em;
+      --track-wider: 0.06em;
+      --space-0: 0px; --space-1: 4px; --space-2: 8px; --space-3: 12px;
+      --space-4: 16px; --space-5: 20px; --space-6: 24px; --space-8: 32px;
+      --space-10: 40px; --space-12: 48px; --space-16: 64px; --space-20: 80px;
+      --space-24: 96px; --space-32: 128px; --space-48: 192px; --space-64: 256px;
+      --max-prose: 640px;
+      --max-container: 1280px;
+      --max-wide: 1440px;
+      --gutter-mkt: 24px;
+      --radius-none: 0px;
+      --radius-sm: 4px;
+      --shadow-none: none;
+      --shadow-z1-dark: inset 0 0 0 1px var(--graphite-700);
+      --shadow-z1-light: inset 0 0 0 1px var(--graphite-200);
+      --shadow-z2-dark: 0 8px 24px rgba(10, 10, 11, 0.4), inset 0 0 0 1px var(--graphite-700);
+      --shadow-glow-soft: 0 0 24px rgba(198, 242, 78, 0.35);
+      --shadow-glow-strong: 0 0 48px rgba(198, 242, 78, 0.55), 0 0 96px rgba(198, 242, 78, 0.25);
+      --shadow-focus: 0 0 0 2px var(--axial-black), 0 0 0 4px var(--axial-voltage);
+      --blur-scrim: 12px;
+      --ease-axial: cubic-bezier(0.32, 0.72, 0, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --ease-out: cubic-bezier(0, 0, 0.35, 1);
+      --duration-instant: 120ms;
+      --duration-ui: 240ms;
+      --duration-hero: 600ms;
+      --duration-epic: 1200ms;
+      --z-0: 0; --z-1: 10; --z-2: 100; --z-3: 1000; --z-4: 10000;
+      --surface-bg: var(--graphite-900);
+      --surface-elev-1: var(--graphite-800);
+      --surface-elev-2: var(--graphite-700);
+      --surface-border: var(--graphite-700);
+      --surface-border-strong: var(--graphite-600);
+      --surface-border-accent: var(--axial-voltage);
+      --surface-scrim: var(--alpha-black-60);
+      --surface-hover: var(--alpha-bone-08);
+      --text-primary: var(--axial-bone);
+      --text-secondary: var(--graphite-300);
+      --text-tertiary: var(--graphite-500);
+      --text-accent: var(--axial-voltage);
+      --text-danger: var(--axial-plasma);
+      --text-inverse: var(--axial-black);
+      --icon-primary: var(--axial-bone);
+      --icon-secondary: var(--graphite-400);
+      --icon-accent: var(--axial-voltage);
+      --focus: var(--axial-voltage);
+      --shadow-z1: var(--shadow-z1-dark);
+      --shadow-z2: var(--shadow-z2-dark);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      background: var(--axial-black);
+      color: var(--axial-bone);
+      font-family: var(--font-body);
+      font-size: var(--size-16);
+      line-height: var(--lh-normal);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :focus-visible {
+      outline: none;
+      box-shadow: var(--shadow-focus);
+    }
+
+    /* --- Axis line fixed left --- */
+    .axis-fixed {
+      position: fixed;
+      top: 0;
+      left: clamp(24px, 5vw, 96px);
+      width: 1px;
+      height: 100vh;
+      background: var(--graphite-700);
+      z-index: var(--z-1);
+      pointer-events: none;
+    }
+
+    /* --- Page layout --- */
+    .page-outer {
+      padding-left: clamp(24px, 5vw, 96px);
+      padding-right: clamp(24px, 5vw, 96px);
+    }
+
+    .container-max {
+      max-width: var(--max-container);
+      margin: 0 auto;
+    }
+
+    /* --- NAV --- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      background: transparent;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--graphite-700);
+      z-index: var(--z-3);
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-inner {
+      width: 100%;
+      padding: 0 clamp(24px, 5vw, 96px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--axial-bone);
+      flex-shrink: 0;
+    }
+
+    .nav-wordmark {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: var(--track-tight);
+      color: var(--axial-bone);
+      line-height: 1;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      text-decoration: none;
+      transition: color var(--duration-ui) var(--ease-axial);
+    }
+
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] {
+      color: var(--axial-bone);
+    }
+
+    .btn-voltage {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--axial-voltage);
+      border: 1px solid var(--axial-voltage);
+      background: transparent;
+      padding: 8px 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background var(--duration-ui) var(--ease-axial),
+                  box-shadow var(--duration-ui) var(--ease-axial);
+      white-space: nowrap;
+    }
+
+    .btn-voltage:hover {
+      background: rgba(198, 242, 78, 0.08);
+      box-shadow: var(--shadow-glow-soft);
+    }
+
+    .btn-ghost {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-300);
+      border: 1px solid var(--graphite-700);
+      background: transparent;
+      padding: 8px 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: border-color var(--duration-ui) var(--ease-axial),
+                  color var(--duration-ui) var(--ease-axial);
+      white-space: nowrap;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--graphite-400);
+      color: var(--axial-bone);
+    }
+
+    /* --- Eyebrow --- */
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      display: block;
+    }
+
+    /* --- Hero --- */
+    .hero {
+      padding-top: calc(56px + 96px);
+      padding-bottom: 96px;
+      position: relative;
+      min-height: 480px;
+    }
+
+    .hero-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(72px, 10vw, 128px);
+      font-weight: 600;
+      letter-spacing: var(--track-tight);
+      line-height: var(--lh-snug);
+      color: var(--axial-bone);
+      margin: 16px 0 24px;
+    }
+
+    .hero-subhead {
+      font-family: var(--font-body);
+      font-size: 22px;
+      font-weight: 400;
+      line-height: var(--lh-normal);
+      color: var(--graphite-300);
+      max-width: 60ch;
+      margin: 0;
+    }
+
+    /* --- Pricing section --- */
+    .pricing-section {
+      padding-top: 96px;
+      padding-bottom: 96px;
+      border-top: 1px solid var(--graphite-700);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 64px;
+    }
+
+    @media (min-width: 1024px) {
+      .pricing-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Tier card base */
+    .tier-card {
+      border: 1px solid var(--graphite-700);
+      padding: 32px;
+      min-height: 560px;
+      display: flex;
+      flex-direction: column;
+      background: transparent;
+      position: relative;
+    }
+
+    /* Signature card */
+    .tier-card--signature {
+      border-color: var(--axial-voltage);
+      box-shadow: var(--shadow-glow-soft);
+    }
+
+    .tier-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tier-eyebrow .sig-tag {
+      color: var(--axial-voltage);
+    }
+
+    .tier-name {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 500;
+      letter-spacing: var(--track-tight);
+      line-height: var(--lh-snug);
+      color: var(--axial-bone);
+      margin: 0 0 24px;
+    }
+
+    .tier-price {
+      font-family: var(--font-mono);
+      font-size: 40px;
+      font-weight: 400;
+      letter-spacing: var(--track-tight);
+      color: var(--axial-bone);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .tier-price-qualifier {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      margin-bottom: 32px;
+      display: block;
+    }
+
+    .tier-divider {
+      height: 1px;
+      background: var(--graphite-700);
+      margin: 32px 0;
+    }
+
+    .tier-bullets {
+      list-style: none;
+      margin: 0 0 auto;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .tier-bullets li {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tier-bullets li::before {
+      content: '→';
+      color: var(--axial-voltage);
+      font-size: 12px;
+    }
+
+    .tier-cta {
+      margin-top: 40px;
+    }
+
+    /* --- FAQ section --- */
+    .faq-section {
+      padding-top: 96px;
+      padding-bottom: 96px;
+      border-top: 1px solid var(--graphite-700);
+    }
+
+    .faq-list {
+      margin-top: 64px;
+    }
+
+    details {
+      border-bottom: 1px solid var(--graphite-700);
+    }
+
+    details:first-of-type {
+      border-top: 1px solid var(--graphite-700);
+    }
+
+    summary {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: var(--track-tight);
+      color: var(--axial-bone);
+      padding: 24px 0;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      user-select: none;
+      transition: color var(--duration-ui) var(--ease-axial);
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary:hover {
+      color: var(--graphite-300);
+    }
+
+    summary .faq-arrow {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      color: var(--graphite-400);
+      flex-shrink: 0;
+      display: inline-block;
+      transition: transform var(--duration-ui) var(--ease-axial),
+                  color var(--duration-ui) var(--ease-axial);
+    }
+
+    details[open] summary .faq-arrow {
+      transform: rotate(90deg);
+      color: var(--axial-voltage);
+    }
+
+    .faq-answer {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--graphite-300);
+      padding: 0 0 24px;
+      max-width: 72ch;
+    }
+
+    /* --- CTA strip --- */
+    .cta-strip {
+      padding-top: 192px;
+      padding-bottom: 192px;
+      border-top: 1px solid var(--graphite-700);
+    }
+
+    .cta-h2 {
+      font-family: var(--font-display);
+      font-size: clamp(64px, 8vw, 96px);
+      font-weight: 600;
+      letter-spacing: var(--track-tight);
+      line-height: var(--lh-snug);
+      color: var(--axial-bone);
+      margin: 16px 0 48px;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      border-top: 1px solid var(--graphite-700);
+    }
+
+    .footer-wordmark-wrap {
+      overflow: hidden;
+      padding: 64px 0 0;
+    }
+
+    .footer-wordmark {
+      font-family: var(--font-display);
+      font-size: clamp(96px, 18vw, 192px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.0;
+      color: var(--axial-bone);
+      white-space: nowrap;
+      display: block;
+      width: 100%;
+    }
+
+    .footer-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      padding: 64px 0 48px;
+      border-top: 1px solid var(--graphite-700);
+      margin-top: 32px;
+    }
+
+    @media (max-width: 767px) {
+      .footer-cols {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    .footer-col-head {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--axial-bone);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--graphite-300);
+      text-decoration: none;
+      transition: color var(--duration-ui) var(--ease-axial);
+    }
+
+    .footer-links a:hover {
+      color: var(--axial-bone);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--graphite-700);
+      padding: 20px 0;
+    }
+
+    .footer-copy {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fixed left axis line -->
+  <div class="axis-fixed" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand" aria-label="Axial Labs home">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <rect x="10" y="1" width="4" height="26" fill="currentColor"/>
+          <rect x="2" y="10" width="20" height="4" fill="currentColor"/>
+        </svg>
+        <span class="nav-wordmark">AXIAL LABS</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="/work">Work</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/pricing" aria-current="page">Pricing</a></li>
+        <li><a href="/writing">Writing</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
+      <a href="/contact" class="btn-voltage">Get in touch →</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-outer" aria-labelledby="hero-heading">
+    <div class="container-max hero">
+      <span class="eyebrow">→ Pricing</span>
+      <h1 class="hero-h1" id="hero-heading">Three tiers. Fixed scope.</h1>
+      <p class="hero-subhead">Studio for full custom engagements. OS for productized starter kits. Foundry is open source.</p>
+    </div>
+  </section>
+
+  <!-- PRICING GRID -->
+  <section class="page-outer pricing-section" aria-labelledby="tiers-heading">
+    <div class="container-max">
+      <span class="eyebrow" id="tiers-heading">→ 01 / 03 &nbsp; Tiers</span>
+
+      <div class="pricing-grid">
+
+        <!-- Tier 1 — STUDIO -->
+        <article class="tier-card" aria-labelledby="tier-studio-name">
+          <p class="tier-eyebrow">01 / 03 &nbsp;·&nbsp; Studio</p>
+          <h2 class="tier-name" id="tier-studio-name">Full engagement.</h2>
+          <p class="tier-price">$24,000+</p>
+          <span class="tier-price-qualifier">Starting · 4-week sprint</span>
+          <ul class="tier-bullets" aria-label="What's included">
+            <li>4-week tokenized identity</li>
+            <li>Brand strategy + voice playbook</li>
+            <li>Component library (Figma + code)</li>
+            <li>Pitch deck + launch collateral</li>
+            <li>Dedicated team (3 people)</li>
+            <li>Repository handoff</li>
+          </ul>
+          <div class="tier-divider" aria-hidden="true"></div>
+          <div class="tier-cta">
+            <a href="/contact" class="btn-voltage">Get in touch →</a>
+          </div>
+        </article>
+
+        <!-- Tier 2 — OS · STARTER KIT (signature) -->
+        <article class="tier-card tier-card--signature" aria-labelledby="tier-os-name">
+          <p class="tier-eyebrow">
+            <span>02 / 03 &nbsp;·&nbsp; OS · Starter kit</span>
+            <span class="sig-tag">&nbsp;→ Signature</span>
+          </p>
+          <h2 class="tier-name" id="tier-os-name">Productized.</h2>
+          <p class="tier-price">$4,800</p>
+          <span class="tier-price-qualifier">/month · Cancel anytime</span>
+          <ul class="tier-bullets" aria-label="What's included">
+            <li>Tokens npm package</li>
+            <li>Figma library (Tokens Studio)</li>
+            <li>Component starter (Next.js)</li>
+            <li>Prompt library</li>
+            <li>Monthly updates</li>
+            <li>Slack support</li>
+          </ul>
+          <div class="tier-divider" aria-hidden="true"></div>
+          <div class="tier-cta">
+            <a href="/contact" class="btn-voltage">Start subscription →</a>
+          </div>
+        </article>
+
+        <!-- Tier 3 — FOUNDRY · OPEN SOURCE -->
+        <article class="tier-card" aria-labelledby="tier-foundry-name">
+          <p class="tier-eyebrow">03 / 03 &nbsp;·&nbsp; Foundry · Open source</p>
+          <h2 class="tier-name" id="tier-foundry-name">Free forever.</h2>
+          <p class="tier-price">$0</p>
+          <span class="tier-price-qualifier">MIT licensed · Community maintained</span>
+          <ul class="tier-bullets" aria-label="What's included">
+            <li>Public token packages</li>
+            <li>Community prompt library</li>
+            <li>Open Storybook</li>
+            <li>GitHub-first workflow</li>
+            <li>MIT licensed</li>
+            <li>Self-hosted, self-extended</li>
+          </ul>
+          <div class="tier-divider" aria-hidden="true"></div>
+          <div class="tier-cta">
+            <a href="https://github.com/axiallabs" class="btn-ghost">GitHub →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="page-outer faq-section" aria-labelledby="faq-heading">
+    <div class="container-max">
+      <span class="eyebrow" id="faq-heading">→ 02 / 03 &nbsp; Questions</span>
+
+      <div class="faq-list">
+
+        <details>
+          <summary>
+            What's not included?
+            <span class="faq-arrow" aria-hidden="true">→</span>
+          </summary>
+          <p class="faq-answer">We don't do logo-only engagements, brand audits as standalone projects, or RFP responses. We don't replace senior product designers — we build alongside them.</p>
+        </details>
+
+        <details>
+          <summary>
+            How fast can you start?
+            <span class="faq-arrow" aria-hidden="true">→</span>
+          </summary>
+          <p class="faq-answer">Two-week lead time on Studio engagements. OS subscription is same-week. Foundry is on GitHub now.</p>
+        </details>
+
+        <details>
+          <summary>
+            Do you do equity deals?
+            <span class="faq-arrow" aria-hidden="true">→</span>
+          </summary>
+          <p class="faq-answer">Sometimes. We trade a portion of fee for equity at Series A or later.</p>
+        </details>
+
+        <details>
+          <summary>
+            Can we extend the engagement?
+            <span class="faq-arrow" aria-hidden="true">→</span>
+          </summary>
+          <p class="faq-answer">Yes. Studio engagements convert to OS retainers at the end of week four.</p>
+        </details>
+
+        <details>
+          <summary>
+            Do you sign NDAs?
+            <span class="faq-arrow" aria-hidden="true">→</span>
+          </summary>
+          <p class="faq-answer">We sign yours, or use our standard mutual NDA.</p>
+        </details>
+
+        <details>
+          <summary>
+            Is the Foundry tier really free?
+            <span class="faq-arrow" aria-hidden="true">→</span>
+          </summary>
+          <p class="faq-answer">Yes. We use it ourselves. Public tokens, public prompts, public components.</p>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <section class="page-outer cta-strip" aria-labelledby="cta-heading">
+    <div class="container-max">
+      <span class="eyebrow">→ Next</span>
+      <h2 class="cta-h2" id="cta-heading">Start a project.</h2>
+      <a href="/contact" class="btn-voltage">Book a call →</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="page-outer" role="contentinfo">
+    <div class="container-max">
+      <div class="footer-wordmark-wrap" aria-hidden="true">
+        <span class="footer-wordmark">AXIAL LABS</span>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <span class="footer-col-head">Services</span>
+          <ul class="footer-links" role="list">
+            <li><a href="/services/brand-systems">Brand systems</a></li>
+            <li><a href="/services/product-ui">Product UI</a></li>
+            <li><a href="/services/tokens">Tokens &amp; components</a></li>
+            <li><a href="/services/automation">Automation</a></li>
+          </ul>
+        </div>
+        <div>
+          <span class="footer-col-head">Company</span>
+          <ul class="footer-links" role="list">
+            <li><a href="/about">About</a></li>
+            <li><a href="/work">Work</a></li>
+            <li><a href="/writing">Writing</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+          </ul>
+        </div>
+        <div>
+          <span class="footer-col-head">Contact</span>
+          <ul class="footer-links" role="list">
+            <li><a href="/contact">Get in touch</a></li>
+            <li><a href="mailto:santiagot.roa@gmail.com">Email</a></li>
+            <li><a href="https://github.com/axiallabs">GitHub</a></li>
+            <li><a href="https://twitter.com/axiallabs">X / Twitter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 — Axial Labs &nbsp;//&nbsp; Systems for ambitious software</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

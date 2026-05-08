@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+<text font-family="'Inter Display', 'Neue Haas Grotesk Display', system-ui, sans-serif" font-weight="600" font-size="144" letter-spacing="-0.02em" fill="currentColor" x="120" y="170" text-anchor="middle">AL</text>
+<g transform="translate(8 8)">
+<rect x="6.67" y="0.67" width="2.67" height="14.67" fill="currentColor"/>
+<rect x="1.33" y="6.67" width="13.33" height="2.67" fill="currentColor"/>
+</g>
+<g transform="translate(216 216)">
+<rect x="6.67" y="0.67" width="2.67" height="14.67" fill="currentColor"/>
+<rect x="1.33" y="6.67" width="13.33" height="2.67" fill="currentColor"/>
+</g>
+</svg>

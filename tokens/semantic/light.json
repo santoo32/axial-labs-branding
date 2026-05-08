@@ -1,0 +1,34 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "$description": "Semantic tokens for Axial Labs in light mode. Used for documents, formal collateral, case study editorial.",
+  "surface": {
+    "bg":         { "$value": "{color.axial.bone}", "$type": "color" },
+    "elev-1":     { "$value": "#FFFFFF",            "$type": "color" },
+    "elev-2":     { "$value": "#FFFFFF",            "$type": "color" },
+    "border":     { "$value": "{color.graphite.200}", "$type": "color" },
+    "border-strong": { "$value": "{color.graphite.300}", "$type": "color" },
+    "border-accent": { "$value": "{color.axial.voltage-dim}", "$type": "color" },
+    "scrim":      { "$value": "{color.alpha.black-60}", "$type": "color" },
+    "hover":      { "$value": "rgba(10,10,11,0.04)", "$type": "color" }
+  },
+  "text": {
+    "primary":   { "$value": "{color.axial.black}",   "$type": "color" },
+    "secondary": { "$value": "{color.graphite.600}",  "$type": "color" },
+    "tertiary":  { "$value": "{color.graphite.500}",  "$type": "color" },
+    "accent":    { "$value": "{color.axial.voltage-dim}", "$type": "color", "$description": "voltage-dim for AA contrast on Bone." },
+    "danger":    { "$value": "{color.axial.plasma}",  "$type": "color" },
+    "inverse":   { "$value": "{color.axial.bone}",    "$type": "color" }
+  },
+  "icon": {
+    "primary":   { "$value": "{color.axial.black}",   "$type": "color" },
+    "secondary": { "$value": "{color.graphite.500}",  "$type": "color" },
+    "accent":    { "$value": "{color.axial.voltage-dim}", "$type": "color" }
+  },
+  "status": {
+    "live":   { "$value": "{color.axial.voltage-dim}", "$type": "color" },
+    "idle":   { "$value": "{color.graphite.400}",      "$type": "color" },
+    "error":  { "$value": "{color.axial.plasma}",      "$type": "color" },
+    "info":   { "$value": "{color.axial.ion}",         "$type": "color" }
+  },
+  "focus": { "$value": "{color.axial.voltage-dim}", "$type": "color" }
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "color": {
+    "axial": {
+      "black":        { "$value": "#0A0A0B", "$type": "color", "$description": "Off-black, slight cool cast. Primary surface in dark mode." },
+      "bone":         { "$value": "#F4F2EC", "$type": "color", "$description": "Warm off-white, paper-like. Primary surface in light mode." },
+      "voltage":      { "$value": "#C6F24E", "$type": "color", "$description": "Electric chartreuse. Primary signal accent. Use ≤ 5% of any composition. Only on Axial Black." },
+      "voltage-dim":  { "$value": "#9DC23A", "$type": "color", "$description": "Reduced-luminance Voltage for use over Bone (preserves AA contrast)." },
+      "ion":          { "$value": "#3D5BFF", "$type": "color", "$description": "Cobalt-electric. Alternate accent for fintech / cooler sub-brands." },
+      "plasma":       { "$value": "#FF4D2E", "$type": "color", "$description": "Coral-orange. Alternate accent for warmer / consumer moments. Also used for danger states." },
+      "mercury":      { "$value": "#B8C2CC", "$type": "color", "$description": "Instrumentation grey-blue. Quiet supporting accent." }
+    },
+    "graphite": {
+      "900": { "$value": "#0A0A0B", "$type": "color" },
+      "800": { "$value": "#1A1B1E", "$type": "color" },
+      "700": { "$value": "#26282D", "$type": "color" },
+      "600": { "$value": "#3A3D44", "$type": "color" },
+      "500": { "$value": "#5A5E68", "$type": "color" },
+      "400": { "$value": "#878C97", "$type": "color" },
+      "300": { "$value": "#B5B9C2", "$type": "color" },
+      "200": { "$value": "#D8DAE0", "$type": "color" },
+      "100": { "$value": "#ECEDEF", "$type": "color" },
+      "50":  { "$value": "#F4F2EC", "$type": "color" }
+    },
+    "alpha": {
+      "voltage-35": { "$value": "rgba(198, 242, 78, 0.35)", "$type": "color" },
+      "voltage-55": { "$value": "rgba(198, 242, 78, 0.55)", "$type": "color" },
+      "voltage-25": { "$value": "rgba(198, 242, 78, 0.25)", "$type": "color" },
+      "black-60":   { "$value": "rgba(10, 10, 11, 0.6)", "$type": "color", "$description": "Modal scrim." },
+      "black-80":   { "$value": "rgba(10, 10, 11, 0.8)", "$type": "color" },
+      "bone-08":    { "$value": "rgba(244, 242, 236, 0.08)", "$type": "color", "$description": "Subtle hover overlay on dark surfaces." }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 400; letter-spacing: 0.06em; fill: currentColor; text-anchor: start; }
+    line, circle { stroke: currentColor; stroke-width: 1.5; stroke-linecap: square; stroke-linejoin: miter; fill: none; }
+  </style>
+
+  <!-- Registration marks (frame corners) -->
+  <line x1="6" y1="0" x2="6" y2="6" opacity="0.5"/>
+  <line x1="0" y1="6" x2="6" y2="6" opacity="0.5"/>
+  <line x1="794" y1="0" x2="794" y2="6" opacity="0.5"/>
+  <line x1="800" y1="6" x2="794" y2="6" opacity="0.5"/>
+  <line x1="6" y1="594" x2="6" y2="600" opacity="0.5"/>
+  <line x1="0" y1="594" x2="6" y2="594" opacity="0.5"/>
+  <line x1="794" y1="594" x2="794" y2="600" opacity="0.5"/>
+  <line x1="800" y1="594" x2="794" y2="594" opacity="0.5"/>
+
+  <!-- Vertical center axis -->
+  <line x1="400" y1="60" x2="400" y2="540"/>
+
+  <!-- Concentric circles (center 400, 300) -->
+  <circle cx="400" cy="300" r="40"/>
+  <circle cx="400" cy="300" r="100"/>
+  <circle cx="400" cy="300" r="160"/>
+  <circle cx="400" cy="300" r="220"/>
+
+  <!-- Tick marks at cardinal points on outer orbit (r=220) -->
+  <line x1="400" y1="80" x2="400" y2="72"/>
+  <line x1="400" y1="520" x2="400" y2="528"/>
+  <line x1="180" y1="300" x2="172" y2="300"/>
+  <line x1="620" y1="300" x2="628" y2="300"/>
+
+  <!-- Four rings at different orbits -->
+  <!-- Ring 1: top (400, 80) -->
+  <circle cx="400" cy="80" r="8"/>
+
+  <!-- Ring 2: left (300, 300) -->
+  <circle cx="300" cy="300" r="8"/>
+
+  <!-- Ring 3: bottom-right (520, 380) -->
+  <circle cx="520" cy="380" r="8"/>
+
+  <!-- Ring 4: upper-left (260, 200) - filled Voltage -->
+  <circle cx="260" cy="200" r="8"/>
+  <circle cx="260" cy="200" r="5" fill="#C6F24E"/>
+
+  <!-- Mono label at top-left -->
+  <text x="40" y="100">ORBIT · 04 RINGS</text>
+</svg>

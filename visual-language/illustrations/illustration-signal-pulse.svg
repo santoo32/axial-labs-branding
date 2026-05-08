@@ -1,0 +1,42 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 400; letter-spacing: 0.06em; fill: currentColor; text-anchor: start; }
+    line, circle, rect, path { stroke: currentColor; stroke-width: 1.5; stroke-linecap: square; stroke-linejoin: miter; fill: none; }
+    .voltage-signal { stroke: #C6F24E; }
+  </style>
+
+  <!-- Registration marks (frame corners) -->
+  <line x1="6" y1="0" x2="6" y2="6" opacity="0.5"/>
+  <line x1="0" y1="6" x2="6" y2="6" opacity="0.5"/>
+  <line x1="794" y1="0" x2="794" y2="6" opacity="0.5"/>
+  <line x1="800" y1="6" x2="794" y2="6" opacity="0.5"/>
+  <line x1="6" y1="594" x2="6" y2="600" opacity="0.5"/>
+  <line x1="0" y1="594" x2="6" y2="594" opacity="0.5"/>
+  <line x1="794" y1="594" x2="794" y2="600" opacity="0.5"/>
+  <line x1="800" y1="594" x2="794" y2="594" opacity="0.5"/>
+
+  <!-- Horizontal baseline axis -->
+  <line x1="60" y1="400" x2="740" y2="400"/>
+
+  <!-- Waveform pulse (Voltage colored) -->
+  <path d="M 60 400 L 260 400 L 300 200 L 420 200 L 460 400 L 740 400" class="voltage-signal"/>
+
+  <!-- Tick marks below axis (60u intervals) -->
+  <line x1="60" y1="404" x2="60" y2="412"/>
+  <line x1="120" y1="404" x2="120" y2="412"/>
+  <line x1="180" y1="404" x2="180" y2="412"/>
+  <line x1="240" y1="404" x2="240" y2="412"/>
+  <line x1="300" y1="404" x2="300" y2="412"/>
+  <line x1="360" y1="404" x2="360" y2="412"/>
+  <line x1="420" y1="404" x2="420" y2="412"/>
+  <line x1="480" y1="404" x2="480" y2="412"/>
+  <line x1="540" y1="404" x2="540" y2="412"/>
+  <line x1="600" y1="404" x2="600" y2="412"/>
+  <line x1="660" y1="404" x2="660" y2="412"/>
+  <line x1="720" y1="404" x2="720" y2="412"/>
+
+  <!-- Mono labels -->
+  <text x="40" y="100">SIGNAL · LIVE</text>
+  <text x="60" y="440">T: 0  →  T: 680</text>
+  <text x="420" y="170">PEAK: 200u</text>
+</svg>

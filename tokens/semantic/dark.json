@@ -1,0 +1,34 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "$description": "Semantic tokens for Axial Labs in dark mode. Dark mode is the brand-native surface.",
+  "surface": {
+    "bg":         { "$value": "{color.graphite.900}", "$type": "color", "$description": "Page background." },
+    "elev-1":     { "$value": "{color.graphite.800}", "$type": "color", "$description": "Z1 cards, elevated panels." },
+    "elev-2":     { "$value": "{color.graphite.700}", "$type": "color", "$description": "Z2 popovers, dropdowns." },
+    "border":     { "$value": "{color.graphite.700}", "$type": "color" },
+    "border-strong": { "$value": "{color.graphite.600}", "$type": "color" },
+    "border-accent": { "$value": "{color.axial.voltage}", "$type": "color" },
+    "scrim":      { "$value": "{color.alpha.black-60}", "$type": "color" },
+    "hover":      { "$value": "{color.alpha.bone-08}",  "$type": "color" }
+  },
+  "text": {
+    "primary":   { "$value": "{color.axial.bone}",     "$type": "color" },
+    "secondary": { "$value": "{color.graphite.300}",   "$type": "color" },
+    "tertiary":  { "$value": "{color.graphite.500}",   "$type": "color" },
+    "accent":    { "$value": "{color.axial.voltage}",  "$type": "color" },
+    "danger":    { "$value": "{color.axial.plasma}",   "$type": "color" },
+    "inverse":   { "$value": "{color.axial.black}",    "$type": "color", "$description": "Text on Voltage backgrounds." }
+  },
+  "icon": {
+    "primary":   { "$value": "{color.axial.bone}",    "$type": "color" },
+    "secondary": { "$value": "{color.graphite.400}",  "$type": "color" },
+    "accent":    { "$value": "{color.axial.voltage}", "$type": "color" }
+  },
+  "status": {
+    "live":   { "$value": "{color.axial.voltage}", "$type": "color" },
+    "idle":   { "$value": "{color.axial.mercury}", "$type": "color" },
+    "error":  { "$value": "{color.axial.plasma}",  "$type": "color" },
+    "info":   { "$value": "{color.axial.ion}",     "$type": "color" }
+  },
+  "focus": { "$value": "{color.axial.voltage}", "$type": "color" }
+}

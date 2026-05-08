@@ -1,0 +1,9 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "radius": {
+    "none":  { "$value": "0px", "$type": "dimension", "$description": "Default for cards, modals, and most surfaces. Right angles are the brand." },
+    "sm":    { "$value": "4px", "$type": "dimension", "$description": "Inputs, chips, badges only." },
+    "md":    { "$value": "8px", "$type": "dimension", "$description": "Reserved. Use sparingly." },
+    "full":  { "$value": "9999px", "$type": "dimension", "$description": "Status dots, focus rings, registration markers only." }
+  }
+}

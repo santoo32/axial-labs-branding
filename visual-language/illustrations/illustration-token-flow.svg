@@ -1,0 +1,62 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 400; letter-spacing: 0.06em; fill: currentColor; text-anchor: middle; }
+    line, circle, rect, path, polygon { stroke: currentColor; stroke-width: 1.5; stroke-linecap: square; stroke-linejoin: miter; fill: none; }
+    .voltage-arrow { stroke: #C6F24E; }
+  </style>
+
+  <!-- Registration marks (frame corners) -->
+  <line x1="6" y1="0" x2="6" y2="6" opacity="0.5"/>
+  <line x1="0" y1="6" x2="6" y2="6" opacity="0.5"/>
+  <line x1="794" y1="0" x2="794" y2="6" opacity="0.5"/>
+  <line x1="800" y1="6" x2="794" y2="6" opacity="0.5"/>
+  <line x1="6" y1="594" x2="6" y2="600" opacity="0.5"/>
+  <line x1="0" y1="594" x2="6" y2="594" opacity="0.5"/>
+  <line x1="794" y1="594" x2="794" y2="600" opacity="0.5"/>
+  <line x1="800" y1="594" x2="794" y2="594" opacity="0.5"/>
+
+  <!-- Column 1: CORE (x=100) -->
+  <rect x="70" y="240" width="60" height="32"/>
+  <text x="100" y="262">CORE.COLOR</text>
+
+  <rect x="70" y="320" width="60" height="32"/>
+  <text x="100" y="342">CORE.SIZE</text>
+
+  <rect x="70" y="400" width="60" height="32"/>
+  <text x="100" y="422">CORE.SPACE</text>
+
+  <!-- Column 2: SEMANTIC (x=400) -->
+  <rect x="370" y="240" width="60" height="32"/>
+  <text x="400" y="262">SEMANTIC.BG</text>
+
+  <rect x="370" y="320" width="60" height="32"/>
+  <text x="400" y="342">SEMANTIC.TEXT</text>
+
+  <rect x="370" y="400" width="60" height="32"/>
+  <text x="400" y="422">SEMANTIC.BORDER</text>
+
+  <!-- Column 3: COMPONENT (x=700) -->
+  <rect x="670" y="240" width="60" height="32"/>
+  <text x="700" y="262">BUTTON.BG</text>
+
+  <rect x="670" y="320" width="60" height="32"/>
+  <text x="700" y="342">CARD.BG</text>
+
+  <rect x="670" y="400" width="60" height="32"/>
+  <text x="700" y="422">INPUT.BG</text>
+
+  <!-- Arrow 1: CORE → SEMANTIC (standard color) -->
+  <line x1="130" y1="256" x2="370" y2="256"/>
+  <polygon points="370,256 360,250 360,262" stroke="currentColor" fill="currentColor"/>
+
+  <!-- Arrow 2: SEMANTIC → COMPONENT (Voltage) -->
+  <line x1="430" y1="336" x2="670" y2="336" class="voltage-arrow"/>
+  <polygon points="670,336 660,330 660,342" stroke="#C6F24E" fill="#C6F24E"/>
+
+  <!-- Arrow 3: COMPONENT flow (standard color) -->
+  <line x1="130" y1="416" x2="370" y2="416"/>
+  <polygon points="370,416 360,410 360,422" stroke="currentColor" fill="currentColor"/>
+
+  <!-- Mono label at top-left -->
+  <text x="40" y="100" text-anchor="start">TOKEN FLOW · CORE → SEMANTIC → COMPONENT</text>
+</svg>

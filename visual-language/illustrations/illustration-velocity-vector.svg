@@ -1,0 +1,46 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 400; letter-spacing: 0.06em; fill: currentColor; text-anchor: start; }
+    line, circle, rect, path, polygon { stroke: currentColor; stroke-width: 1.5; stroke-linecap: square; stroke-linejoin: miter; fill: none; }
+    .dotted { stroke-dasharray: 2 4; }
+    .voltage-arrow { stroke: #C6F24E; }
+  </style>
+
+  <!-- Registration marks (frame corners) -->
+  <line x1="6" y1="0" x2="6" y2="6" opacity="0.5"/>
+  <line x1="0" y1="6" x2="6" y2="6" opacity="0.5"/>
+  <line x1="794" y1="0" x2="794" y2="6" opacity="0.5"/>
+  <line x1="800" y1="6" x2="794" y2="6" opacity="0.5"/>
+  <line x1="6" y1="594" x2="6" y2="600" opacity="0.5"/>
+  <line x1="0" y1="594" x2="6" y2="594" opacity="0.5"/>
+  <line x1="794" y1="594" x2="794" y2="600" opacity="0.5"/>
+  <line x1="800" y1="594" x2="794" y2="594" opacity="0.5"/>
+
+  <!-- Origin point (160, 480) -->
+  <circle cx="160" cy="480" r="3" fill="currentColor"/>
+
+  <!-- Main velocity vector arrow (Voltage colored) -->
+  <line x1="160" y1="480" x2="640" y2="200" class="voltage-arrow"/>
+  <polygon points="640,200 630,208 635,195" stroke="#C6F24E" fill="#C6F24E"/>
+
+  <!-- Dotted right-triangle showing dx and dy -->
+  <!-- Horizontal dotted line (dx) -->
+  <line x1="160" y1="480" x2="640" y2="480" class="dotted"/>
+
+  <!-- Vertical dotted line (dy) -->
+  <line x1="640" y1="480" x2="640" y2="200" class="dotted"/>
+
+  <!-- Tick marks at bottom (80u intervals) -->
+  <line x1="160" y1="500" x2="160" y2="508"/>
+  <line x1="240" y1="500" x2="240" y2="508"/>
+  <line x1="320" y1="500" x2="320" y2="508"/>
+  <line x1="400" y1="500" x2="400" y2="508"/>
+  <line x1="480" y1="500" x2="480" y2="508"/>
+  <line x1="560" y1="500" x2="560" y2="508"/>
+  <line x1="640" y1="500" x2="640" y2="508"/>
+
+  <!-- Mono labels for dimensions -->
+  <text x="390" y="510">Δx: 480</text>
+  <text x="645" y="350">Δy: 280</text>
+  <text x="380" y="330">‖V‖ = 555.97</text>
+</svg>

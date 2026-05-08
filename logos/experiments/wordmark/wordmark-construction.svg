@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240">
+<text font-family="'Inter Display', 'Neue Haas Grotesk Display', system-ui, sans-serif" font-weight="600" font-size="96" letter-spacing="-0.02em" fill="currentColor" x="400" y="140" text-anchor="middle">AXIAL LABS</text>
+<line x1="120" y1="68" x2="680" y2="68" stroke="#878C97" stroke-width="1" stroke-linecap="square"/>
+<line x1="120" y1="148" x2="680" y2="148" stroke="#878C97" stroke-width="1" stroke-linecap="square"/>
+<line x1="120" y1="64" x2="120" y2="152" stroke="#878C97" stroke-width="1" stroke-linecap="square"/>
+<line x1="680" y1="64" x2="680" y2="152" stroke="#878C97" stroke-width="1" stroke-linecap="square"/>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="12" letter-spacing="0.06em" fill="#878C97" x="400" y="200" text-anchor="middle">CAP 72  ·  BASELINE 0  ·  WIDTH 560</text>
+</svg>

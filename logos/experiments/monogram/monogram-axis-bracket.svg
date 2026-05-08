@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+<line x1="120" y1="40" x2="120" y2="200" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+<text font-family="'Inter Display', 'Neue Haas Grotesk Display', system-ui, sans-serif" font-weight="600" font-size="144" letter-spacing="-0.02em" fill="currentColor" x="120" y="170" text-anchor="middle">AL</text>
+</svg>

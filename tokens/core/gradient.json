@@ -1,0 +1,15 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "gradient": {
+    "axis-mesh":   { "$value": "radial-gradient(circle at 50% 50%, #C6F24E 0%, #0A0A0B 70%)", "$type": "gradient", "$description": "Hero moments only. Apply 3% noise grain over the top." },
+    "glow-field":  { "$value": "linear-gradient(135deg, #3D5BFF 0%, #0A0A0B 100%)",            "$type": "gradient", "$description": "Cooler hero alternative. Low saturation." },
+    "ion-mist":    { "$value": "radial-gradient(circle at 30% 30%, #3D5BFF 0%, #0A0A0B 60%)", "$type": "gradient", "$description": "Behind 3D mockups and product visuals." },
+    "voltage-fade":{ "$value": "linear-gradient(180deg, #C6F24E 0%, rgba(198,242,78,0) 100%)","$type": "gradient", "$description": "Subtle Voltage fade. Decorative axis lines, never as a fill." },
+    "graphite-veil":{ "$value": "linear-gradient(180deg, rgba(10,10,11,0) 0%, #0A0A0B 100%)", "$type": "gradient", "$description": "Bottom-of-frame fade for hero images." }
+  },
+  "rules": {
+    "$description": "Gradients are reserved for hero moments. Never use on cards, buttons, or icons.",
+    "max-per-page": 1,
+    "use-cases":    ["hero-bg", "section-divider-bg", "behind-3d-mockup"]
+  }
+}

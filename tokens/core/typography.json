@@ -1,0 +1,56 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "font": {
+    "family": {
+      "display":   { "$value": "'Neue Haas Grotesk Display', 'Inter Display', system-ui, sans-serif", "$type": "fontFamily" },
+      "body":      { "$value": "'Inter', system-ui, sans-serif", "$type": "fontFamily" },
+      "editorial": { "$value": "'Source Serif 4', Georgia, serif", "$type": "fontFamily" },
+      "mono":      { "$value": "'JetBrains Mono', 'Berkeley Mono', monospace", "$type": "fontFamily" }
+    },
+    "weight": {
+      "regular":  { "$value": 400, "$type": "fontWeight" },
+      "medium":   { "$value": 500, "$type": "fontWeight" },
+      "semibold": { "$value": 600, "$type": "fontWeight" },
+      "bold":     { "$value": 700, "$type": "fontWeight" }
+    },
+    "size": {
+      "12":  { "$value": "0.75rem",  "$type": "dimension" },
+      "14":  { "$value": "0.875rem", "$type": "dimension" },
+      "16":  { "$value": "1rem",     "$type": "dimension" },
+      "20":  { "$value": "1.25rem",  "$type": "dimension" },
+      "24":  { "$value": "1.5rem",   "$type": "dimension" },
+      "32":  { "$value": "2rem",     "$type": "dimension" },
+      "40":  { "$value": "2.5rem",   "$type": "dimension" },
+      "56":  { "$value": "3.5rem",   "$type": "dimension" },
+      "72":  { "$value": "4.5rem",   "$type": "dimension" },
+      "96":  { "$value": "6rem",     "$type": "dimension" },
+      "128": { "$value": "8rem",     "$type": "dimension" },
+      "160": { "$value": "10rem",    "$type": "dimension" }
+    },
+    "line-height": {
+      "tight":   { "$value": 1.0, "$type": "number", "$description": "Display headlines >40px" },
+      "snug":    { "$value": 1.1, "$type": "number", "$description": "Sub-headlines 24-32px" },
+      "normal":  { "$value": 1.5, "$type": "number", "$description": "Body and UI text" },
+      "loose":   { "$value": 1.7, "$type": "number", "$description": "Editorial long-form" }
+    },
+    "tracking": {
+      "tightest": { "$value": "-0.03em", "$type": "dimension" },
+      "tight":    { "$value": "-0.02em", "$type": "dimension" },
+      "tighter":  { "$value": "-0.01em", "$type": "dimension" },
+      "normal":   { "$value": "0em",     "$type": "dimension" },
+      "wide":     { "$value": "0.02em",  "$type": "dimension" },
+      "wider":    { "$value": "0.06em",  "$type": "dimension", "$description": "Mono UPPERCASE eyebrows" }
+    }
+  },
+  "type": {
+    "h1":      { "$value": { "fontFamily": "{font.family.display}",   "fontSize": "{font.size.96}",  "fontWeight": "{font.weight.semibold}", "lineHeight": "{font.line-height.tight}",  "letterSpacing": "{font.tracking.tight}" },    "$type": "typography" },
+    "h2":      { "$value": { "fontFamily": "{font.family.display}",   "fontSize": "{font.size.56}",  "fontWeight": "{font.weight.medium}",   "lineHeight": "{font.line-height.snug}",   "letterSpacing": "{font.tracking.tighter}" }, "$type": "typography" },
+    "h3":      { "$value": { "fontFamily": "{font.family.display}",   "fontSize": "{font.size.32}",  "fontWeight": "{font.weight.medium}",   "lineHeight": "{font.line-height.snug}",   "letterSpacing": "{font.tracking.normal}" },  "$type": "typography" },
+    "h4":      { "$value": { "fontFamily": "{font.family.body}",      "fontSize": "{font.size.20}",  "fontWeight": "{font.weight.semibold}", "lineHeight": "{font.line-height.snug}",   "letterSpacing": "{font.tracking.normal}" },  "$type": "typography" },
+    "body-l":  { "$value": { "fontFamily": "{font.family.body}",      "fontSize": "{font.size.20}",  "fontWeight": "{font.weight.regular}",  "lineHeight": "{font.line-height.normal}", "letterSpacing": "{font.tracking.normal}" },  "$type": "typography" },
+    "body":    { "$value": { "fontFamily": "{font.family.body}",      "fontSize": "{font.size.16}",  "fontWeight": "{font.weight.regular}",  "lineHeight": "{font.line-height.normal}", "letterSpacing": "{font.tracking.normal}" },  "$type": "typography" },
+    "caption": { "$value": { "fontFamily": "{font.family.mono}",      "fontSize": "{font.size.12}",  "fontWeight": "{font.weight.regular}",  "lineHeight": "{font.line-height.normal}", "letterSpacing": "{font.tracking.wide}" },    "$type": "typography" },
+    "eyebrow": { "$value": { "fontFamily": "{font.family.mono}",      "fontSize": "{font.size.12}",  "fontWeight": "{font.weight.medium}",   "lineHeight": "{font.line-height.normal}", "letterSpacing": "{font.tracking.wider}", "textTransform": "uppercase" }, "$type": "typography" },
+    "editorial": { "$value": { "fontFamily": "{font.family.editorial}", "fontSize": "{font.size.20}", "fontWeight": "{font.weight.regular}", "lineHeight": "{font.line-height.loose}",  "letterSpacing": "{font.tracking.normal}" }, "$type": "typography" }
+  }
+}

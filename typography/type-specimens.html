@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axial Labs — Type System Specimen</title>
+  <style>
+    :root {
+      /* Color · Axial palette */
+      --axial-black: #0A0A0B;
+      --axial-bone: #F4F2EC;
+      --axial-voltage: #C6F24E;
+      --axial-voltage-dim: #9DC23A;
+      --axial-ion: #3D5BFF;
+      --axial-plasma: #FF4D2E;
+      --axial-mercury: #B8C2CC;
+
+      /* Color · Graphite ramp */
+      --graphite-900: #0A0A0B;
+      --graphite-800: #1A1B1E;
+      --graphite-700: #26282D;
+      --graphite-600: #3A3D44;
+      --graphite-500: #5A5E68;
+      --graphite-400: #878C97;
+      --graphite-300: #B5B9C2;
+      --graphite-200: #D8DAE0;
+      --graphite-100: #ECEDEF;
+
+      /* Typography · Families */
+      --font-display: 'Inter Display', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-editorial: 'Source Serif 4', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* Typography · Weights */
+      --weight-regular: 400;
+      --weight-medium: 500;
+      --weight-semibold: 600;
+      --weight-bold: 700;
+
+      /* Typography · Sizes (modular 1.25) */
+      --size-12: 0.75rem;
+      --size-14: 0.875rem;
+      --size-16: 1rem;
+      --size-20: 1.25rem;
+      --size-24: 1.5rem;
+      --size-32: 2rem;
+      --size-40: 2.5rem;
+      --size-56: 3.5rem;
+      --size-72: 4.5rem;
+      --size-96: 6rem;
+      --size-128: 8rem;
+      --size-160: 10rem;
+
+      /* Typography · Line height */
+      --lh-tight: 1.0;
+      --lh-snug: 1.1;
+      --lh-normal: 1.5;
+      --lh-loose: 1.7;
+
+      /* Typography · Tracking */
+      --track-tightest: -0.03em;
+      --track-tight: -0.02em;
+      --track-tighter: -0.01em;
+      --track-normal: 0em;
+      --track-wide: 0.02em;
+      --track-wider: 0.06em;
+
+      /* Spacing (4px base) */
+      --space-0: 0px;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-20: 80px;
+      --space-24: 96px;
+      --space-32: 128px;
+      --space-48: 192px;
+      --space-64: 256px;
+
+      /* Motion · Easing */
+      --ease-axial: cubic-bezier(0.32, 0.72, 0, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --ease-out: cubic-bezier(0, 0, 0.35, 1);
+
+      /* Motion · Duration */
+      --duration-instant: 120ms;
+      --duration-ui: 240ms;
+      --duration-hero: 600ms;
+      --duration-epic: 1200ms;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      background: var(--axial-black);
+      color: var(--axial-bone);
+    }
+
+    body {
+      margin: 0;
+      background: var(--axial-black);
+      color: var(--axial-bone);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .page-wrapper {
+      position: relative;
+      padding: clamp(24px, 5vw, 96px);
+      padding-left: clamp(24px, 5vw, 96px);
+    }
+
+    .axis-line {
+      position: fixed;
+      left: clamp(24px, 5vw, 96px);
+      top: 0;
+      width: 1px;
+      height: 100vh;
+      background: var(--graphite-700);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    section {
+      margin-bottom: var(--space-24);
+      padding-bottom: var(--space-24);
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--size-12);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      margin-bottom: var(--space-12);
+    }
+
+    .eyebrow-accent {
+      color: var(--axial-voltage);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      margin: 0;
+      line-height: var(--lh-tight);
+    }
+
+    .font-display {
+      font-family: var(--font-display);
+      letter-spacing: var(--track-tight);
+      font-weight: var(--weight-semibold);
+    }
+
+    .font-body {
+      font-family: var(--font-body);
+      letter-spacing: var(--track-normal);
+    }
+
+    .font-editorial {
+      font-family: var(--font-editorial);
+      line-height: var(--lh-loose);
+    }
+
+    .font-mono {
+      font-family: var(--font-mono);
+      letter-spacing: var(--track-normal);
+    }
+
+    /* Cover section */
+    .cover {
+      margin-bottom: var(--space-32);
+      padding-bottom: var(--space-32);
+    }
+
+    .cover h1 {
+      font-size: var(--size-128);
+      font-weight: var(--weight-semibold);
+      margin-bottom: var(--space-6);
+    }
+
+    .cover .subhead {
+      font-size: var(--size-20);
+      color: var(--axial-bone);
+      font-weight: var(--weight-regular);
+      max-width: 600px;
+    }
+
+    /* Display scale */
+    .scale-row {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--space-12);
+    }
+
+    .scale-label {
+      font-family: var(--font-mono);
+      font-size: var(--size-12);
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      margin-top: var(--space-4);
+      font-weight: var(--weight-regular);
+    }
+
+    .h1-scale { font-size: var(--size-96); }
+    .h2-scale { font-size: var(--size-56); }
+    .h3-scale { font-size: var(--size-32); }
+    .h4-scale { font-size: var(--size-20); }
+
+    /* Body section */
+    .body-text {
+      max-width: 700px;
+      margin-bottom: var(--space-6);
+    }
+
+    .body-l {
+      font-size: var(--size-20);
+      line-height: var(--lh-normal);
+    }
+
+    .body-m {
+      font-size: var(--size-16);
+      line-height: var(--lh-normal);
+    }
+
+    /* Editorial section */
+    .editorial-text {
+      max-width: var(--space-20);
+      margin-bottom: var(--space-8);
+    }
+
+    .editorial-prose {
+      font-size: var(--size-20);
+      line-height: var(--lh-loose);
+      max-width: 640px;
+    }
+
+    /* Mono section */
+    .mono-section {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+    }
+
+    .code-block {
+      background: var(--graphite-800);
+      border: 1px solid var(--graphite-700);
+      padding: var(--space-4);
+      font-family: var(--font-mono);
+      font-size: var(--size-14);
+      color: var(--graphite-300);
+      overflow-x: auto;
+      line-height: var(--lh-snug);
+    }
+
+    .status-ticker {
+      font-family: var(--font-mono);
+      font-size: var(--size-12);
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+    }
+
+    .status-ticker .tick {
+      color: var(--axial-voltage);
+      margin: 0 var(--space-2);
+    }
+
+    .mono-note {
+      margin-top: var(--space-4);
+    }
+
+    .mono-note-label {
+      font-family: var(--font-mono);
+      font-size: var(--size-12);
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      margin-bottom: var(--space-2);
+    }
+
+    .mono-note-text {
+      font-family: var(--font-mono);
+      font-size: var(--size-14);
+      color: var(--graphite-300);
+      line-height: var(--lh-snug);
+    }
+
+    /* Pairing grid */
+    .pairing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-8);
+      margin-bottom: var(--space-12);
+    }
+
+    .pairing-card {
+      border: 1px solid var(--graphite-700);
+      padding: var(--space-6);
+    }
+
+    .pairing-sample {
+      margin-bottom: var(--space-4);
+    }
+
+    .pairing-label {
+      font-family: var(--font-mono);
+      font-size: var(--size-12);
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: var(--space-32);
+      padding-top: var(--space-24);
+      border-top: 1px solid var(--graphite-700);
+      text-align: center;
+    }
+
+    .footer-wordmark {
+      font-family: var(--font-display);
+      font-size: clamp(96px, 20vw, 160px);
+      font-weight: var(--weight-semibold);
+      letter-spacing: var(--track-tight);
+      margin-bottom: var(--space-6);
+      line-height: var(--lh-tight);
+    }
+
+    .footer-meta {
+      font-family: var(--font-mono);
+      font-size: var(--size-12);
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .pairing-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="axis-line"></div>
+
+  <div class="page-wrapper">
+    <div class="content">
+
+      <!-- Cover -->
+      <section class="cover">
+        <div class="eyebrow">→ AXIAL LABS · TYPE SPECIMEN  ·  v1.0  ·  2026-05-07</div>
+        <h1 class="font-display">Type / system.</h1>
+        <p class="subhead">Four families. One scale. No exceptions.</p>
+      </section>
+
+      <!-- Display scale -->
+      <section>
+        <div class="eyebrow">→ 01 / 07  DISPLAY SCALE</div>
+
+        <div class="scale-row">
+          <h1 class="font-display h1-scale">Systems for ambitious software.</h1>
+          <div class="scale-label">H1 · 96PX · DISPLAY 600 · TRACK −2%</div>
+        </div>
+
+        <div class="scale-row">
+          <h2 class="font-display h2-scale">Systems for ambitious software.</h2>
+          <div class="scale-label">H2 · 56PX · DISPLAY 500 · TRACK −1%</div>
+        </div>
+
+        <div class="scale-row">
+          <h3 class="font-display h3-scale">Systems for ambitious software.</h3>
+          <div class="scale-label">H3 · 32PX · DISPLAY 500 · TRACK 0%</div>
+        </div>
+
+        <div class="scale-row">
+          <h4 class="font-body h4-scale" style="font-weight: 600;">Systems for ambitious software.</h4>
+          <div class="scale-label">H4 · 20PX · BODY 600 · TRACK 0%</div>
+        </div>
+      </section>
+
+      <!-- Body -->
+      <section>
+        <div class="eyebrow">→ 02 / 07  BODY</div>
+
+        <p class="body-text body-l">Tokens compile. Borders, not shadows. The grid is the brand. Every value is a multiple of four; every spacing decision references a token, never a literal. The system is the work.</p>
+
+        <p class="body-text body-m">Design is instruction. Brand is operating system. We ship the repository, not the PDF. Precision over personality. Specifics over slogans. Build once. Deploy everywhere.</p>
+      </section>
+
+      <!-- Editorial -->
+      <section>
+        <div class="eyebrow">→ 03 / 07  EDITORIAL</div>
+
+        <p class="editorial-text editorial-prose">Most agencies hand off a PDF. We hand off a repository. Most design systems live in a Figma file. Ours lives in tokens, and those tokens cascade through CSS, JavaScript, and design tools. The system is the work. Brand is not image; brand is instruction. When every pixel is intentional, consistency isn't a feature—it's the default.</p>
+
+        <p class="editorial-text editorial-prose">Why precision over personality? Because personality dates. Precision ships. A system built on tokens doesn't fade. It doesn't need redesign. It scales. It compounds. Teams inherit clarity instead of chaos. That clarity is worth more than any campaign.</p>
+
+        <p class="editorial-text editorial-prose">We believe in handoff that lasts. In typography that survives the next platform. In color that scales from one pixel to a thousand. In motion that feels inevitable. Axial Labs builds the operating systems behind ambitious products—systems so clean and precise they feel like they had no designer at all.</p>
+      </section>
+
+      <!-- Mono -->
+      <section>
+        <div class="eyebrow">→ 04 / 07  MONO</div>
+
+        <div class="mono-section">
+          <div>
+            <div class="code-block">const axialVoltage = '#C6F24E';<br>const displayStack = 'Inter Display, system-ui';<br>const spacing = [4, 8, 12, 16, 24, 32, 48, 64, 96];</div>
+          </div>
+
+          <div>
+            <div class="status-ticker">BUILD · 2.4s <span class="tick">·</span> 12 OF 12 CHECKS PASSED <span class="tick">·</span> READY TO SHIP</div>
+          </div>
+
+          <div class="mono-note">
+            <div class="mono-note-label">→ NOTE</div>
+            <div class="mono-note-text">Mono is always lowercase or ALL CAPS. Never sentence case. Use for code, labels, metadata, index numbers, coordinates.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pairing -->
+      <section>
+        <div class="eyebrow">→ 05 / 07  PAIRING</div>
+
+        <div class="pairing-grid">
+          <div class="pairing-card">
+            <div class="pairing-sample">
+              <h2 class="font-display h2-scale">56.</h2>
+              <p class="body-text body-m">Display 56 paired with body 16. Headline + supporting text. High contrast hierarchy.</p>
+            </div>
+            <div class="pairing-label">Display 56 + Body 16</div>
+          </div>
+
+          <div class="pairing-card">
+            <div class="pairing-sample">
+              <h3 class="font-display h3-scale">System.</h3>
+              <div class="eyebrow" style="margin-bottom: 0;">→ SUBTITLE</div>
+            </div>
+            <div class="pairing-label">Display 32 + Mono Eyebrow</div>
+          </div>
+
+          <div class="pairing-card">
+            <div class="pairing-sample editorial-prose">Editorial works best alone. Long-form prose in Source Serif 4. Rare, intentional, and always paired with plenty of whitespace.</div>
+            <div class="pairing-label">Editorial Standalone</div>
+          </div>
+
+          <div class="pairing-card">
+            <div class="pairing-sample">
+              <h4 class="font-body h4-scale" style="font-weight: 600; margin-bottom: var(--space-2);">Heading + caption.</h4>
+              <div class="mono-note-text" style="color: var(--graphite-400);">labels, metadata, 12px mono</div>
+            </div>
+            <div class="pairing-label">H4 20 + Mono Caption 12</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <section class="footer">
+        <div class="footer-wordmark">AXIAL LABS</div>
+        <div class="footer-meta">© 2026 — AXIAL LABS  //  TYPE SPECIMEN  //  v1.0</div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            axial: {
+              black: '#0A0A0B',
+              bone: '#F4F2EC',
+              voltage: '#C6F24E',
+              'voltage-dim': '#9DC23A',
+              ion: '#3D5BFF',
+              plasma: '#FF4D2E',
+              mercury: '#B8C2CC',
+            },
+            graphite: {
+              900: '#0A0A0B',
+              800: '#1A1B1E',
+              700: '#26282D',
+              600: '#3A3D44',
+              500: '#5A5E68',
+              400: '#878C97',
+              300: '#B5B9C2',
+              200: '#D8DAE0',
+              100: '#ECEDEF',
+            },
+          },
+          fontFamily: {
+            display: ['"Inter Display"', '"Neue Haas Grotesk Display"', 'system-ui'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+            editorial: ['"Source Serif 4"', 'Georgia', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          fontSize: {
+            '12': ['0.75rem', { lineHeight: '1.5' }],
+            '14': ['0.875rem', { lineHeight: '1.5' }],
+            '16': ['1rem', { lineHeight: '1.5' }],
+            '20': ['1.25rem', { lineHeight: '1.5' }],
+            '32': ['2rem', { lineHeight: '1.1' }],
+            '56': ['3.5rem', { lineHeight: '1.1' }],
+            '96': ['6rem', { lineHeight: '1.0' }],
+            '128': ['8rem', { lineHeight: '1.0' }],
+          },
+        },
+      },
+    };
+  </script>
+</body>
+</html>

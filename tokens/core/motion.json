@@ -1,0 +1,27 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "motion": {
+    "ease": {
+      "axial":   { "$value": "cubic-bezier(0.32, 0.72, 0, 1)", "$type": "cubicBezier", "$description": "The custom Axial easing curve. Default for everything." },
+      "in-out":  { "$value": "cubic-bezier(0.65, 0, 0.35, 1)", "$type": "cubicBezier", "$description": "For symmetric movements." },
+      "out":     { "$value": "cubic-bezier(0, 0, 0.35, 1)",    "$type": "cubicBezier", "$description": "For elements entering the viewport." },
+      "linear":  { "$value": "linear", "$type": "cubicBezier", "$description": "Tickers, scrolling marquees, axis-line wipes." }
+    },
+    "duration": {
+      "instant": { "$value": "120ms",  "$type": "duration", "$description": "Hover state changes, focus rings." },
+      "ui":      { "$value": "240ms",  "$type": "duration", "$description": "Default UI transitions: tabs, accordions, buttons." },
+      "hero":    { "$value": "600ms",  "$type": "duration", "$description": "Hero entries, page-level transitions." },
+      "epic":    { "$value": "1200ms", "$type": "duration", "$description": "Orchestrated scroll-triggered sequences." }
+    },
+    "primitive": {
+      "rotate":      { "$value": "rotate(0deg)",        "$type": "transform", "$description": "Default rotation primitive — animate from -2deg to 0deg around the axis." },
+      "axis-wipe":   { "$value": "scaleY(0) -> scaleY(1)", "$type": "transform", "$description": "Axis-line drawing effect, transformOrigin: top." },
+      "type-reveal": { "$value": "char-by-char fade-in", "$type": "transform", "$description": "Display headlines reveal character by character at 30ms each." },
+      "parallax-y":  { "$value": "translateY(-N%)",     "$type": "transform", "$description": "Vertical parallax. N varies with scroll position." }
+    },
+    "forbidden": {
+      "$description": "Motion primitives explicitly disallowed across all Axial assets.",
+      "$value": ["bounce", "elastic", "back-in", "back-out", "3d-flip", "morph"]
+    }
+  }
+}
