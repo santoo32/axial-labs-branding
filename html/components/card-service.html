@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axial Labs — Component: Card Service</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --axial-black: #0A0A0B; --axial-bone: #F4F2EC;
+      --axial-voltage: #C6F24E; --axial-voltage-dim: #9DC23A;
+      --graphite-900: #0A0A0B; --graphite-800: #1A1B1E; --graphite-700: #26282D;
+      --graphite-600: #3A3D44; --graphite-500: #5A5E68; --graphite-400: #878C97;
+      --graphite-300: #B5B9C2; --graphite-200: #D8DAE0; --graphite-100: #ECEDEF;
+      --font-display: 'Inter Display', 'Inter', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --track-tight: -0.02em; --track-wider: 0.06em;
+      --ease-axial: cubic-bezier(0.32, 0.72, 0, 1);
+      --duration-ui: 240ms;
+      --shadow-glow-soft: 0 0 24px rgba(198, 242, 78, 0.35);
+      --shadow-focus: 0 0 0 2px var(--axial-black), 0 0 0 4px var(--axial-voltage);
+    }
+
+    /* ── RESET ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--axial-black); color: var(--axial-bone);
+      font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    :focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
+    /* ── PREVIEW SHELL ──────────────────────────────────── */
+    .axis-line {
+      position: fixed; top: 0; left: clamp(24px, 5vw, 96px);
+      width: 1px; height: 100vh; background: var(--graphite-700); pointer-events: none;
+    }
+    .shell { padding: 64px clamp(48px, 8vw, 128px) 96px; max-width: 1280px; margin: 0 auto; }
+    .comp-meta { margin-bottom: 56px; padding-bottom: 28px; border-bottom: 1px solid var(--graphite-700); }
+    .comp-eyebrow { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-400);
+      margin: 0 0 12px; display: block; }
+    .comp-name { font-family: var(--font-display); font-size: 48px; font-weight: 600;
+      letter-spacing: var(--track-tight); line-height: 1.1; margin: 0 0 8px; }
+    .comp-desc { font-size: 16px; color: var(--graphite-300); margin: 0; }
+    .preview-section { margin-bottom: 64px; }
+    .preview-heading { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-500);
+      margin: 0 0 20px; padding-bottom: 12px; border-bottom: 1px solid var(--graphite-700); }
+    .preview-area {
+      border: 1px solid var(--graphite-700); padding: 48px; background: var(--graphite-800);
+    }
+    .preview-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--track-wider);
+      text-transform: uppercase; color: var(--graphite-500); display: block; margin-top: 12px; }
+    .code-section { margin-top: 16px; }
+    .code-heading { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-400);
+      margin: 0 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--graphite-700); }
+    pre { background: var(--graphite-800); border: 1px solid var(--graphite-700);
+      padding: 24px; overflow-x: auto; margin: 0 0 48px; }
+    code { font-family: var(--font-mono); font-size: 12px; line-height: 1.8; color: var(--graphite-200); }
+    .tok-comment { color: var(--graphite-500); }
+    .tok-prop { color: var(--axial-voltage-dim); }
+    .tok-val { color: var(--graphite-300); }
+    .tok-sel { color: var(--axial-bone); }
+    .tok-tag { color: var(--axial-voltage-dim); }
+    .tok-attr { color: var(--graphite-400); }
+    .tok-str { color: var(--graphite-200); }
+
+    /* ── COMPONENT: CARD SERVICE ────────────────────────── */
+    .practice-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    @media (min-width: 900px) {
+      .practice-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .practice-block {
+      border: 1px solid var(--graphite-700);
+      padding: 40px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Adjacent cells share borders without doubling */
+    .practice-block + .practice-block { margin-top: -1px; }
+    @media (min-width: 900px) {
+      .practice-block + .practice-block { margin-top: 0; }
+      .practice-block:nth-child(even) { margin-left: -1px; }
+      .practice-block:nth-child(n+3) { margin-top: -1px; }
+    }
+
+    .practice-index {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      margin: 0 0 24px;
+    }
+
+    .practice-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: var(--track-tight);
+      line-height: 1.1;
+      margin: 0 0 16px;
+    }
+
+    .practice-body {
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--graphite-300);
+      margin: 0 0 24px;
+      flex: 1;
+    }
+
+    .practice-deliverables {
+      list-style: none;
+      margin: 0 0 32px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-top: 1px solid var(--graphite-700);
+      padding-top: 24px;
+    }
+
+    .practice-deliverables li {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .practice-deliverables li::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 1px;
+      background: var(--axial-voltage-dim);
+      flex-shrink: 0;
+    }
+
+    .practice-cta {
+      margin-top: auto;
+    }
+
+    /* Button (inline, avoid import cycle) */
+    .btn-voltage {
+      font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase;
+      color: var(--axial-voltage); border: 1px solid var(--axial-voltage);
+      background: transparent; padding: 8px 16px; cursor: pointer;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+      line-height: 1; white-space: nowrap;
+      transition: background var(--duration-ui) var(--ease-axial),
+                  box-shadow var(--duration-ui) var(--ease-axial);
+    }
+    .btn-voltage:hover { background: rgba(198,242,78,0.08); box-shadow: var(--shadow-glow-soft); }
+  </style>
+</head>
+<body>
+
+  <div class="axis-line" aria-hidden="true"></div>
+
+  <div class="shell">
+
+    <header class="comp-meta">
+      <span class="comp-eyebrow">→ COMPONENT LIBRARY · v1.0</span>
+      <h1 class="comp-name">Card Service</h1>
+      <p class="comp-desc">Practice-block card for the services page. Grid of 2 columns. Shared borders, index label, deliverables list.</p>
+    </header>
+
+    <!-- Single card -->
+    <section class="preview-section" aria-labelledby="single-heading">
+      <p class="preview-heading" id="single-heading">→ Single card</p>
+      <div class="preview-area">
+        <article class="practice-block" style="max-width: 480px;" aria-labelledby="ex-service-title">
+          <p class="practice-index">01 / 04</p>
+          <h2 class="practice-title" id="ex-service-title">Brand systems.</h2>
+          <p class="practice-body">Token-first identity. Strategy, logo, type, color, and voice — built as a deployable system, not a PDF.</p>
+          <ul class="practice-deliverables" aria-label="Deliverables">
+            <li>Design token system</li>
+            <li>Logo suite (SVG)</li>
+            <li>Voice + tone playbook</li>
+            <li>Component library</li>
+          </ul>
+          <div class="practice-cta">
+            <a href="/contact" class="btn-voltage">Start a project →</a>
+          </div>
+        </article>
+        <span class="preview-label">Single card (max-width 480px)</span>
+      </div>
+    </section>
+
+    <!-- 2-column grid -->
+    <section class="preview-section" aria-labelledby="grid-heading">
+      <p class="preview-heading" id="grid-heading">→ 2-column grid</p>
+      <div class="preview-area" style="padding: 0; background: var(--graphite-800);">
+        <div class="practice-grid">
+
+          <article class="practice-block" aria-labelledby="svc-1">
+            <p class="practice-index">01 / 04</p>
+            <h2 class="practice-title" id="svc-1">Brand systems.</h2>
+            <p class="practice-body">Token-first identity built as a deployable system, not a PDF.</p>
+            <ul class="practice-deliverables" aria-label="Deliverables">
+              <li>Design token system</li>
+              <li>Logo suite (SVG)</li>
+              <li>Voice + tone playbook</li>
+            </ul>
+            <div class="practice-cta">
+              <a href="/contact" class="btn-voltage">Start a project →</a>
+            </div>
+          </article>
+
+          <article class="practice-block" aria-labelledby="svc-2">
+            <p class="practice-index">02 / 04</p>
+            <h2 class="practice-title" id="svc-2">Product UI.</h2>
+            <p class="practice-body">Pixel-precise interfaces. Linear-grade fidelity. Component-first from day one.</p>
+            <ul class="practice-deliverables" aria-label="Deliverables">
+              <li>Figma component library</li>
+              <li>Responsive layout system</li>
+              <li>Interaction specs</li>
+            </ul>
+            <div class="practice-cta">
+              <a href="/contact" class="btn-voltage">Start a project →</a>
+            </div>
+          </article>
+
+          <article class="practice-block" aria-labelledby="svc-3">
+            <p class="practice-index">03 / 04</p>
+            <h2 class="practice-title" id="svc-3">Tokens + components.</h2>
+            <p class="practice-body">Style Dictionary pipelines, Tokens Studio libraries, and code-generated outputs.</p>
+            <ul class="practice-deliverables" aria-label="Deliverables">
+              <li>Token JSON source</li>
+              <li>CSS / Tailwind / Figma output</li>
+              <li>npm package</li>
+            </ul>
+            <div class="practice-cta">
+              <a href="/contact" class="btn-voltage">Start a project →</a>
+            </div>
+          </article>
+
+          <article class="practice-block" aria-labelledby="svc-4">
+            <p class="practice-index">04 / 04</p>
+            <h2 class="practice-title" id="svc-4">Automation.</h2>
+            <p class="practice-body">AI pipelines that generate on-brand assets at scale. Prompt engineering that holds spec.</p>
+            <ul class="practice-deliverables" aria-label="Deliverables">
+              <li>Prompt library</li>
+              <li>Asset generation pipeline</li>
+              <li>QA automation scripts</li>
+            </ul>
+            <div class="practice-cta">
+              <a href="/contact" class="btn-voltage">Start a project →</a>
+            </div>
+          </article>
+
+        </div>
+        <span class="preview-label" style="padding: 16px 48px 24px;">2-column grid (≥900px)</span>
+      </div>
+    </section>
+
+    <!-- Code -->
+    <section class="code-section">
+      <p class="code-heading">→ HTML</p>
+      <pre><code><span class="tok-comment">&lt;!-- Wrap cards in a .practice-grid --&gt;</span>
+<span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span>=<span class="tok-str">"practice-grid"</span><span class="tok-tag">&gt;</span>
+
+  <span class="tok-tag">&lt;article</span> <span class="tok-attr">class</span>=<span class="tok-str">"practice-block"</span> <span class="tok-attr">aria-labelledby</span>=<span class="tok-str">"svc-n"</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;p</span> <span class="tok-attr">class</span>=<span class="tok-str">"practice-index"</span><span class="tok-tag">&gt;</span>01 / 04<span class="tok-tag">&lt;/p&gt;</span>
+    <span class="tok-tag">&lt;h2</span> <span class="tok-attr">class</span>=<span class="tok-str">"practice-title"</span> <span class="tok-attr">id</span>=<span class="tok-str">"svc-n"</span><span class="tok-tag">&gt;</span>Service name.<span class="tok-tag">&lt;/h2&gt;</span>
+    <span class="tok-tag">&lt;p</span> <span class="tok-attr">class</span>=<span class="tok-str">"practice-body"</span><span class="tok-tag">&gt;</span>One or two sentences. No adjectives.<span class="tok-tag">&lt;/p&gt;</span>
+    <span class="tok-tag">&lt;ul</span> <span class="tok-attr">class</span>=<span class="tok-str">"practice-deliverables"</span> <span class="tok-attr">aria-label</span>=<span class="tok-str">"Deliverables"</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;li&gt;</span>Deliverable one<span class="tok-tag">&lt;/li&gt;</span>
+      <span class="tok-tag">&lt;li&gt;</span>Deliverable two<span class="tok-tag">&lt;/li&gt;</span>
+    <span class="tok-tag">&lt;/ul&gt;</span>
+    <span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span>=<span class="tok-str">"practice-cta"</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;a</span> <span class="tok-attr">href</span>=<span class="tok-str">"/contact"</span> <span class="tok-attr">class</span>=<span class="tok-str">"btn-voltage"</span><span class="tok-tag">&gt;</span>Start a project →<span class="tok-tag">&lt;/a&gt;</span>
+    <span class="tok-tag">&lt;/div&gt;</span>
+  <span class="tok-tag">&lt;/article&gt;</span>
+
+<span class="tok-tag">&lt;/div&gt;</span></code></pre>
+    </section>
+
+  </div>
+</body>
+</html>

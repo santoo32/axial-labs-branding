@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axial Labs — Component: Button Primary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --axial-black: #0A0A0B; --axial-bone: #F4F2EC;
+      --axial-voltage: #C6F24E; --axial-voltage-dim: #9DC23A;
+      --axial-plasma: #FF4D2E; --axial-mercury: #B8C2CC;
+      --graphite-900: #0A0A0B; --graphite-800: #1A1B1E; --graphite-700: #26282D;
+      --graphite-600: #3A3D44; --graphite-500: #5A5E68; --graphite-400: #878C97;
+      --graphite-300: #B5B9C2; --graphite-200: #D8DAE0; --graphite-100: #ECEDEF;
+      --font-display: 'Inter Display', 'Inter', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --track-tight: -0.02em; --track-wider: 0.06em;
+      --ease-axial: cubic-bezier(0.32, 0.72, 0, 1);
+      --duration-ui: 240ms;
+      --shadow-glow-soft: 0 0 24px rgba(198, 242, 78, 0.35);
+      --shadow-glow-strong: 0 0 48px rgba(198, 242, 78, 0.55), 0 0 96px rgba(198, 242, 78, 0.25);
+      --shadow-focus: 0 0 0 2px var(--axial-black), 0 0 0 4px var(--axial-voltage);
+    }
+
+    /* ── RESET ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--axial-black);
+      color: var(--axial-bone);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    :focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
+    /* ── PREVIEW SHELL ──────────────────────────────────── */
+    .axis-line {
+      position: fixed; top: 0; left: clamp(24px, 5vw, 96px);
+      width: 1px; height: 100vh;
+      background: var(--graphite-700); pointer-events: none;
+    }
+    .shell { padding: 64px clamp(48px, 8vw, 128px) 96px; max-width: 1280px; margin: 0 auto; }
+
+    .comp-meta { margin-bottom: 56px; padding-bottom: 28px; border-bottom: 1px solid var(--graphite-700); }
+    .comp-eyebrow { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-400);
+      margin: 0 0 12px; display: block; }
+    .comp-name { font-family: var(--font-display); font-size: 48px; font-weight: 600;
+      letter-spacing: var(--track-tight); line-height: 1.1; margin: 0 0 8px; }
+    .comp-desc { font-size: 16px; color: var(--graphite-300); margin: 0; }
+
+    .preview-section { margin-bottom: 64px; }
+    .preview-heading { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-500);
+      margin: 0 0 20px; padding-bottom: 12px; border-bottom: 1px solid var(--graphite-700); }
+    .preview-area {
+      border: 1px solid var(--graphite-700);
+      padding: 48px;
+      background: var(--graphite-800);
+      display: flex; flex-wrap: wrap; align-items: flex-start; gap: 40px;
+    }
+    .preview-item { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+    .preview-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--track-wider);
+      text-transform: uppercase; color: var(--graphite-500); }
+
+    .code-section { margin-top: 16px; }
+    .code-heading { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-400);
+      margin: 0 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--graphite-700); }
+    pre { background: var(--graphite-800); border: 1px solid var(--graphite-700);
+      padding: 24px; overflow-x: auto; margin: 0 0 48px; }
+    code { font-family: var(--font-mono); font-size: 12px; line-height: 1.8;
+      color: var(--graphite-200); }
+    .tok-comment { color: var(--graphite-500); }
+    .tok-prop { color: var(--axial-voltage-dim); }
+    .tok-val { color: var(--graphite-300); }
+    .tok-sel { color: var(--axial-bone); }
+    .tok-tag { color: var(--axial-voltage-dim); }
+    .tok-attr { color: var(--graphite-400); }
+    .tok-str { color: var(--graphite-200); }
+
+    /* ── COMPONENT: BTN-VOLTAGE ─────────────────────────── */
+    .btn-voltage {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--axial-voltage);
+      border: 1px solid var(--axial-voltage);
+      background: transparent;
+      padding: 8px 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition:
+        background var(--duration-ui) var(--ease-axial),
+        box-shadow var(--duration-ui) var(--ease-axial);
+      white-space: nowrap;
+      line-height: 1;
+    }
+    .btn-voltage:hover {
+      background: rgba(198, 242, 78, 0.08);
+      box-shadow: var(--shadow-glow-soft);
+    }
+    .btn-voltage:active {
+      background: rgba(198, 242, 78, 0.14);
+      box-shadow: var(--shadow-glow-strong);
+    }
+    .btn-voltage:disabled,
+    .btn-voltage[aria-disabled="true"] {
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    /* Simulated states for preview */
+    .state-hover {
+      background: rgba(198, 242, 78, 0.08);
+      box-shadow: var(--shadow-glow-soft);
+    }
+    .state-active {
+      background: rgba(198, 242, 78, 0.14);
+      box-shadow: var(--shadow-glow-strong);
+    }
+    .state-disabled { opacity: 0.35; pointer-events: none; }
+  </style>
+</head>
+<body>
+
+  <div class="axis-line" aria-hidden="true"></div>
+
+  <div class="shell">
+
+    <!-- Meta -->
+    <header class="comp-meta">
+      <span class="comp-eyebrow">→ COMPONENT LIBRARY · v1.0</span>
+      <h1 class="comp-name">Button Primary</h1>
+      <p class="comp-desc">Mono-stack CTA button. Voltage border, transparent fill. Used for all primary actions.</p>
+    </header>
+
+    <!-- States -->
+    <section class="preview-section" aria-labelledby="states-heading">
+      <p class="preview-heading" id="states-heading">→ States</p>
+      <div class="preview-area">
+
+        <div class="preview-item">
+          <a href="#" class="btn-voltage">Get in touch →</a>
+          <span class="preview-label">Default</span>
+        </div>
+
+        <div class="preview-item">
+          <a href="#" class="btn-voltage state-hover">Get in touch →</a>
+          <span class="preview-label">Hover</span>
+        </div>
+
+        <div class="preview-item">
+          <a href="#" class="btn-voltage state-active">Get in touch →</a>
+          <span class="preview-label">Active</span>
+        </div>
+
+        <div class="preview-item">
+          <a href="#" class="btn-voltage" style="outline: none; box-shadow: var(--shadow-focus);">Get in touch →</a>
+          <span class="preview-label">Focus</span>
+        </div>
+
+        <div class="preview-item">
+          <a href="#" class="btn-voltage state-disabled" aria-disabled="true">Get in touch →</a>
+          <span class="preview-label">Disabled</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Sizes / usage variants -->
+    <section class="preview-section" aria-labelledby="usage-heading">
+      <p class="preview-heading" id="usage-heading">→ Usage variants</p>
+      <div class="preview-area">
+
+        <div class="preview-item">
+          <a href="#" class="btn-voltage">Book a call →</a>
+          <span class="preview-label">As &lt;a&gt; (link)</span>
+        </div>
+
+        <div class="preview-item">
+          <button type="button" class="btn-voltage">Start subscription →</button>
+          <span class="preview-label">As &lt;button&gt;</span>
+        </div>
+
+        <div class="preview-item">
+          <a href="#" class="btn-voltage">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+            </svg>
+            With icon
+          </a>
+          <span class="preview-label">With leading icon</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Spec -->
+    <section class="preview-section" aria-labelledby="spec-heading">
+      <p class="preview-heading" id="spec-heading">→ Spec</p>
+      <div class="preview-area" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px;">
+        <div>
+          <span class="preview-label" style="margin-bottom:6px; display:block;">Font</span>
+          <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">JetBrains Mono 12px</span>
+        </div>
+        <div>
+          <span class="preview-label" style="margin-bottom:6px; display:block;">Weight</span>
+          <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">500 (medium)</span>
+        </div>
+        <div>
+          <span class="preview-label" style="margin-bottom:6px; display:block;">Tracking</span>
+          <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">+6% (0.06em)</span>
+        </div>
+        <div>
+          <span class="preview-label" style="margin-bottom:6px; display:block;">Padding</span>
+          <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">8px 16px</span>
+        </div>
+        <div>
+          <span class="preview-label" style="margin-bottom:6px; display:block;">Border</span>
+          <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">1px solid #C6F24E</span>
+        </div>
+        <div>
+          <span class="preview-label" style="margin-bottom:6px; display:block;">Radius</span>
+          <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">0px (none)</span>
+        </div>
+        <div>
+          <span class="preview-label" style="margin-bottom:6px; display:block;">Case</span>
+          <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">UPPERCASE</span>
+        </div>
+        <div>
+          <span class="preview-label" style="margin-bottom:6px; display:block;">Transition</span>
+          <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">240ms ease-axial</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Code -->
+    <section class="code-section">
+      <p class="code-heading">→ HTML</p>
+      <pre><code><span class="tok-comment">&lt;!-- Primary CTA (link) --&gt;</span>
+<span class="tok-tag">&lt;a</span> <span class="tok-attr">href</span>=<span class="tok-str">"/contact"</span> <span class="tok-attr">class</span>=<span class="tok-str">"btn-voltage"</span><span class="tok-tag">&gt;</span>Get in touch →<span class="tok-tag">&lt;/a&gt;</span>
+
+<span class="tok-comment">&lt;!-- Primary CTA (button) --&gt;</span>
+<span class="tok-tag">&lt;button</span> <span class="tok-attr">type</span>=<span class="tok-str">"button"</span> <span class="tok-attr">class</span>=<span class="tok-str">"btn-voltage"</span><span class="tok-tag">&gt;</span>Submit →<span class="tok-tag">&lt;/button&gt;</span>
+
+<span class="tok-comment">&lt;!-- Disabled state --&gt;</span>
+<span class="tok-tag">&lt;a</span> <span class="tok-attr">href</span>=<span class="tok-str">"#"</span> <span class="tok-attr">class</span>=<span class="tok-str">"btn-voltage"</span> <span class="tok-attr">aria-disabled</span>=<span class="tok-str">"true"</span><span class="tok-tag">&gt;</span>Unavailable →<span class="tok-tag">&lt;/a&gt;</span></code></pre>
+
+      <p class="code-heading">→ CSS</p>
+      <pre><code><span class="tok-sel">.btn-voltage</span> {
+  <span class="tok-prop">font-family</span>: <span class="tok-val">var(--font-mono)</span>;
+  <span class="tok-prop">font-size</span>: <span class="tok-val">12px</span>;
+  <span class="tok-prop">font-weight</span>: <span class="tok-val">500</span>;
+  <span class="tok-prop">letter-spacing</span>: <span class="tok-val">var(--track-wider)</span>;  <span class="tok-comment">/* 0.06em */</span>
+  <span class="tok-prop">text-transform</span>: <span class="tok-val">uppercase</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">var(--axial-voltage)</span>;        <span class="tok-comment">/* #C6F24E */</span>
+  <span class="tok-prop">border</span>: <span class="tok-val">1px solid var(--axial-voltage)</span>;
+  <span class="tok-prop">background</span>: <span class="tok-val">transparent</span>;
+  <span class="tok-prop">padding</span>: <span class="tok-val">8px 16px</span>;
+  <span class="tok-prop">cursor</span>: <span class="tok-val">pointer</span>;
+  <span class="tok-prop">text-decoration</span>: <span class="tok-val">none</span>;
+  <span class="tok-prop">display</span>: <span class="tok-val">inline-flex</span>;
+  <span class="tok-prop">align-items</span>: <span class="tok-val">center</span>;
+  <span class="tok-prop">gap</span>: <span class="tok-val">6px</span>;
+  <span class="tok-prop">line-height</span>: <span class="tok-val">1</span>;
+  <span class="tok-prop">white-space</span>: <span class="tok-val">nowrap</span>;
+  <span class="tok-prop">transition</span>:
+    <span class="tok-val">background var(--duration-ui) var(--ease-axial)</span>,
+    <span class="tok-val">box-shadow var(--duration-ui) var(--ease-axial)</span>;
+}
+
+<span class="tok-sel">.btn-voltage:hover</span> {
+  <span class="tok-prop">background</span>: <span class="tok-val">rgba(198, 242, 78, 0.08)</span>;
+  <span class="tok-prop">box-shadow</span>: <span class="tok-val">var(--shadow-glow-soft)</span>;
+}
+
+<span class="tok-sel">.btn-voltage:active</span> {
+  <span class="tok-prop">background</span>: <span class="tok-val">rgba(198, 242, 78, 0.14)</span>;
+  <span class="tok-prop">box-shadow</span>: <span class="tok-val">var(--shadow-glow-strong)</span>;
+}
+
+<span class="tok-sel">.btn-voltage:disabled,</span>
+<span class="tok-sel">.btn-voltage[aria-disabled="true"]</span> {
+  <span class="tok-prop">opacity</span>: <span class="tok-val">0.35</span>;
+  <span class="tok-prop">pointer-events</span>: <span class="tok-val">none</span>;
+}</code></pre>
+    </section>
+
+  </div>
+</body>
+</html>

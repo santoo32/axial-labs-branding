@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+
+  <defs>
+    <style><![CDATA[
+      @import url('https://fonts.googleapis.com/css2?family=Inter+Display:wght@600&display=swap');
+    ]]></style>
+  </defs>
+
+  <!-- ── BACKGROUND ───────────────────────── -->
+  <rect width="400" height="400" fill="#0A0A0B"/>
+
+  <!-- ── EDGE INSTRUMENTATION TICKS ──────── -->
+  <!-- Center of each edge — engineering measurement marks -->
+  <line x1="200" y1="0"   x2="200" y2="12"  stroke="#1A1B1E" stroke-width="1" stroke-linecap="square"/>
+  <line x1="200" y1="388" x2="200" y2="400" stroke="#1A1B1E" stroke-width="1" stroke-linecap="square"/>
+  <line x1="0"   y1="200" x2="12"  y2="200" stroke="#1A1B1E" stroke-width="1" stroke-linecap="square"/>
+  <line x1="388" y1="200" x2="400" y2="200" stroke="#1A1B1E" stroke-width="1" stroke-linecap="square"/>
+
+  <!-- Quarter marks (half-height ticks at 100 and 300 on each edge) -->
+  <line x1="100" y1="0"   x2="100" y2="6"   stroke="#141416" stroke-width="1" stroke-linecap="square"/>
+  <line x1="300" y1="0"   x2="300" y2="6"   stroke="#141416" stroke-width="1" stroke-linecap="square"/>
+  <line x1="100" y1="394" x2="100" y2="400" stroke="#141416" stroke-width="1" stroke-linecap="square"/>
+  <line x1="300" y1="394" x2="300" y2="400" stroke="#141416" stroke-width="1" stroke-linecap="square"/>
+  <line x1="0"   y1="100" x2="6"   y2="100" stroke="#141416" stroke-width="1" stroke-linecap="square"/>
+  <line x1="0"   y1="300" x2="6"   y2="300" stroke="#141416" stroke-width="1" stroke-linecap="square"/>
+  <line x1="394" y1="100" x2="400" y2="100" stroke="#141416" stroke-width="1" stroke-linecap="square"/>
+  <line x1="394" y1="300" x2="400" y2="300" stroke="#141416" stroke-width="1" stroke-linecap="square"/>
+
+  <!-- ── CORNER REGISTRATION CROSSHAIRS ──── -->
+  <!-- Scaled proportionally from axial-monogram-AL.svg (240→400, ×1.667)  -->
+  <!-- Crosshair centers: (27,27) (373,27) (27,373) (373,373), 14px arms   -->
+  <g stroke="#3A3D44" stroke-width="1" stroke-linecap="square" stroke-opacity="0.65">
+    <!-- Top-left -->
+    <line x1="20"  y1="27"  x2="34"  y2="27"/>
+    <line x1="27"  y1="20"  x2="27"  y2="34"/>
+    <!-- Top-right -->
+    <line x1="366" y1="27"  x2="380" y2="27"/>
+    <line x1="373" y1="20"  x2="373" y2="34"/>
+    <!-- Bottom-left -->
+    <line x1="20"  y1="373" x2="34"  y2="373"/>
+    <line x1="27"  y1="366" x2="27"  y2="380"/>
+    <!-- Bottom-right -->
+    <line x1="366" y1="373" x2="380" y2="373"/>
+    <line x1="373" y1="366" x2="373" y2="380"/>
+  </g>
+
+  <!-- ── AL MONOGRAM ───────────────────────── -->
+  <!-- Proportional from 240→400: font-size 144→240 scaled, then eased     -->
+  <!-- to 200 for breathing room. Baseline y=272 centers cap-height at 200 -->
+  <text
+    font-family="'Inter Display', 'Inter', system-ui, sans-serif"
+    font-weight="600"
+    font-size="200"
+    letter-spacing="-0.02em"
+    fill="#F4F2EC"
+    x="200"
+    y="272"
+    text-anchor="middle"
+  >AL</text>
+
+  <!-- ── VOLTAGE-DIM ACCENTS (≤ 5% area) ── -->
+  <!-- Measurement datum line below letterform — axis indicator -->
+  <line x1="176" y1="295" x2="224" y2="295"
+        stroke="#9DC23A" stroke-width="1.5" stroke-linecap="square"/>
+
+  <!-- Voltage dot at bottom-right registration crosshair -->
+  <!-- (outside circle crop — visible in square mode only) -->
+  <circle cx="373" cy="373" r="2.5" fill="#9DC23A"/>
+
+</svg>

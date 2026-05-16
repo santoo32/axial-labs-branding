@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axial Labs — Component: Card Pricing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --axial-black: #0A0A0B; --axial-bone: #F4F2EC;
+      --axial-voltage: #C6F24E; --axial-voltage-dim: #9DC23A;
+      --graphite-900: #0A0A0B; --graphite-800: #1A1B1E; --graphite-700: #26282D;
+      --graphite-600: #3A3D44; --graphite-500: #5A5E68; --graphite-400: #878C97;
+      --graphite-300: #B5B9C2; --graphite-200: #D8DAE0; --graphite-100: #ECEDEF;
+      --font-display: 'Inter Display', 'Inter', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --track-tight: -0.02em; --track-wider: 0.06em;
+      --ease-axial: cubic-bezier(0.32, 0.72, 0, 1);
+      --duration-ui: 240ms;
+      --shadow-glow-soft: 0 0 24px rgba(198, 242, 78, 0.35);
+      --shadow-focus: 0 0 0 2px var(--axial-black), 0 0 0 4px var(--axial-voltage);
+    }
+
+    /* ── RESET ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--axial-black); color: var(--axial-bone);
+      font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    :focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
+    /* ── PREVIEW SHELL ──────────────────────────────────── */
+    .axis-line {
+      position: fixed; top: 0; left: clamp(24px, 5vw, 96px);
+      width: 1px; height: 100vh; background: var(--graphite-700); pointer-events: none;
+    }
+    .shell { padding: 64px clamp(48px, 8vw, 128px) 96px; max-width: 1280px; margin: 0 auto; }
+    .comp-meta { margin-bottom: 56px; padding-bottom: 28px; border-bottom: 1px solid var(--graphite-700); }
+    .comp-eyebrow { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-400);
+      margin: 0 0 12px; display: block; }
+    .comp-name { font-family: var(--font-display); font-size: 48px; font-weight: 600;
+      letter-spacing: var(--track-tight); line-height: 1.1; margin: 0 0 8px; }
+    .comp-desc { font-size: 16px; color: var(--graphite-300); margin: 0; }
+    .preview-section { margin-bottom: 64px; }
+    .preview-heading { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-500);
+      margin: 0 0 20px; padding-bottom: 12px; border-bottom: 1px solid var(--graphite-700); }
+    .preview-area {
+      border: 1px solid var(--graphite-700); padding: 48px; background: var(--graphite-800);
+    }
+    .preview-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--track-wider);
+      text-transform: uppercase; color: var(--graphite-500); display: block; margin-top: 16px; }
+    .code-section { margin-top: 16px; }
+    .code-heading { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-400);
+      margin: 0 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--graphite-700); }
+    pre { background: var(--graphite-800); border: 1px solid var(--graphite-700);
+      padding: 24px; overflow-x: auto; margin: 0 0 48px; }
+    code { font-family: var(--font-mono); font-size: 12px; line-height: 1.8; color: var(--graphite-200); }
+    .tok-comment { color: var(--graphite-500); }
+    .tok-prop { color: var(--axial-voltage-dim); }
+    .tok-val { color: var(--graphite-300); }
+    .tok-sel { color: var(--axial-bone); }
+    .tok-tag { color: var(--axial-voltage-dim); }
+    .tok-attr { color: var(--graphite-400); }
+    .tok-str { color: var(--graphite-200); }
+
+    /* ── COMPONENT: CARD PRICING ────────────────────────── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    @media (min-width: 900px) {
+      .pricing-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .tier-card {
+      border: 1px solid var(--graphite-700);
+      padding: 32px;
+      min-height: 560px;
+      display: flex;
+      flex-direction: column;
+      background: transparent;
+      position: relative;
+    }
+
+    /* Signature variant — Voltage glow */
+    .tier-card--signature {
+      border-color: var(--axial-voltage);
+      box-shadow: var(--shadow-glow-soft);
+    }
+
+    .tier-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      margin: 0 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tier-eyebrow .sig-tag {
+      color: var(--axial-voltage);
+    }
+
+    .tier-name {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 500;
+      letter-spacing: var(--track-tight);
+      line-height: 1.1;
+      color: var(--axial-bone);
+      margin: 0 0 24px;
+    }
+
+    .tier-price {
+      font-family: var(--font-mono);
+      font-size: 40px;
+      font-weight: 400;
+      letter-spacing: var(--track-tight);
+      color: var(--axial-bone);
+      line-height: 1;
+      margin: 0 0 4px;
+    }
+
+    .tier-price-qualifier {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      margin: 0 0 32px;
+      display: block;
+    }
+
+    .tier-divider {
+      height: 1px;
+      background: var(--graphite-700);
+      margin: 32px 0;
+    }
+
+    .tier-bullets {
+      list-style: none;
+      margin: 0 0 auto;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .tier-bullets li {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tier-bullets li::before {
+      content: '→';
+      color: var(--axial-voltage);
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+
+    .tier-cta { margin-top: 40px; }
+
+    /* Buttons */
+    .btn-voltage {
+      font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase;
+      color: var(--axial-voltage); border: 1px solid var(--axial-voltage);
+      background: transparent; padding: 8px 16px; cursor: pointer;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+      line-height: 1; white-space: nowrap;
+      transition: background var(--duration-ui) var(--ease-axial),
+                  box-shadow var(--duration-ui) var(--ease-axial);
+    }
+    .btn-voltage:hover { background: rgba(198,242,78,0.08); box-shadow: var(--shadow-glow-soft); }
+
+    .btn-ghost {
+      font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase;
+      color: var(--graphite-300); border: 1px solid var(--graphite-700);
+      background: transparent; padding: 8px 16px; cursor: pointer;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+      line-height: 1; white-space: nowrap;
+      transition: border-color var(--duration-ui) var(--ease-axial),
+                  color var(--duration-ui) var(--ease-axial);
+    }
+    .btn-ghost:hover { border-color: var(--graphite-400); color: var(--axial-bone); }
+  </style>
+</head>
+<body>
+
+  <div class="axis-line" aria-hidden="true"></div>
+
+  <div class="shell">
+
+    <header class="comp-meta">
+      <span class="comp-eyebrow">→ COMPONENT LIBRARY · v1.0</span>
+      <h1 class="comp-name">Card Pricing</h1>
+      <p class="comp-desc">Three-tier pricing card. Standard uses graphite border. Signature (featured) uses Voltage border + soft glow. Free uses ghost CTA.</p>
+    </header>
+
+    <!-- All 3 variants -->
+    <section class="preview-section" aria-labelledby="tiers-heading">
+      <p class="preview-heading" id="tiers-heading">→ Three variants in grid</p>
+      <div class="preview-area" style="padding: 48px 32px;">
+        <div class="pricing-grid">
+
+          <!-- Standard -->
+          <article class="tier-card" aria-labelledby="tier-studio">
+            <p class="tier-eyebrow">01 / 03 &nbsp;·&nbsp; Studio</p>
+            <h2 class="tier-name" id="tier-studio">Full engagement.</h2>
+            <p class="tier-price">$24,000+</p>
+            <span class="tier-price-qualifier">Starting · 4-week sprint</span>
+            <ul class="tier-bullets" aria-label="What's included">
+              <li>4-week tokenized identity</li>
+              <li>Brand strategy + voice playbook</li>
+              <li>Component library (Figma + code)</li>
+              <li>Pitch deck + launch collateral</li>
+              <li>Dedicated team (3 people)</li>
+              <li>Repository handoff</li>
+            </ul>
+            <div class="tier-divider" aria-hidden="true"></div>
+            <div class="tier-cta">
+              <a href="/contact" class="btn-voltage">Get in touch →</a>
+            </div>
+          </article>
+
+          <!-- Signature (featured) -->
+          <article class="tier-card tier-card--signature" aria-labelledby="tier-os">
+            <p class="tier-eyebrow">
+              <span>02 / 03 &nbsp;·&nbsp; OS · Starter kit</span>
+              <span class="sig-tag">→ Signature</span>
+            </p>
+            <h2 class="tier-name" id="tier-os">Productized.</h2>
+            <p class="tier-price">$4,800</p>
+            <span class="tier-price-qualifier">/month · Cancel anytime</span>
+            <ul class="tier-bullets" aria-label="What's included">
+              <li>Tokens npm package</li>
+              <li>Figma library (Tokens Studio)</li>
+              <li>Component starter (Next.js)</li>
+              <li>Prompt library</li>
+              <li>Monthly updates</li>
+              <li>Slack support</li>
+            </ul>
+            <div class="tier-divider" aria-hidden="true"></div>
+            <div class="tier-cta">
+              <a href="/contact" class="btn-voltage">Start subscription →</a>
+            </div>
+          </article>
+
+          <!-- Free -->
+          <article class="tier-card" aria-labelledby="tier-foundry">
+            <p class="tier-eyebrow">03 / 03 &nbsp;·&nbsp; Foundry · Open source</p>
+            <h2 class="tier-name" id="tier-foundry">Free forever.</h2>
+            <p class="tier-price">$0</p>
+            <span class="tier-price-qualifier">MIT licensed · Community maintained</span>
+            <ul class="tier-bullets" aria-label="What's included">
+              <li>Public token packages</li>
+              <li>Community prompt library</li>
+              <li>Open Storybook</li>
+              <li>GitHub-first workflow</li>
+              <li>MIT licensed</li>
+              <li>Self-hosted, self-extended</li>
+            </ul>
+            <div class="tier-divider" aria-hidden="true"></div>
+            <div class="tier-cta">
+              <a href="https://github.com/axiallabs" class="btn-ghost">GitHub →</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Signature detail -->
+    <section class="preview-section" aria-labelledby="sig-heading">
+      <p class="preview-heading" id="sig-heading">→ Signature variant — detail</p>
+      <div class="preview-area">
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px;">
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-500); display: block; margin-bottom: 6px;">Border color</span>
+            <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">#C6F24E (voltage)</span>
+          </div>
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-500); display: block; margin-bottom: 6px;">Box shadow</span>
+            <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">shadow-glow-soft</span>
+          </div>
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-500); display: block; margin-bottom: 6px;">Eyebrow tag</span>
+            <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">.sig-tag → voltage text</span>
+          </div>
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-500); display: block; margin-bottom: 6px;">Background</span>
+            <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">transparent (no fill)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Code -->
+    <section class="code-section">
+      <p class="code-heading">→ HTML — Standard card</p>
+      <pre><code><span class="tok-tag">&lt;article</span> <span class="tok-attr">class</span>=<span class="tok-str">"tier-card"</span> <span class="tok-attr">aria-labelledby</span>=<span class="tok-str">"tier-id"</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;p</span> <span class="tok-attr">class</span>=<span class="tok-str">"tier-eyebrow"</span><span class="tok-tag">&gt;</span>01 / 03 · Studio<span class="tok-tag">&lt;/p&gt;</span>
+  <span class="tok-tag">&lt;h2</span> <span class="tok-attr">class</span>=<span class="tok-str">"tier-name"</span> <span class="tok-attr">id</span>=<span class="tok-str">"tier-id"</span><span class="tok-tag">&gt;</span>Full engagement.<span class="tok-tag">&lt;/h2&gt;</span>
+  <span class="tok-tag">&lt;p</span> <span class="tok-attr">class</span>=<span class="tok-str">"tier-price"</span><span class="tok-tag">&gt;</span>$24,000+<span class="tok-tag">&lt;/p&gt;</span>
+  <span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span>=<span class="tok-str">"tier-price-qualifier"</span><span class="tok-tag">&gt;</span>Starting · 4-week sprint<span class="tok-tag">&lt;/span&gt;</span>
+  <span class="tok-tag">&lt;ul</span> <span class="tok-attr">class</span>=<span class="tok-str">"tier-bullets"</span> <span class="tok-attr">aria-label</span>=<span class="tok-str">"What's included"</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;li&gt;</span>Deliverable one<span class="tok-tag">&lt;/li&gt;</span>
+  <span class="tok-tag">&lt;/ul&gt;</span>
+  <span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span>=<span class="tok-str">"tier-divider"</span> <span class="tok-attr">aria-hidden</span>=<span class="tok-str">"true"</span><span class="tok-tag">&gt;&lt;/div&gt;</span>
+  <span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span>=<span class="tok-str">"tier-cta"</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;a</span> <span class="tok-attr">href</span>=<span class="tok-str">"/contact"</span> <span class="tok-attr">class</span>=<span class="tok-str">"btn-voltage"</span><span class="tok-tag">&gt;</span>Get in touch →<span class="tok-tag">&lt;/a&gt;</span>
+  <span class="tok-tag">&lt;/div&gt;</span>
+<span class="tok-tag">&lt;/article&gt;</span>
+
+<span class="tok-comment">&lt;!-- Add .tier-card--signature to feature a tier --&gt;</span>
+<span class="tok-tag">&lt;article</span> <span class="tok-attr">class</span>=<span class="tok-str">"tier-card tier-card--signature"</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;p</span> <span class="tok-attr">class</span>=<span class="tok-str">"tier-eyebrow"</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;span&gt;</span>02 / 03 · OS<span class="tok-tag">&lt;/span&gt;</span>
+    <span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span>=<span class="tok-str">"sig-tag"</span><span class="tok-tag">&gt;</span>→ Signature<span class="tok-tag">&lt;/span&gt;</span>
+  <span class="tok-tag">&lt;/p&gt;</span>
+  <span class="tok-comment">&lt;!-- ... rest of card ... --&gt;</span>
+<span class="tok-tag">&lt;/article&gt;</span></code></pre>
+    </section>
+
+  </div>
+</body>
+</html>

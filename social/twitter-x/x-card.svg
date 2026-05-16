@@ -1,0 +1,26 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+<rect width="1600" height="900" fill="#0A0A0B"/>
+<line x1="40" y1="40" x2="52" y2="40" stroke="#5A5E68" stroke-width="1.5" stroke-linecap="square" stroke-opacity="0.5"/>
+<line x1="40" y1="40" x2="40" y2="52" stroke="#5A5E68" stroke-width="1.5" stroke-linecap="square" stroke-opacity="0.5"/>
+<line x1="1560" y1="40" x2="1548" y2="40" stroke="#5A5E68" stroke-width="1.5" stroke-linecap="square" stroke-opacity="0.5"/>
+<line x1="1560" y1="40" x2="1560" y2="52" stroke="#5A5E68" stroke-width="1.5" stroke-linecap="square" stroke-opacity="0.5"/>
+<line x1="40" y1="860" x2="52" y2="860" stroke="#5A5E68" stroke-width="1.5" stroke-linecap="square" stroke-opacity="0.5"/>
+<line x1="40" y1="860" x2="40" y2="848" stroke="#5A5E68" stroke-width="1.5" stroke-linecap="square" stroke-opacity="0.5"/>
+<line x1="1560" y1="860" x2="1548" y2="860" stroke="#5A5E68" stroke-width="1.5" stroke-linecap="square" stroke-opacity="0.5"/>
+<line x1="1560" y1="860" x2="1560" y2="848" stroke="#5A5E68" stroke-width="1.5" stroke-linecap="square" stroke-opacity="0.5"/>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="14" letter-spacing="0.06em" fill="#5A5E68" x="56" y="60">X 0  Y 0</text>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="14" letter-spacing="0.06em" fill="#5A5E68" x="1544" y="60" text-anchor="end">X 1600  Y 0</text>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="14" letter-spacing="0.06em" fill="#5A5E68" x="56" y="880">X 0  Y 900</text>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="14" letter-spacing="0.06em" fill="#5A5E68" x="1544" y="880" text-anchor="end">X 1600  Y 900</text>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="22" letter-spacing="0.06em" fill="#878C97" x="800" y="200" text-anchor="middle">→ AXIAL LABS  ·  EST. 2026</text>
+<text font-family="'Inter Display', 'Inter', system-ui, sans-serif" font-weight="600" font-size="128" letter-spacing="-0.02em" fill="#F4F2EC" text-anchor="middle">
+  <tspan x="800" y="440">Systems for</tspan>
+  <tspan x="800" y="580">ambitious software.</tspan>
+</text>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="28" letter-spacing="0.06em" fill="#C6F24E" x="800" y="680" text-anchor="middle">AXIALLABS.COM</text>
+<g transform="translate(780, 740) scale(1.667)">
+  <rect x="10" y="1" width="4" height="22" fill="#F4F2EC"/>
+  <rect x="2" y="10" width="20" height="4" fill="#F4F2EC"/>
+</g>
+<line x1="760" y1="820" x2="840" y2="820" stroke="#C6F24E" stroke-width="2" stroke-linecap="square"/>
+</svg>

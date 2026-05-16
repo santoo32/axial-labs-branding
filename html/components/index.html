@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axial Labs — Component Library</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --axial-black: #0A0A0B; --axial-bone: #F4F2EC;
+      --axial-voltage: #C6F24E; --axial-voltage-dim: #9DC23A;
+      --graphite-900: #0A0A0B; --graphite-800: #1A1B1E; --graphite-700: #26282D;
+      --graphite-600: #3A3D44; --graphite-500: #5A5E68; --graphite-400: #878C97;
+      --graphite-300: #B5B9C2; --graphite-200: #D8DAE0; --graphite-100: #ECEDEF;
+      --font-display: 'Inter Display', 'Inter', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --track-tight: -0.02em; --track-wider: 0.06em;
+      --ease-axial: cubic-bezier(0.32, 0.72, 0, 1);
+      --duration-ui: 240ms;
+      --shadow-glow-soft: 0 0 24px rgba(198, 242, 78, 0.35);
+      --shadow-focus: 0 0 0 2px var(--axial-black), 0 0 0 4px var(--axial-voltage);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--axial-black); color: var(--axial-bone);
+      font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    :focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
+    .axis-line {
+      position: fixed; top: 0; left: clamp(24px, 5vw, 96px);
+      width: 1px; height: 100vh; background: var(--graphite-700); pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 96px clamp(48px, 8vw, 128px) 64px;
+      max-width: 1280px; margin: 0 auto;
+      border-bottom: 1px solid var(--graphite-700);
+    }
+    .eyebrow {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase;
+      color: var(--graphite-400); display: block; margin-bottom: 16px;
+    }
+    .hero-h1 {
+      font-family: var(--font-display); font-size: clamp(56px, 8vw, 96px);
+      font-weight: 600; letter-spacing: var(--track-tight); line-height: 1.05;
+      margin: 0 0 20px;
+    }
+    .hero-sub {
+      font-size: 18px; color: var(--graphite-300); max-width: 52ch; margin: 0;
+    }
+
+    /* Component grid */
+    .comp-grid-section {
+      padding: 64px clamp(48px, 8vw, 128px) 128px;
+      max-width: 1280px; margin: 0 auto;
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase;
+      color: var(--graphite-500); display: block; margin-bottom: 32px;
+      padding-bottom: 16px; border-bottom: 1px solid var(--graphite-700);
+    }
+
+    .comp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1px;
+      background: var(--graphite-700);
+      border: 1px solid var(--graphite-700);
+    }
+
+    .comp-card {
+      background: var(--axial-black);
+      padding: 32px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: background var(--duration-ui) var(--ease-axial);
+      position: relative;
+    }
+
+    .comp-card:hover {
+      background: var(--graphite-800);
+    }
+
+    .comp-card:hover .comp-card-arrow {
+      color: var(--axial-voltage);
+      transform: translateX(4px);
+    }
+
+    .comp-card-index {
+      font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase;
+      color: var(--graphite-500);
+    }
+
+    .comp-card-name {
+      font-family: var(--font-display); font-size: 22px; font-weight: 600;
+      letter-spacing: var(--track-tight); line-height: 1.1;
+      margin: 0;
+    }
+
+    .comp-card-desc {
+      font-family: var(--font-body); font-size: 14px; line-height: 1.5;
+      color: var(--graphite-300); margin: 0; flex: 1;
+    }
+
+    .comp-card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 8px;
+    }
+
+    .comp-card-file {
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--track-wider);
+      color: var(--graphite-500); text-transform: lowercase;
+    }
+
+    .comp-card-arrow {
+      font-family: var(--font-mono); font-size: 14px;
+      color: var(--graphite-500);
+      transition: color var(--duration-ui) var(--ease-axial),
+                  transform var(--duration-ui) var(--ease-axial);
+    }
+
+    /* Usage section */
+    .usage-section {
+      padding: 0 clamp(48px, 8vw, 128px) 128px;
+      max-width: 1280px; margin: 0 auto;
+    }
+
+    .usage-block {
+      border: 1px solid var(--graphite-700);
+      padding: 32px;
+      margin-bottom: 1px;
+    }
+
+    .usage-block:first-of-type { border-bottom: none; }
+
+    .usage-title {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase;
+      color: var(--axial-bone); margin: 0 0 12px;
+    }
+
+    .usage-body {
+      font-size: 15px; color: var(--graphite-300); margin: 0;
+      max-width: 72ch;
+    }
+
+    pre { background: var(--graphite-800); border: 1px solid var(--graphite-700);
+      padding: 20px; overflow-x: auto; margin: 16px 0 0; }
+    code { font-family: var(--font-mono); font-size: 12px; line-height: 1.7;
+      color: var(--graphite-200); }
+  </style>
+</head>
+<body>
+
+  <div class="axis-line" aria-hidden="true"></div>
+
+  <!-- Hero -->
+  <header>
+    <div class="hero">
+      <span class="eyebrow">→ AXIAL LABS · COMPONENT LIBRARY · v1.0</span>
+      <h1 class="hero-h1">9 components.</h1>
+      <p class="hero-sub">Extracted from the Axial Labs marketing suite. Each file is a self-contained preview with full token setup, states, spec, and copy-paste markup.</p>
+    </div>
+  </header>
+
+  <!-- Grid -->
+  <section class="comp-grid-section" aria-labelledby="grid-heading">
+    <span class="section-eyebrow" id="grid-heading">→ 01 / 02 &nbsp; Components</span>
+
+    <nav class="comp-grid" role="navigation" aria-label="Component library">
+
+      <a href="button-primary.html" class="comp-card">
+        <span class="comp-card-index">01 / 09</span>
+        <h2 class="comp-card-name">Button Primary</h2>
+        <p class="comp-card-desc">Voltage CTA button. Mono 12px, transparent fill, Voltage border. All states documented.</p>
+        <div class="comp-card-footer">
+          <span class="comp-card-file">button-primary.html</span>
+          <span class="comp-card-arrow" aria-hidden="true">→</span>
+        </div>
+      </a>
+
+      <a href="button-ghost.html" class="comp-card">
+        <span class="comp-card-index">02 / 09</span>
+        <h2 class="comp-card-name">Button Ghost</h2>
+        <p class="comp-card-desc">Secondary action button. Graphite border, bone hover. Pairs with Button Primary for two-button sets.</p>
+        <div class="comp-card-footer">
+          <span class="comp-card-file">button-ghost.html</span>
+          <span class="comp-card-arrow" aria-hidden="true">→</span>
+        </div>
+      </a>
+
+      <a href="card-service.html" class="comp-card">
+        <span class="comp-card-index">03 / 09</span>
+        <h2 class="comp-card-name">Card Service</h2>
+        <p class="comp-card-desc">Practice-block card. Index label, Display title, deliverables list with voltage-dim bullets. 2-column grid.</p>
+        <div class="comp-card-footer">
+          <span class="comp-card-file">card-service.html</span>
+          <span class="comp-card-arrow" aria-hidden="true">→</span>
+        </div>
+      </a>
+
+      <a href="card-pricing.html" class="comp-card">
+        <span class="comp-card-index">04 / 09</span>
+        <h2 class="comp-card-name">Card Pricing</h2>
+        <p class="comp-card-desc">3-tier pricing card. Standard, Signature (Voltage glow border), and Free variants. 3-column grid.</p>
+        <div class="comp-card-footer">
+          <span class="comp-card-file">card-pricing.html</span>
+          <span class="comp-card-arrow" aria-hidden="true">→</span>
+        </div>
+      </a>
+
+      <a href="nav-bar.html" class="comp-card">
+        <span class="comp-card-index">05 / 09</span>
+        <h2 class="comp-card-name">Nav Bar</h2>
+        <p class="comp-card-desc">56px fixed navigation. Backdrop blur, Mono links, Display wordmark, Voltage CTA. z-index 1000.</p>
+        <div class="comp-card-footer">
+          <span class="comp-card-file">nav-bar.html</span>
+          <span class="comp-card-arrow" aria-hidden="true">→</span>
+        </div>
+      </a>
+
+      <a href="footer.html" class="comp-card">
+        <span class="comp-card-index">06 / 09</span>
+        <h2 class="comp-card-name">Footer</h2>
+        <p class="comp-card-desc">Full-width footer. Large Display wordmark SVG, 3-column links, Mono copyright bottom bar.</p>
+        <div class="comp-card-footer">
+          <span class="comp-card-file">footer.html</span>
+          <span class="comp-card-arrow" aria-hidden="true">→</span>
+        </div>
+      </a>
+
+      <a href="eyebrow-tag.html" class="comp-card">
+        <span class="comp-card-index">07 / 09</span>
+        <h2 class="comp-card-name">Eyebrow Tag</h2>
+        <p class="comp-card-desc">JetBrains Mono 12px label. Section counters, arrow prefix, Voltage and Bone variants. Always uppercase.</p>
+        <div class="comp-card-footer">
+          <span class="comp-card-file">eyebrow-tag.html</span>
+          <span class="comp-card-arrow" aria-hidden="true">→</span>
+        </div>
+      </a>
+
+      <a href="mono-table.html" class="comp-card">
+        <span class="comp-card-index">08 / 09</span>
+        <h2 class="comp-card-name">Mono Table</h2>
+        <p class="comp-card-desc">JetBrains Mono data table. Line-item and spec variants. Numeric columns right-aligned. Voltage-dim TOTAL row.</p>
+        <div class="comp-card-footer">
+          <span class="comp-card-file">mono-table.html</span>
+          <span class="comp-card-arrow" aria-hidden="true">→</span>
+        </div>
+      </a>
+
+      <a href="axis-divider.html" class="comp-card">
+        <span class="comp-card-index">09 / 09</span>
+        <h2 class="comp-card-name">Axis Divider</h2>
+        <p class="comp-card-desc">Structural dividers. Simple rule, SVG tick marks, labeled section rule, vertical axis line, Voltage datum accent.</p>
+        <div class="comp-card-footer">
+          <span class="comp-card-file">axis-divider.html</span>
+          <span class="comp-card-arrow" aria-hidden="true">→</span>
+        </div>
+      </a>
+
+    </nav>
+  </section>
+
+  <!-- Usage notes -->
+  <section class="usage-section" aria-labelledby="usage-heading">
+    <span class="section-eyebrow" id="usage-heading">→ 02 / 02 &nbsp; Usage</span>
+
+    <div class="usage-block">
+      <p class="usage-title">→ How to use these files</p>
+      <p class="usage-body">Each component file is a self-contained HTML preview. Open it in a browser to see the component in isolation. Find the HTML and CSS code sections at the bottom of each file — copy and paste into your project. Token variables must be present in <code>:root</code> (use <code>/tokens/build/tokens.css</code> as your source of truth).</p>
+    </div>
+
+    <div class="usage-block" style="border-top: none;">
+      <p class="usage-title">→ Token dependency</p>
+      <p class="usage-body">All components reference CSS custom properties. Include <code>tokens.css</code> before any component stylesheet. Components work without Tailwind — they use vanilla CSS only.</p>
+      <pre><code>&lt;link rel="stylesheet" href="/tokens/build/tokens.css" /&gt;
+&lt;!-- then your component styles --&gt;</code></pre>
+    </div>
+
+    <div class="usage-block" style="border-top: none;">
+      <p class="usage-title">→ Axial element requirement</p>
+      <p class="usage-body">Every composed page must include at least one axial element: the fixed vertical axis line, tick marks, a crosshair, or a Mono index label. Individual components contribute to this — the nav's axis line, eyebrow labels, and table tick marks all count. If your composition has none, add one.</p>
+    </div>
+
+  </section>
+
+</body>
+</html>

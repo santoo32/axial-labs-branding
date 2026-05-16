@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axial Labs — Component: Eyebrow Tag</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --axial-black: #0A0A0B; --axial-bone: #F4F2EC;
+      --axial-voltage: #C6F24E; --axial-voltage-dim: #9DC23A;
+      --graphite-900: #0A0A0B; --graphite-800: #1A1B1E; --graphite-700: #26282D;
+      --graphite-600: #3A3D44; --graphite-500: #5A5E68; --graphite-400: #878C97;
+      --graphite-300: #B5B9C2; --graphite-200: #D8DAE0; --graphite-100: #ECEDEF;
+      --font-display: 'Inter Display', 'Inter', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --track-tight: -0.02em; --track-wider: 0.06em;
+      --shadow-focus: 0 0 0 2px var(--axial-black), 0 0 0 4px var(--axial-voltage);
+    }
+
+    /* ── RESET ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--axial-black); color: var(--axial-bone);
+      font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    :focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
+    /* ── PREVIEW SHELL ──────────────────────────────────── */
+    .axis-line {
+      position: fixed; top: 0; left: clamp(24px, 5vw, 96px);
+      width: 1px; height: 100vh; background: var(--graphite-700); pointer-events: none;
+    }
+    .shell { padding: 64px clamp(48px, 8vw, 128px) 96px; max-width: 1280px; margin: 0 auto; }
+    .comp-meta { margin-bottom: 56px; padding-bottom: 28px; border-bottom: 1px solid var(--graphite-700); }
+    .comp-eyebrow { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-400);
+      margin: 0 0 12px; display: block; }
+    .comp-name { font-family: var(--font-display); font-size: 48px; font-weight: 600;
+      letter-spacing: var(--track-tight); line-height: 1.1; margin: 0 0 8px; }
+    .comp-desc { font-size: 16px; color: var(--graphite-300); margin: 0; }
+    .preview-section { margin-bottom: 64px; }
+    .preview-heading { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-500);
+      margin: 0 0 20px; padding-bottom: 12px; border-bottom: 1px solid var(--graphite-700); }
+    .preview-area {
+      border: 1px solid var(--graphite-700); padding: 48px; background: var(--graphite-800);
+      display: flex; flex-direction: column; gap: 32px;
+    }
+    .preview-item { display: flex; flex-direction: column; gap: 8px; }
+    .preview-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--track-wider);
+      text-transform: uppercase; color: var(--graphite-500); }
+    .code-section { margin-top: 16px; }
+    .code-heading { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-400);
+      margin: 0 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--graphite-700); }
+    pre { background: var(--graphite-800); border: 1px solid var(--graphite-700);
+      padding: 24px; overflow-x: auto; margin: 0 0 48px; }
+    code { font-family: var(--font-mono); font-size: 12px; line-height: 1.8; color: var(--graphite-200); }
+    .tok-comment { color: var(--graphite-500); }
+    .tok-prop { color: var(--axial-voltage-dim); }
+    .tok-val { color: var(--graphite-300); }
+    .tok-sel { color: var(--axial-bone); }
+    .tok-tag { color: var(--axial-voltage-dim); }
+    .tok-attr { color: var(--graphite-400); }
+    .tok-str { color: var(--graphite-200); }
+
+    /* ── COMPONENT: EYEBROW TAG ─────────────────────────── */
+
+    /* Base eyebrow — inline span or <p>, always uppercase Mono */
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);   /* 0.06em */
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      display: block;
+      margin: 0;
+    }
+
+    /* Eyebrow with arrow prefix → (standard pattern) */
+    .eyebrow--arrow::before {
+      content: '→ ';
+    }
+
+    /* Eyebrow — voltage accent color */
+    .eyebrow--voltage {
+      color: var(--axial-voltage);
+    }
+
+    /* Eyebrow — bone (for darker backgrounds) */
+    .eyebrow--bone {
+      color: var(--axial-bone);
+    }
+
+    /* Eyebrow used as section counter: "→ 01 / 03  ·  Label" */
+    /* No extra class needed — just format the text content */
+
+    /* Pairing with headline — eyebrow + h1/h2 stack */
+    .headline-block { display: flex; flex-direction: column; gap: 12px; }
+    .headline-block .eyebrow { margin-bottom: 0; }
+    .headline-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 7vw, 96px);
+      font-weight: 600;
+      letter-spacing: var(--track-tight);
+      line-height: 1.1;
+      margin: 0;
+      color: var(--axial-bone);
+    }
+    .headline-h2 {
+      font-family: var(--font-display);
+      font-size: 40px;
+      font-weight: 600;
+      letter-spacing: var(--track-tight);
+      line-height: 1.1;
+      margin: 0;
+      color: var(--axial-bone);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="axis-line" aria-hidden="true"></div>
+
+  <div class="shell">
+
+    <header class="comp-meta">
+      <span class="comp-eyebrow">→ COMPONENT LIBRARY · v1.0</span>
+      <h1 class="comp-name">Eyebrow Tag</h1>
+      <p class="comp-desc">JetBrains Mono 12px · +6% tracking · UPPERCASE · graphite-400. Precedes headings and section titles. Always starts with → when used as a label.</p>
+    </header>
+
+    <!-- Variants -->
+    <section class="preview-section" aria-labelledby="variants-heading">
+      <p class="preview-heading" id="variants-heading">→ Variants</p>
+      <div class="preview-area">
+
+        <div class="preview-item">
+          <span class="eyebrow">Services</span>
+          <span class="preview-label">Base — graphite-400 (default)</span>
+        </div>
+
+        <div class="preview-item">
+          <span class="eyebrow eyebrow--arrow">Services</span>
+          <span class="preview-label">With arrow prefix (→)</span>
+        </div>
+
+        <div class="preview-item">
+          <span class="eyebrow eyebrow--voltage">→ New</span>
+          <span class="preview-label">Voltage accent — for alerts, new content</span>
+        </div>
+
+        <div class="preview-item">
+          <span class="eyebrow eyebrow--bone">→ CASE STUDY</span>
+          <span class="preview-label">Bone — high-contrast label</span>
+        </div>
+
+        <div class="preview-item">
+          <span class="eyebrow">→ 01 / 03 &nbsp;·&nbsp; Brand systems</span>
+          <span class="preview-label">Section counter format</span>
+        </div>
+
+        <div class="preview-item">
+          <span class="eyebrow">→ Pricing</span>
+          <span class="preview-label">Page section label</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- In context with headlines -->
+    <section class="preview-section" aria-labelledby="context-heading">
+      <p class="preview-heading" id="context-heading">→ In context — eyebrow + headline</p>
+      <div class="preview-area" style="flex-direction: column; gap: 48px;">
+
+        <div class="preview-item">
+          <div class="headline-block">
+            <span class="eyebrow">→ Pricing</span>
+            <h2 class="headline-h1">Three tiers. Fixed scope.</h2>
+          </div>
+          <span class="preview-label">Hero heading pattern</span>
+        </div>
+
+        <div class="preview-item">
+          <div class="headline-block">
+            <span class="eyebrow">→ 02 / 04 &nbsp;·&nbsp; Approach</span>
+            <h2 class="headline-h2">Systems before surfaces.</h2>
+          </div>
+          <span class="preview-label">Section heading with counter</span>
+        </div>
+
+        <div class="preview-item">
+          <div class="headline-block">
+            <span class="eyebrow eyebrow--voltage">→ NEW</span>
+            <h2 class="headline-h2">Tokens v2 is shipping.</h2>
+          </div>
+          <span class="preview-label">Voltage eyebrow + announcement headline</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Spec -->
+    <section class="preview-section" aria-labelledby="spec-heading">
+      <p class="preview-heading" id="spec-heading">→ Spec</p>
+      <div class="preview-area" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px; flex-direction: unset;">
+        <div>
+          <span class="preview-label" style="margin-bottom:6px; display:block;">Font</span>
+          <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">JetBrains Mono</span>
+        </div>
+        <div>
+          <span class="preview-label" style="margin-bottom:6px; display:block;">Size</span>
+          <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">12px</span>
+        </div>
+        <div>
+          <span class="preview-label" style="margin-bottom:6px; display:block;">Weight</span>
+          <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">500 (medium)</span>
+        </div>
+        <div>
+          <span class="preview-label" style="margin-bottom:6px; display:block;">Tracking</span>
+          <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">+6% (0.06em)</span>
+        </div>
+        <div>
+          <span class="preview-label" style="margin-bottom:6px; display:block;">Case</span>
+          <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">UPPERCASE</span>
+        </div>
+        <div>
+          <span class="preview-label" style="margin-bottom:6px; display:block;">Default color</span>
+          <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">graphite-400 #878C97</span>
+        </div>
+        <div>
+          <span class="preview-label" style="margin-bottom:6px; display:block;">Prefix convention</span>
+          <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">→ (Mono arrow)</span>
+        </div>
+        <div>
+          <span class="preview-label" style="margin-bottom:6px; display:block;">Margin below</span>
+          <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">12–16px before heading</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Code -->
+    <section class="code-section">
+      <p class="code-heading">→ HTML</p>
+      <pre><code><span class="tok-comment">&lt;!-- Base eyebrow --&gt;</span>
+<span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span>=<span class="tok-str">"eyebrow"</span><span class="tok-tag">&gt;</span>→ Services<span class="tok-tag">&lt;/span&gt;</span>
+
+<span class="tok-comment">&lt;!-- With CSS-generated → prefix --&gt;</span>
+<span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span>=<span class="tok-str">"eyebrow eyebrow--arrow"</span><span class="tok-tag">&gt;</span>Services<span class="tok-tag">&lt;/span&gt;</span>
+
+<span class="tok-comment">&lt;!-- Voltage accent --&gt;</span>
+<span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span>=<span class="tok-str">"eyebrow eyebrow--voltage"</span><span class="tok-tag">&gt;</span>→ New<span class="tok-tag">&lt;/span&gt;</span>
+
+<span class="tok-comment">&lt;!-- Section counter: "→ 01 / 03  ·  Label" --&gt;</span>
+<span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span>=<span class="tok-str">"eyebrow"</span><span class="tok-tag">&gt;</span>→ 01 / 03 &amp;nbsp;·&amp;nbsp; Brand systems<span class="tok-tag">&lt;/span&gt;</span>
+
+<span class="tok-comment">&lt;!-- Paired with heading --&gt;</span>
+<span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span>=<span class="tok-str">"eyebrow"</span><span class="tok-tag">&gt;</span>→ Pricing<span class="tok-tag">&lt;/span&gt;</span>
+<span class="tok-tag">&lt;h1&gt;</span>Three tiers. Fixed scope.<span class="tok-tag">&lt;/h1&gt;</span></code></pre>
+
+      <p class="code-heading">→ CSS</p>
+      <pre><code><span class="tok-sel">.eyebrow</span> {
+  <span class="tok-prop">font-family</span>: <span class="tok-val">var(--font-mono)</span>;
+  <span class="tok-prop">font-size</span>: <span class="tok-val">12px</span>;
+  <span class="tok-prop">font-weight</span>: <span class="tok-val">500</span>;
+  <span class="tok-prop">letter-spacing</span>: <span class="tok-val">var(--track-wider)</span>;  <span class="tok-comment">/* 0.06em */</span>
+  <span class="tok-prop">text-transform</span>: <span class="tok-val">uppercase</span>;
+  <span class="tok-prop">color</span>: <span class="tok-val">var(--graphite-400)</span>;
+  <span class="tok-prop">display</span>: <span class="tok-val">block</span>;
+  <span class="tok-prop">margin</span>: <span class="tok-val">0</span>;
+}
+
+<span class="tok-sel">.eyebrow--voltage</span> { <span class="tok-prop">color</span>: <span class="tok-val">var(--axial-voltage)</span>; }
+<span class="tok-sel">.eyebrow--bone</span>    { <span class="tok-prop">color</span>: <span class="tok-val">var(--axial-bone)</span>; }
+<span class="tok-sel">.eyebrow--arrow::before</span> { <span class="tok-prop">content</span>: <span class="tok-val">'→ '</span>; }</code></pre>
+    </section>
+
+  </div>
+</body>
+</html>

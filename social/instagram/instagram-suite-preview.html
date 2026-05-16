@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Suite — Axial Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Display:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --axial-black:       #0A0A0B;
+    --axial-bone:        #F4F2EC;
+    --axial-voltage:     #C6F24E;
+    --axial-voltage-dim: #9DC23A;
+    --axial-ion:         #3D5BFF;
+    --axial-plasma:      #FF4D2E;
+    --axial-mercury:     #B8C2CC;
+    --graphite-900: #0A0A0B; --graphite-800: #1A1B1E; --graphite-700: #26282D;
+    --graphite-600: #3A3D44; --graphite-500: #5A5E68; --graphite-400: #878C97;
+    --graphite-300: #B5B9C2; --graphite-200: #D8DAE0; --graphite-100: #ECEDEF;
+    --font-display: 'Inter Display', 'Neue Haas Grotesk Display', system-ui;
+    --font-body:    'Inter', system-ui, sans-serif;
+    --font-mono:    'JetBrains Mono', monospace;
+    --ease-axial:   cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--axial-black);
+    color: var(--axial-bone);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .page-wrap {
+    position: relative;
+    padding: clamp(24px, 5vw, 96px);
+    padding-left: calc(clamp(24px, 5vw, 96px) + 24px);
+  }
+
+  .axis-rail {
+    position: fixed;
+    top: 0;
+    left: clamp(24px, 5vw, 96px);
+    width: 1px;
+    height: 100vh;
+    background: var(--graphite-700);
+    z-index: 10;
+  }
+
+  .page-header {
+    margin-bottom: 80px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--graphite-700);
+  }
+
+  .page-header h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(56px, 8vw, 96px);
+    letter-spacing: -0.02em;
+    line-height: 1.0;
+    color: var(--axial-bone);
+    margin-bottom: 24px;
+  }
+
+  .page-header p {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--graphite-400);
+  }
+
+  .section {
+    margin-bottom: 80px;
+  }
+
+  .section-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--graphite-400);
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--graphite-700);
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+  }
+
+  .carousel-row {
+    display: flex;
+    overflow-x: auto;
+    gap: 16px;
+    padding-bottom: 16px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--graphite-600) var(--graphite-800);
+  }
+
+  @media (min-width: 1200px) {
+    .carousel-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      overflow-x: visible;
+    }
+  }
+
+  .card {
+    border: 1px solid var(--graphite-700);
+    padding: 24px;
+    flex-shrink: 0;
+    min-width: 240px;
+  }
+
+  .card-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--graphite-400);
+    margin-bottom: 16px;
+  }
+
+  .card-svg-wrap {
+    width: 100%;
+    aspect-ratio: 1080 / 1350;
+    background: var(--graphite-800);
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .card-svg-wrap img,
+  .card-svg-wrap svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .card-caption {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--graphite-500);
+    line-height: 1.4;
+  }
+
+  footer {
+    margin-top: 96px;
+    padding-top: 32px;
+    border-top: 1px solid var(--graphite-700);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--graphite-500);
+  }
+</style>
+</head>
+<body>
+<div class="axis-rail" aria-hidden="true"></div>
+
+<main class="page-wrap">
+
+  <header class="page-header" role="banner">
+    <h1>Instagram /<br>templates.</h1>
+    <p>5 base posts. 10-slide carousel. Pick what we ship.</p>
+  </header>
+
+  <section class="section" aria-labelledby="section-posts">
+    <p class="section-eyebrow" id="section-posts">→ 01 / 02&nbsp;&nbsp;&nbsp;Base posts</p>
+    <div class="posts-grid" role="list">
+
+      <article class="card" role="listitem">
+        <p class="card-eyebrow">→ POST 01&nbsp;&nbsp;QUOTE</p>
+        <div class="card-svg-wrap">
+          <img src="post-quote.svg" alt="Post quote template: large display headline on Bone background with Voltage accent line at left edge and Mono attribution">
+        </div>
+        <p class="card-caption">Display type on Bone. Voltage rule left. Mono index top-right.</p>
+      </article>
+
+      <article class="card" role="listitem">
+        <p class="card-eyebrow">→ POST 02&nbsp;&nbsp;SCHEMATIC</p>
+        <div class="card-svg-wrap">
+          <img src="post-schematic.svg" alt="Post schematic template: large percentage callout with engineering axis line and tick marks on black background">
+        </div>
+        <p class="card-caption">Number lockup. Engineering axis with ticks. Voltage data dot.</p>
+      </article>
+
+      <article class="card" role="listitem">
+        <p class="card-eyebrow">→ POST 03&nbsp;&nbsp;WORDMARK</p>
+        <div class="card-svg-wrap">
+          <img src="post-wordmark.svg" alt="Post wordmark template: full-bleed AXIAL LABS wordmark on black background with subtle grid overlay and registration crosshairs">
+        </div>
+        <p class="card-caption">Full-bleed wordmark. 64px grid overlay. Registration crosshairs.</p>
+      </article>
+
+      <article class="card" role="listitem">
+        <p class="card-eyebrow">→ POST 04&nbsp;&nbsp;PROCESS</p>
+        <div class="card-svg-wrap">
+          <img src="post-process.svg" alt="Post process template: split layout showing PDF input on left with strikethrough and REPOSITORY output on right">
+        </div>
+        <p class="card-caption">Split layout. Input struck through. Output in Bone. Voltage rule.</p>
+      </article>
+
+      <article class="card" role="listitem">
+        <p class="card-eyebrow">→ POST 05&nbsp;&nbsp;ANNOUNCEMENT</p>
+        <div class="card-svg-wrap">
+          <img src="post-announcement.svg" alt="Post announcement template: Voltage tag NEW top-left, large Axial OS v1.0 headline, Voltage CTA button at bottom">
+        </div>
+        <p class="card-caption">Voltage outlined tag. Large H1. CTA button. Icon mark bottom-right.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="section-carousel">
+    <p class="section-eyebrow" id="section-carousel">→ 02 / 02&nbsp;&nbsp;&nbsp;Carousel · Tokens beat styles</p>
+    <div class="carousel-row" role="list">
+
+      <article class="card" role="listitem">
+        <p class="card-eyebrow">01 / 10&nbsp;&nbsp;HOOK</p>
+        <div class="card-svg-wrap">
+          <img src="carousel-slide-01-hook.svg" alt="Carousel slide 1 hook: Most design systems aren't systems. Large display type centered on black.">
+        </div>
+        <p class="card-caption">Hook. Three-line display centered.</p>
+      </article>
+
+      <article class="card" role="listitem">
+        <p class="card-eyebrow">02 / 10&nbsp;&nbsp;TITLE</p>
+        <div class="card-svg-wrap">
+          <img src="carousel-slide-02-title.svg" alt="Carousel slide 2 title: Why tokens beat styles. Two-line display with Voltage horizontal rule.">
+        </div>
+        <p class="card-caption">Title card. Voltage rule. Mono caption.</p>
+      </article>
+
+      <article class="card" role="listitem">
+        <p class="card-eyebrow">03 / 10&nbsp;&nbsp;PAINT</p>
+        <div class="card-svg-wrap">
+          <img src="carousel-slide-03.svg" alt="Carousel slide 3: A style is a paint. Display headline with Inter body copy below.">
+        </div>
+        <p class="card-caption">A style is a paint. Display + body.</p>
+      </article>
+
+      <article class="card" role="listitem">
+        <p class="card-eyebrow">04 / 10&nbsp;&nbsp;CONTRACT</p>
+        <div class="card-svg-wrap">
+          <img src="carousel-slide-04.svg" alt="Carousel slide 4: A token is a contract. Display headline with body copy and Voltage signature line.">
+        </div>
+        <p class="card-caption">A token is a contract. Voltage accent.</p>
+      </article>
+
+      <article class="card" role="listitem">
+        <p class="card-eyebrow">05 / 10&nbsp;&nbsp;CONTRAST</p>
+        <div class="card-svg-wrap">
+          <img src="carousel-slide-05.svg" alt="Carousel slide 5: Styles get copied struck through above graphite divider, tokens get versioned in bone below.">
+        </div>
+        <p class="card-caption">Strikethrough vs. Bone. Split contrast.</p>
+      </article>
+
+      <article class="card" role="listitem">
+        <p class="card-eyebrow">06 / 10&nbsp;&nbsp;STAT</p>
+        <div class="card-svg-wrap">
+          <img src="carousel-slide-06.svg" alt="Carousel slide 6: Huge 240 number lockup with Voltage axis line and data dot at 864.">
+        </div>
+        <p class="card-caption">240 tokens. Number lockup. Voltage axis.</p>
+      </article>
+
+      <article class="card" role="listitem">
+        <p class="card-eyebrow">07 / 10&nbsp;&nbsp;DEBT</p>
+        <div class="card-svg-wrap">
+          <img src="carousel-slide-07.svg" alt="Carousel slide 7: If you're hardcoding hex, you're losing compounding value. Two-line display with body copy.">
+        </div>
+        <p class="card-caption">Hex debt. Two-line display + body.</p>
+      </article>
+
+      <article class="card" role="listitem">
+        <p class="card-eyebrow">08 / 10&nbsp;&nbsp;COMPILE</p>
+        <div class="card-svg-wrap">
+          <img src="carousel-slide-08.svg" alt="Carousel slide 8: Tokens compile to CSS JS FIGMA SWIFT in large Voltage Mono type.">
+        </div>
+        <p class="card-caption">Tokens compile to. Voltage Mono platforms.</p>
+      </article>
+
+      <article class="card" role="listitem">
+        <p class="card-eyebrow">09 / 10&nbsp;&nbsp;SUMMARY</p>
+        <div class="card-svg-wrap">
+          <img src="carousel-slide-09-summary.svg" alt="Carousel slide 9 summary: Token everything. Always. Three-line display with Voltage signature line.">
+        </div>
+        <p class="card-caption">Token everything. Always. Summary card.</p>
+      </article>
+
+      <article class="card" role="listitem">
+        <p class="card-eyebrow">10 / 10&nbsp;&nbsp;CTA</p>
+        <div class="card-svg-wrap">
+          <img src="carousel-slide-10-cta.svg" alt="Carousel slide 10 CTA: AXIAL LABS wordmark, AXIALLABS.COM in Voltage, social handles listed.">
+        </div>
+        <p class="card-caption">CTA. URL in Voltage. Handles + icon.</p>
+      </article>
+
+    </div>
+  </section>
+
+</main>
+
+<footer role="contentinfo">
+  <div style="padding: 0 clamp(24px, 5vw, 96px) 48px calc(clamp(24px, 5vw, 96px) + 24px);">
+    &copy; 2026 &mdash; AXIAL LABS&nbsp;&nbsp;//&nbsp;&nbsp;INSTAGRAM SUITE&nbsp;&nbsp;//&nbsp;&nbsp;v1.0
+  </div>
+</footer>
+
+</body>
+</html>

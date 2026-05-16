@@ -1,0 +1,16 @@
+<svg viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+<rect width="1080" height="1350" fill="#F4F2EC"/>
+<rect x="48" y="120" width="6" height="1110" fill="#9DC23A"/>
+<line x1="120" y1="120" x2="960" y2="120" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+<text font-family="'Inter Display', 'Neue Haas Grotesk Display', system-ui, sans-serif" font-weight="600" font-size="22" letter-spacing="0.06em" fill="#5A5E68" x="960" y="120" text-anchor="end">→ NOTE / 01</text>
+<text font-family="'Inter Display', 'Neue Haas Grotesk Display', system-ui, sans-serif" font-weight="600" font-size="144" letter-spacing="-0.02em" fill="#0A0A0B" x="120" y="680">
+  <tspan x="120" dy="0">Tokens</tspan>
+  <tspan x="120" dy="152">compile.</tspan>
+</text>
+<circle cx="940" cy="624" r="6" fill="#9DC23A"/>
+<line x1="120" y1="1100" x2="960" y2="1100" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+<line x1="120" y1="1100" x2="120" y2="1110" stroke="#5A5E68" stroke-width="1" stroke-linecap="square"/>
+<line x1="540" y1="1100" x2="540" y2="1108" stroke="#5A5E68" stroke-width="1" stroke-linecap="square"/>
+<line x1="960" y1="1100" x2="960" y2="1110" stroke="#5A5E68" stroke-width="1" stroke-linecap="square"/>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="22" letter-spacing="0.06em" fill="#5A5E68" x="120" y="1260">→ AXIAL LABS  ·  ENGINEERED IDENTITY  ·  2026</text>
+</svg>

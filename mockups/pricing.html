@@ -568,15 +568,17 @@
     }
 
     .footer-wordmark {
-      font-family: var(--font-display);
-      font-size: clamp(96px, 18vw, 192px);
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      line-height: 1.0;
-      color: var(--axial-bone);
-      white-space: nowrap;
       display: block;
       width: 100%;
+      max-width: 800px;
+      margin: 0;
+      color: var(--axial-bone);
+    }
+
+    .footer-wordmark svg {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     .footer-cols {
@@ -824,7 +826,14 @@
   <footer class="page-outer" role="contentinfo">
     <div class="container-max">
       <div class="footer-wordmark-wrap" aria-hidden="true">
-        <span class="footer-wordmark">AXIAL LABS</span>
+        <div class="footer-wordmark" role="img" aria-label="Axial Labs">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" aria-hidden="true">
+            <line x1="80" y1="40" x2="80" y2="200" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-opacity="0.4"/>
+            <text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="12" letter-spacing="0.06em" fill="currentColor" fill-opacity="0.6" x="100" y="32">→ AL / WORDMARK / v1.0</text>
+            <text font-family="'Inter Display', 'Neue Haas Grotesk Display', system-ui, sans-serif" font-weight="600" font-size="96" letter-spacing="-0.02em" fill="currentColor" x="400" y="140" text-anchor="middle">AXIAL LABS</text>
+            <text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="12" letter-spacing="0.06em" fill="currentColor" fill-opacity="0.6" x="400" y="180" text-anchor="middle">ENGINEERED IDENTITY  ·  EST. 2026  ·  AXIS-ALIGNED</text>
+          </svg>
+        </div>
       </div>
       <div class="footer-cols">
         <div>

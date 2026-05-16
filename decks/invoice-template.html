@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axial Labs — Invoice Template</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Display:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── TOKENS ────────────────────────────────────────────── */
+    :root {
+      --axial-black:       #0A0A0B;
+      --axial-bone:        #F4F2EC;
+      --axial-voltage:     #C6F24E;
+      --axial-voltage-dim: #9DC23A;
+      --axial-ion:         #3D5BFF;
+      --axial-plasma:      #FF4D2E;
+      --axial-mercury:     #B8C2CC;
+      --graphite-900: #0A0A0B; --graphite-800: #1A1B1E; --graphite-700: #26282D;
+      --graphite-600: #3A3D44; --graphite-500: #5A5E68; --graphite-400: #878C97;
+      --graphite-300: #B5B9C2; --graphite-200: #D8DAE0; --graphite-100: #ECEDEF;
+      --font-display: 'Inter Display', 'Inter', system-ui, sans-serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+    }
+
+    /* ─── SHELL ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #E2E0DA;
+      font-family: var(--font-body);
+      color: var(--axial-black);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── A4 PAGE ───────────────────────────────────────────── */
+    .doc-page {
+      width: 210mm;
+      min-height: 297mm;
+      background: var(--axial-bone);
+      color: var(--axial-black);
+      margin: 32px auto;
+      padding: 18mm 22mm 18mm 34mm;
+      position: relative;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 16px rgba(10,10,11,0.10), 0 1px 4px rgba(10,10,11,0.06);
+    }
+
+    /* Axis line — left margin */
+    .doc-page::before {
+      content: '';
+      position: absolute;
+      left: 22mm;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--graphite-200);
+    }
+
+    /* Axis ticks */
+    .axis-ticks {
+      position: absolute;
+      left: calc(22mm - 3px);
+      top: 0;
+      bottom: 0;
+      width: 7px;
+      pointer-events: none;
+    }
+    .axis-ticks svg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 7px; height: 100%;
+    }
+
+    /* ─── TYPE ──────────────────────────────────────────────── */
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-500);
+      display: block;
+    }
+
+    .caption {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--graphite-500);
+      letter-spacing: 0.02em;
+    }
+
+    /* ─── RULE ──────────────────────────────────────────────── */
+    .rule {
+      height: 1px;
+      background: var(--graphite-200);
+      border: none;
+      margin: 0;
+    }
+
+    /* ─── INVOICE HEADER ────────────────────────────────────── */
+    .inv-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: start;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--graphite-200);
+    }
+
+    .inv-wordmark svg {
+      display: block;
+      width: 100%;
+      max-width: 360px;
+      height: auto;
+    }
+
+    .inv-meta {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .inv-number {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--axial-black);
+      display: block;
+      margin-bottom: 10px;
+    }
+    .inv-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+    .inv-meta-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-400);
+    }
+    .inv-meta-value {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--axial-black);
+    }
+    .inv-meta-value--due {
+      color: var(--axial-voltage-dim);
+      font-weight: 500;
+    }
+
+    /* ─── BILL BLOCKS ───────────────────────────────────────── */
+    .bill-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+    .bill-block {}
+    .bill-party {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      display: block;
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--graphite-200);
+    }
+    .bill-name {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--axial-black);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .bill-detail {
+      font-size: 12px;
+      color: var(--graphite-500);
+      display: block;
+      line-height: 1.6;
+    }
+
+    /* ─── STATUS STRIP ──────────────────────────────────────── */
+    .status-strip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border: 1px solid var(--graphite-200);
+      margin-bottom: 28px;
+      background: var(--graphite-100);
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--graphite-300);
+      flex-shrink: 0;
+    }
+    .status-dot--pending { background: var(--axial-mercury); }
+    .status-dot--paid    { background: var(--axial-voltage-dim); }
+    .status-dot--overdue { background: var(--axial-plasma); }
+    .status-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-500);
+    }
+
+    /* ─── LINE-ITEM TABLE ───────────────────────────────────── */
+    .line-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--graphite-200);
+      margin-bottom: 0;
+    }
+
+    /* Column headers */
+    .line-table thead tr {
+      background: var(--graphite-100);
+      border-bottom: 1px solid var(--graphite-200);
+    }
+    .line-table th {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      padding: 8px 12px;
+      text-align: left;
+    }
+    .line-table th.col-qty    { width: 60px;  text-align: center; }
+    .line-table th.col-rate   { width: 90px;  text-align: right;  }
+    .line-table th.col-amount { width: 100px; text-align: right;  }
+
+    /* Body rows */
+    .line-table td {
+      font-size: 12px;
+      color: var(--axial-black);
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--graphite-100);
+      vertical-align: top;
+    }
+    .line-table td.col-qty {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-align: center;
+      color: var(--graphite-500);
+    }
+    .line-table td.col-rate {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-align: right;
+      color: var(--graphite-500);
+    }
+    .line-table td.col-amount {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-align: right;
+      color: var(--axial-black);
+      font-weight: 500;
+    }
+    .line-table .item-name {
+      font-weight: 500;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .line-table .item-note {
+      font-size: 11px;
+      color: var(--graphite-400);
+    }
+    .line-table tbody tr:last-child td { border-bottom: none; }
+
+    /* Totals block */
+    .totals-block {
+      border: 1px solid var(--graphite-200);
+      border-top: none;
+      margin-bottom: 28px;
+    }
+    .totals-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--graphite-100);
+    }
+    .totals-row:last-child { border-bottom: none; }
+    .totals-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-400);
+    }
+    .totals-value {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--axial-black);
+    }
+    .totals-row--total {
+      background: rgba(157, 194, 58, 0.05);
+    }
+    .totals-row--total .totals-label {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--axial-voltage-dim);
+    }
+    .totals-row--total .totals-value {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--axial-voltage-dim);
+    }
+
+    /* ─── PAYMENT INSTRUCTIONS ──────────────────────────────── */
+    .payment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      padding: 16px;
+      border: 1px solid var(--graphite-200);
+      margin-bottom: 28px;
+    }
+    .payment-block {}
+    .payment-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .payment-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 3px;
+    }
+    .payment-key {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--graphite-400);
+      min-width: 80px;
+      flex-shrink: 0;
+    }
+    .payment-val {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--axial-black);
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────── */
+    .inv-footer {
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--graphite-200);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .inv-footer-text {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-400);
+    }
+    .inv-footer-tagline {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--graphite-300);
+    }
+
+    /* ─── PRINT ──────────────────────────────────────────────── */
+    @page { size: A4 portrait; margin: 0; }
+
+    @media print {
+      body { background: transparent; }
+      .doc-page { margin: 0; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════
+     INVOICE
+═══════════════════════════════════ -->
+<div class="doc-page">
+
+  <!-- Axis ticks -->
+  <div class="axis-ticks" aria-hidden="true">
+    <svg viewBox="0 0 7 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="3" y1="80"  x2="7" y2="80"  stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="160" x2="7" y2="160" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="240" x2="7" y2="240" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="320" x2="7" y2="320" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="400" x2="7" y2="400" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="480" x2="7" y2="480" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="560" x2="7" y2="560" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="640" x2="7" y2="640" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="720" x2="7" y2="720" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="800" x2="7" y2="800" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="880" x2="7" y2="880" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+    </svg>
+  </div>
+
+  <!-- ── HEADER ── -->
+  <div class="inv-header">
+
+    <!-- Detailed wordmark, left -->
+    <div class="inv-wordmark">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" aria-label="Axial Labs" role="img">
+        <line x1="80" y1="36" x2="80" y2="204" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-opacity="0.35"/>
+        <text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="11" letter-spacing="0.06em" fill="currentColor" fill-opacity="0.45" x="100" y="30">→ AL / WORDMARK / v1.0</text>
+        <text font-family="'Inter Display', 'Inter', system-ui, sans-serif" font-weight="600" font-size="92" letter-spacing="-0.02em" fill="currentColor" x="400" y="140" text-anchor="middle">AXIAL LABS</text>
+        <text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="11" letter-spacing="0.06em" fill="currentColor" fill-opacity="0.45" x="400" y="176" text-anchor="middle">ENGINEERED IDENTITY  ·  EST. 2026  ·  AXIS-ALIGNED</text>
+      </svg>
+    </div>
+
+    <!-- Invoice meta, right -->
+    <div class="inv-meta">
+      <span class="inv-number">INV-0001</span>
+      <div class="inv-meta-row">
+        <span class="inv-meta-label">Issued</span>
+        <span class="inv-meta-value">YYYY-MM-DD</span>
+      </div>
+      <div class="inv-meta-row">
+        <span class="inv-meta-label">Due</span>
+        <span class="inv-meta-value inv-meta-value--due">YYYY-MM-DD</span>
+      </div>
+      <div class="inv-meta-row" style="margin-top:8px;">
+        <span class="inv-meta-label">Ref</span>
+        <span class="inv-meta-value">[PROJECT-CODENAME]</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── BILL FROM / TO ── -->
+  <span class="eyebrow" style="margin-bottom:12px;">→ INVOICE · [CLIENT NAME] · YYYY-MM-DD</span>
+
+  <div class="bill-grid">
+    <div class="bill-block">
+      <span class="bill-party">→ FROM</span>
+      <span class="bill-name">Axial Labs</span>
+      <span class="bill-detail">Santiago Roa · Founder</span>
+      <span class="bill-detail">santiagot.roa@gmail.com</span>
+      <span class="bill-detail">axiallabs.com</span>
+    </div>
+    <div class="bill-block">
+      <span class="bill-party">→ BILL TO</span>
+      <span class="bill-name">[Client Name]</span>
+      <span class="bill-detail">[Contact Name] · [Title]</span>
+      <span class="bill-detail">[client@company.com]</span>
+      <span class="bill-detail">[Company Address Line 1]</span>
+      <span class="bill-detail">[City, State, ZIP · Country]</span>
+    </div>
+  </div>
+
+  <!-- ── STATUS ── -->
+  <div class="status-strip" role="status" aria-label="Invoice status">
+    <div class="status-dot status-dot--pending" aria-hidden="true"></div>
+    <span class="status-label">PENDING PAYMENT</span>
+    <span class="status-label" style="margin-left:auto; color: var(--graphite-300);">· Change to PAID on settlement ·</span>
+  </div>
+
+  <!-- ── LINE ITEMS ── -->
+  <table class="line-table" role="table" aria-label="Invoice line items">
+    <thead>
+      <tr>
+        <th>DESCRIPTION</th>
+        <th class="col-qty">QTY</th>
+        <th class="col-rate">RATE</th>
+        <th class="col-amount">AMOUNT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <span class="item-name">Design tokens + build pipeline</span>
+          <span class="item-note">W3C format · Style Dictionary · tokens.css · tokens.tailwind.js</span>
+        </td>
+        <td class="col-qty">1</td>
+        <td class="col-rate">$1,200</td>
+        <td class="col-amount">$1,200</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">Logo system</span>
+          <span class="item-note">Wordmark, icon, monogram, favicon set · 5 SVG files</span>
+        </td>
+        <td class="col-qty">1</td>
+        <td class="col-rate">$1,800</td>
+        <td class="col-amount">$1,800</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">Marketing pages</span>
+          <span class="item-note">Landing, services, about · Single-file HTML, tokenized</span>
+        </td>
+        <td class="col-qty">3</td>
+        <td class="col-rate">$800</td>
+        <td class="col-amount">$2,400</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">Component library</span>
+          <span class="item-note">Button, card, input, nav, footer · Storybook</span>
+        </td>
+        <td class="col-qty">1</td>
+        <td class="col-rate">$2,100</td>
+        <td class="col-amount">$2,100</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">Social media templates</span>
+          <span class="item-note">Instagram: 5 posts + carousel · SVG</span>
+        </td>
+        <td class="col-qty">1</td>
+        <td class="col-rate">$1,200</td>
+        <td class="col-amount">$1,200</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">Discovery, strategy, and voice playbook</span>
+          <span class="item-note">Brief · positioning · vocabulary · channel guides</span>
+        </td>
+        <td class="col-qty">1</td>
+        <td class="col-rate">$1,500</td>
+        <td class="col-amount">$1,500</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="item-name">Repository handoff + documentation</span>
+          <span class="item-note">GitHub · README · handoff call</span>
+        </td>
+        <td class="col-qty">1</td>
+        <td class="col-rate">$800</td>
+        <td class="col-amount">$800</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ── TOTALS ── -->
+  <div class="totals-block">
+    <div class="totals-row">
+      <span class="totals-label">SUBTOTAL</span>
+      <span class="totals-value">$11,000</span>
+    </div>
+    <div class="totals-row">
+      <span class="totals-label">DISCOUNT (—)</span>
+      <span class="totals-value">$0</span>
+    </div>
+    <div class="totals-row">
+      <span class="totals-label">TAX (0%)</span>
+      <span class="totals-value">$0</span>
+    </div>
+    <div class="totals-row">
+      <span class="totals-label">DEPOSIT PAID</span>
+      <span class="totals-value" style="color: var(--graphite-400);">(—$6,000)</span>
+    </div>
+    <div class="totals-row totals-row--total">
+      <span class="totals-label">TOTAL DUE</span>
+      <span class="totals-value">$6,000</span>
+    </div>
+  </div>
+
+  <!-- ── PAYMENT INSTRUCTIONS ── -->
+  <span class="eyebrow" style="margin-bottom:10px;">→ PAYMENT INSTRUCTIONS</span>
+  <div class="payment-grid">
+    <div class="payment-block">
+      <span class="payment-label">Wire transfer</span>
+      <div class="payment-row">
+        <span class="payment-key">BANK</span>
+        <span class="payment-val">[Bank Name]</span>
+      </div>
+      <div class="payment-row">
+        <span class="payment-key">ACCT</span>
+        <span class="payment-val">[Account Number]</span>
+      </div>
+      <div class="payment-row">
+        <span class="payment-key">ROUTING</span>
+        <span class="payment-val">[Routing Number]</span>
+      </div>
+      <div class="payment-row">
+        <span class="payment-key">SWIFT</span>
+        <span class="payment-val">[SWIFT Code]</span>
+      </div>
+      <div class="payment-row">
+        <span class="payment-key">REF</span>
+        <span class="payment-val">INV-0001</span>
+      </div>
+    </div>
+    <div class="payment-block">
+      <span class="payment-label">Stripe</span>
+      <div class="payment-row">
+        <span class="payment-key">LINK</span>
+        <span class="payment-val">pay.axiallabs.com/INV-0001</span>
+      </div>
+      <span class="payment-label" style="margin-top:20px;">Note</span>
+      <p style="font-size:11px; color:var(--graphite-500); line-height:1.5; margin:0;">Payment due within 14 days of issue date. Late payments pause delivery without penalty to either party.</p>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <div class="inv-footer">
+    <span class="inv-footer-text">AXIAL LABS  ·  AXIALLABS.COM  ·  INV-0001</span>
+    <span class="inv-footer-tagline">Systems for ambitious software.</span>
+  </div>
+
+</div>
+
+</body>
+</html>

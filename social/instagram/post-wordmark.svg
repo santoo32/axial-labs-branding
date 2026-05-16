@@ -1,0 +1,17 @@
+<svg viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern id="grid64" x="0" y="0" width="64" height="64" patternUnits="userSpaceOnUse">
+<path d="M 64 0 L 0 0 0 64" fill="none" stroke="#26282D" stroke-width="1" stroke-opacity="0.4" stroke-linecap="square"/>
+</pattern>
+</defs>
+<rect width="1080" height="1350" fill="#0A0A0B"/>
+<rect width="1080" height="1350" fill="url(#grid64)"/>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="22" letter-spacing="0.06em" fill="#5A5E68" x="72" y="88">→ AL / WORDMARK / v1.0</text>
+<text font-family="'Inter Display', 'Neue Haas Grotesk Display', system-ui, sans-serif" font-weight="600" font-size="180" letter-spacing="-0.02em" fill="#F4F2EC" x="540" y="740" text-anchor="middle">AXIAL LABS</text>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="28" letter-spacing="0.06em" fill="#878C97" x="540" y="824" text-anchor="middle">ENGINEERED IDENTITY  ·  EST. 2026</text>
+<line x1="1000" y1="80" x2="1016" y2="80" stroke="#5A5E68" stroke-width="1" stroke-opacity="0.5" stroke-linecap="square"/>
+<line x1="1008" y1="72" x2="1008" y2="88" stroke="#5A5E68" stroke-width="1" stroke-opacity="0.5" stroke-linecap="square"/>
+<line x1="1000" y1="1278" x2="1016" y2="1278" stroke="#5A5E68" stroke-width="1" stroke-opacity="0.5" stroke-linecap="square"/>
+<line x1="1008" y1="1270" x2="1008" y2="1286" stroke="#5A5E68" stroke-width="1" stroke-opacity="0.5" stroke-linecap="square"/>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="22" letter-spacing="0.06em" fill="#5A5E68" x="72" y="1278">X 0  Y 0</text>
+</svg>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axial Labs — Component: Mono Table</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --axial-black: #0A0A0B; --axial-bone: #F4F2EC;
+      --axial-voltage: #C6F24E; --axial-voltage-dim: #9DC23A;
+      --graphite-900: #0A0A0B; --graphite-800: #1A1B1E; --graphite-700: #26282D;
+      --graphite-600: #3A3D44; --graphite-500: #5A5E68; --graphite-400: #878C97;
+      --graphite-300: #B5B9C2; --graphite-200: #D8DAE0; --graphite-100: #ECEDEF;
+      --font-display: 'Inter Display', 'Inter', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --track-tight: -0.02em; --track-wider: 0.06em;
+      --shadow-focus: 0 0 0 2px var(--axial-black), 0 0 0 4px var(--axial-voltage);
+    }
+
+    /* ── RESET ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--axial-black); color: var(--axial-bone);
+      font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    :focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
+    /* ── PREVIEW SHELL ──────────────────────────────────── */
+    .axis-line {
+      position: fixed; top: 0; left: clamp(24px, 5vw, 96px);
+      width: 1px; height: 100vh; background: var(--graphite-700); pointer-events: none;
+    }
+    .shell { padding: 64px clamp(48px, 8vw, 128px) 96px; max-width: 1280px; margin: 0 auto; }
+    .comp-meta { margin-bottom: 56px; padding-bottom: 28px; border-bottom: 1px solid var(--graphite-700); }
+    .comp-eyebrow { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-400);
+      margin: 0 0 12px; display: block; }
+    .comp-name { font-family: var(--font-display); font-size: 48px; font-weight: 600;
+      letter-spacing: var(--track-tight); line-height: 1.1; margin: 0 0 8px; }
+    .comp-desc { font-size: 16px; color: var(--graphite-300); margin: 0; }
+    .preview-section { margin-bottom: 64px; }
+    .preview-heading { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-500);
+      margin: 0 0 20px; padding-bottom: 12px; border-bottom: 1px solid var(--graphite-700); }
+    .preview-area { border: 1px solid var(--graphite-700); padding: 32px; background: var(--graphite-800); }
+    .preview-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--track-wider);
+      text-transform: uppercase; color: var(--graphite-500); display: block; margin-top: 20px; }
+    .code-section { margin-top: 16px; }
+    .code-heading { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-400);
+      margin: 0 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--graphite-700); }
+    pre { background: var(--graphite-800); border: 1px solid var(--graphite-700);
+      padding: 24px; overflow-x: auto; margin: 0 0 48px; }
+    code { font-family: var(--font-mono); font-size: 12px; line-height: 1.8; color: var(--graphite-200); }
+    .tok-comment { color: var(--graphite-500); }
+    .tok-prop { color: var(--axial-voltage-dim); }
+    .tok-val { color: var(--graphite-300); }
+    .tok-sel { color: var(--axial-bone); }
+    .tok-tag { color: var(--axial-voltage-dim); }
+    .tok-attr { color: var(--graphite-400); }
+    .tok-str { color: var(--graphite-200); }
+
+    /* ── COMPONENT: MONO TABLE ──────────────────────────── */
+    .mono-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-mono);
+    }
+
+    /* Header row */
+    .mono-table thead tr {
+      border-bottom: 1px solid var(--graphite-700);
+    }
+
+    .mono-table th {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      padding: 0 16px 12px 0;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    /* Numeric columns align right */
+    .mono-table th.num,
+    .mono-table td.num {
+      text-align: right;
+      padding-right: 0;
+      padding-left: 24px;
+    }
+
+    /* Data rows */
+    .mono-table td {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--graphite-200);
+      padding: 14px 16px 14px 0;
+      border-bottom: 1px solid var(--graphite-700);
+      vertical-align: top;
+    }
+
+    .mono-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Row hover */
+    .mono-table tbody tr:hover td {
+      background: rgba(244, 242, 236, 0.02);
+    }
+
+    /* Total row — voltage accent */
+    .mono-table tr.totals-row td {
+      border-top: 1px solid var(--graphite-600);
+      border-bottom: none;
+      background: rgba(157, 194, 58, 0.04);
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
+
+    .mono-table tr.totals-row .totals-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--axial-voltage-dim);
+    }
+
+    .mono-table tr.totals-row .totals-value {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--axial-voltage-dim);
+    }
+
+    /* Quantity / unit columns */
+    .mono-table td.qty {
+      color: var(--graphite-400);
+    }
+
+    /* Status badge in table */
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+    }
+    .status-dot {
+      width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+    }
+    .status-dot--active   { background: var(--axial-voltage-dim); }
+    .status-dot--pending  { background: var(--axial-mercury); }
+    .status-dot--inactive { background: var(--graphite-500); }
+  </style>
+</head>
+<body>
+
+  <div class="axis-line" aria-hidden="true"></div>
+
+  <div class="shell">
+
+    <header class="comp-meta">
+      <span class="comp-eyebrow">→ COMPONENT LIBRARY · v1.0</span>
+      <h1 class="comp-name">Mono Table</h1>
+      <p class="comp-desc">JetBrains Mono data table. Used in invoices, proposals, and spec sheets. Numeric columns right-aligned. Total row has Voltage-dim accent background.</p>
+    </header>
+
+    <!-- Line-item table (invoice style) -->
+    <section class="preview-section" aria-labelledby="invoice-heading">
+      <p class="preview-heading" id="invoice-heading">→ Line-item table (invoice)</p>
+      <div class="preview-area">
+        <table class="mono-table" aria-label="Invoice line items">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Qty</th>
+              <th class="num">Unit</th>
+              <th class="num">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Brand strategy + positioning</td>
+              <td class="qty">1</td>
+              <td class="num">$8,000</td>
+              <td class="num">$8,000</td>
+            </tr>
+            <tr>
+              <td>Design token system (W3C JSON → CSS/Tailwind/Figma)</td>
+              <td class="qty">1</td>
+              <td class="num">$6,000</td>
+              <td class="num">$6,000</td>
+            </tr>
+            <tr>
+              <td>Logo suite (5 wordmarks, icons, monogram)</td>
+              <td class="qty">1</td>
+              <td class="num">$5,000</td>
+              <td class="num">$5,000</td>
+            </tr>
+            <tr>
+              <td>Component library (HTML + Figma)</td>
+              <td class="qty">1</td>
+              <td class="num">$4,000</td>
+              <td class="num">$4,000</td>
+            </tr>
+            <tr>
+              <td>Pitch deck (16 slides)</td>
+              <td class="qty">1</td>
+              <td class="num">$1,000</td>
+              <td class="num">$1,000</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2"></td>
+              <td class="num"><span class="totals-label">Total</span></td>
+              <td class="num"><span class="totals-value">$24,000</span></td>
+            </tr>
+          </tfoot>
+        </table>
+        <span class="preview-label">Line-item table with Voltage-dim TOTAL row</span>
+      </div>
+    </section>
+
+    <!-- Data / spec table -->
+    <section class="preview-section" aria-labelledby="data-heading">
+      <p class="preview-heading" id="data-heading">→ Data / spec table</p>
+      <div class="preview-area">
+        <table class="mono-table" aria-label="Token spec table">
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Value</th>
+              <th>Role</th>
+              <th>Use</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>axial-black</td>
+              <td>#0A0A0B</td>
+              <td>Surface bg (dark)</td>
+              <td>Page background, card fills</td>
+            </tr>
+            <tr>
+              <td>axial-bone</td>
+              <td>#F4F2EC</td>
+              <td>Text primary (dark)</td>
+              <td>Headlines, body on dark</td>
+            </tr>
+            <tr>
+              <td>axial-voltage</td>
+              <td>#C6F24E</td>
+              <td>Accent (dark only)</td>
+              <td>CTAs, highlights — ≤5% area</td>
+            </tr>
+            <tr>
+              <td>axial-voltage-dim</td>
+              <td>#9DC23A</td>
+              <td>Accent (light mode)</td>
+              <td>On bone bg — AA contrast</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="status-pill">
+                  <span class="status-dot status-dot--active"></span>
+                  graphite-700
+                </span>
+              </td>
+              <td>#26282D</td>
+              <td>Border default</td>
+              <td>Card borders, dividers</td>
+            </tr>
+          </tbody>
+        </table>
+        <span class="preview-label">Spec table — can mix status pills into cells</span>
+      </div>
+    </section>
+
+    <!-- Code -->
+    <section class="code-section">
+      <p class="code-heading">→ HTML</p>
+      <pre><code><span class="tok-tag">&lt;table</span> <span class="tok-attr">class</span>=<span class="tok-str">"mono-table"</span> <span class="tok-attr">aria-label</span>=<span class="tok-str">"Invoice line items"</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;thead&gt;</span>
+    <span class="tok-tag">&lt;tr&gt;</span>
+      <span class="tok-tag">&lt;th&gt;</span>Description<span class="tok-tag">&lt;/th&gt;</span>
+      <span class="tok-tag">&lt;th&gt;</span>Qty<span class="tok-tag">&lt;/th&gt;</span>
+      <span class="tok-tag">&lt;th</span> <span class="tok-attr">class</span>=<span class="tok-str">"num"</span><span class="tok-tag">&gt;</span>Unit<span class="tok-tag">&lt;/th&gt;</span>
+      <span class="tok-tag">&lt;th</span> <span class="tok-attr">class</span>=<span class="tok-str">"num"</span><span class="tok-tag">&gt;</span>Amount<span class="tok-tag">&lt;/th&gt;</span>
+    <span class="tok-tag">&lt;/tr&gt;</span>
+  <span class="tok-tag">&lt;/thead&gt;</span>
+  <span class="tok-tag">&lt;tbody&gt;</span>
+    <span class="tok-tag">&lt;tr&gt;</span>
+      <span class="tok-tag">&lt;td&gt;</span>Brand strategy<span class="tok-tag">&lt;/td&gt;</span>
+      <span class="tok-tag">&lt;td</span> <span class="tok-attr">class</span>=<span class="tok-str">"qty"</span><span class="tok-tag">&gt;</span>1<span class="tok-tag">&lt;/td&gt;</span>
+      <span class="tok-tag">&lt;td</span> <span class="tok-attr">class</span>=<span class="tok-str">"num"</span><span class="tok-tag">&gt;</span>$8,000<span class="tok-tag">&lt;/td&gt;</span>
+      <span class="tok-tag">&lt;td</span> <span class="tok-attr">class</span>=<span class="tok-str">"num"</span><span class="tok-tag">&gt;</span>$8,000<span class="tok-tag">&lt;/td&gt;</span>
+    <span class="tok-tag">&lt;/tr&gt;</span>
+  <span class="tok-tag">&lt;/tbody&gt;</span>
+  <span class="tok-tag">&lt;tfoot&gt;</span>
+    <span class="tok-comment">&lt;!-- TOTAL row: .totals-row → voltage-dim accent --&gt;</span>
+    <span class="tok-tag">&lt;tr</span> <span class="tok-attr">class</span>=<span class="tok-str">"totals-row"</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;td</span> <span class="tok-attr">colspan</span>=<span class="tok-str">"2"</span><span class="tok-tag">&gt;&lt;/td&gt;</span>
+      <span class="tok-tag">&lt;td</span> <span class="tok-attr">class</span>=<span class="tok-str">"num"</span><span class="tok-tag">&gt;&lt;span</span> <span class="tok-attr">class</span>=<span class="tok-str">"totals-label"</span><span class="tok-tag">&gt;</span>Total<span class="tok-tag">&lt;/span&gt;&lt;/td&gt;</span>
+      <span class="tok-tag">&lt;td</span> <span class="tok-attr">class</span>=<span class="tok-str">"num"</span><span class="tok-tag">&gt;&lt;span</span> <span class="tok-attr">class</span>=<span class="tok-str">"totals-value"</span><span class="tok-tag">&gt;</span>$24,000<span class="tok-tag">&lt;/span&gt;&lt;/td&gt;</span>
+    <span class="tok-tag">&lt;/tr&gt;</span>
+  <span class="tok-tag">&lt;/tfoot&gt;</span>
+<span class="tok-tag">&lt;/table&gt;</span></code></pre>
+    </section>
+
+  </div>
+</body>
+</html>

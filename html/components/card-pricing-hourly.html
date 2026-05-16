@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axial Labs — Component: Card Pricing Hourly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --axial-black: #0A0A0B; --axial-bone: #F4F2EC;
+      --axial-voltage: #C6F24E; --axial-voltage-dim: #9DC23A;
+      --graphite-900: #0A0A0B; --graphite-800: #1A1B1E; --graphite-700: #26282D;
+      --graphite-600: #3A3D44; --graphite-500: #5A5E68; --graphite-400: #878C97;
+      --graphite-300: #B5B9C2; --graphite-200: #D8DAE0; --graphite-100: #ECEDEF;
+      --font-display: 'Inter Display', 'Inter', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --track-tight: -0.02em; --track-wider: 0.06em;
+      --ease-axial: cubic-bezier(0.32, 0.72, 0, 1);
+      --duration-ui: 240ms;
+      --shadow-glow-soft: 0 0 24px rgba(198, 242, 78, 0.35);
+      --shadow-glow-strong: 0 0 48px rgba(198, 242, 78, 0.55), 0 0 96px rgba(198, 242, 78, 0.25);
+      --shadow-focus: 0 0 0 2px var(--axial-black), 0 0 0 4px var(--axial-voltage);
+    }
+
+    /* ── RESET ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--axial-black); color: var(--axial-bone);
+      font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    :focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
+    /* ── PREVIEW SHELL ──────────────────────────────────── */
+    .axis-line {
+      position: fixed; top: 0; left: clamp(24px, 5vw, 96px);
+      width: 1px; height: 100vh; background: var(--graphite-700); pointer-events: none;
+    }
+    .shell { padding: 64px clamp(48px, 8vw, 128px) 96px; max-width: 1280px; margin: 0 auto; }
+    .comp-meta { margin-bottom: 56px; padding-bottom: 28px; border-bottom: 1px solid var(--graphite-700); }
+    .comp-eyebrow { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-400);
+      margin: 0 0 12px; display: block; }
+    .comp-name { font-family: var(--font-display); font-size: 48px; font-weight: 600;
+      letter-spacing: var(--track-tight); line-height: 1.1; margin: 0 0 8px; }
+    .comp-desc { font-size: 16px; color: var(--graphite-300); margin: 0; }
+    .preview-section { margin-bottom: 64px; }
+    .preview-heading { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-500);
+      margin: 0 0 20px; padding-bottom: 12px; border-bottom: 1px solid var(--graphite-700); }
+    .preview-area {
+      border: 1px solid var(--graphite-700); padding: 48px; background: var(--graphite-800);
+    }
+    .code-section { margin-top: 16px; }
+    .code-heading { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-400);
+      margin: 0 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--graphite-700); }
+    pre { background: var(--graphite-800); border: 1px solid var(--graphite-700);
+      padding: 24px; overflow-x: auto; margin: 0 0 48px; }
+    code { font-family: var(--font-mono); font-size: 12px; line-height: 1.8; color: var(--graphite-200); }
+    .tok-comment { color: var(--graphite-500); }
+    .tok-prop { color: var(--axial-voltage-dim); }
+    .tok-val { color: var(--graphite-300); }
+    .tok-sel { color: var(--axial-bone); }
+    .tok-tag { color: var(--axial-voltage-dim); }
+    .tok-attr { color: var(--graphite-400); }
+    .tok-str { color: var(--graphite-200); }
+
+    /* ── COMPONENT: CARD PRICING — HOURLY VARIANT ───────── */
+
+    /*
+     * Hourly Rate Card
+     * Use for flexible, commitment-free engagements (e.g. early customer pilots).
+     * Layout: single-card full-width band with rate prominently on the left,
+     * feature bullets and CTA on the right.
+     */
+
+    .hourly-card {
+      border: 1px solid var(--axial-voltage);
+      box-shadow: var(--shadow-glow-soft);
+      padding: 40px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+      background: transparent;
+      position: relative;
+    }
+
+    /* Top-left corner crosshair mark */
+    .hourly-card::before,
+    .hourly-card::after {
+      content: '';
+      position: absolute;
+      background: var(--axial-voltage);
+    }
+    .hourly-card::before {
+      top: -1px; left: -1px;
+      width: 12px; height: 1px;
+    }
+    .hourly-card::after {
+      top: -1px; left: -1px;
+      width: 1px; height: 12px;
+    }
+
+    /* Collapsed single-column on mobile */
+    @media (max-width: 768px) {
+      .hourly-card { grid-template-columns: 1fr; gap: 32px; padding: 32px; }
+    }
+
+    /* — Rate column — */
+    .hourly-rate-col {}
+
+    .hourly-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--axial-voltage);
+      margin: 0 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hourly-name {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: var(--track-tight);
+      line-height: 1.1;
+      color: var(--axial-bone);
+      margin: 0 0 32px;
+    }
+
+    .hourly-price-lockup {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin: 0 0 4px;
+    }
+
+    .hourly-currency {
+      font-family: var(--font-mono);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--graphite-400);
+      line-height: 1;
+      letter-spacing: var(--track-wider);
+      align-self: flex-start;
+      padding-top: 8px;
+    }
+
+    .hourly-amount {
+      font-family: var(--font-mono);
+      font-size: 80px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      color: var(--axial-bone);
+      line-height: 1;
+    }
+
+    .hourly-unit {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: var(--track-wider);
+      color: var(--graphite-400);
+      align-self: flex-end;
+      padding-bottom: 10px;
+    }
+
+    .hourly-qualifier {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-500);
+      display: block;
+      margin-top: 8px;
+    }
+
+    /* — Includes column — */
+    .hourly-includes-col {}
+
+    .hourly-col-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-500);
+      margin: 0 0 16px;
+      display: block;
+    }
+
+    .hourly-bullets {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .hourly-bullets li {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-300);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--graphite-700);
+    }
+
+    .hourly-bullets li:first-child {
+      border-top: 1px solid var(--graphite-700);
+    }
+
+    .hourly-bullets li::before {
+      content: '→';
+      color: var(--axial-voltage);
+      font-size: 11px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* — Action column — */
+    .hourly-action-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .hourly-note {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      line-height: 1.7;
+    }
+
+    .hourly-note strong {
+      color: var(--axial-bone);
+      font-weight: 500;
+    }
+
+    /* CTA */
+    .btn-voltage {
+      font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+      letter-spacing: var(--track-wider); text-transform: uppercase;
+      color: var(--axial-voltage); border: 1px solid var(--axial-voltage);
+      background: transparent; padding: 12px 24px; cursor: pointer;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      line-height: 1; white-space: nowrap;
+      transition: background var(--duration-ui) var(--ease-axial),
+                  color var(--duration-ui) var(--ease-axial),
+                  box-shadow var(--duration-ui) var(--ease-axial);
+    }
+    .btn-voltage:hover {
+      background: var(--axial-voltage);
+      color: var(--axial-black);
+      box-shadow: var(--shadow-glow-strong);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="axis-line" aria-hidden="true"></div>
+
+  <div class="shell">
+
+    <header class="comp-meta">
+      <span class="comp-eyebrow">→ COMPONENT LIBRARY · v1.0</span>
+      <h1 class="comp-name">Card Pricing — Hourly</h1>
+      <p class="comp-desc">Single-card, full-width band for flexible hourly engagements. Designed for early customers and pilot projects — no fixed commitment, billed at <strong>$20 / hr</strong>. Always rendered as Signature (voltage border).</p>
+    </header>
+
+    <!-- Preview -->
+    <section class="preview-section" aria-labelledby="hourly-preview-heading">
+      <p class="preview-heading" id="hourly-preview-heading">→ Default — full-width band</p>
+      <div class="preview-area" style="padding: 48px 40px;">
+
+        <article class="hourly-card" aria-labelledby="hourly-tier-name">
+
+          <!-- Rate column -->
+          <div class="hourly-rate-col">
+            <p class="hourly-eyebrow">→ Early access · Pilot</p>
+            <h2 class="hourly-name" id="hourly-tier-name">Billed hourly.</h2>
+            <div class="hourly-price-lockup" aria-label="$20 per hour">
+              <span class="hourly-currency" aria-hidden="true">$</span>
+              <span class="hourly-amount" aria-hidden="true">20</span>
+              <span class="hourly-unit" aria-hidden="true">/hr</span>
+            </div>
+            <span class="hourly-qualifier">No commitment · Pay as you go</span>
+          </div>
+
+          <!-- Includes column -->
+          <div class="hourly-includes-col">
+            <span class="hourly-col-label">→ What's included</span>
+            <ul class="hourly-bullets" aria-label="What's included">
+              <li>Flexible scope per session</li>
+              <li>Async collaboration via Slack</li>
+              <li>Weekly progress check-in</li>
+              <li>Git-tracked deliverables</li>
+              <li>Brand, UI, or automation work</li>
+            </ul>
+          </div>
+
+          <!-- Action column -->
+          <div class="hourly-action-col">
+            <p class="hourly-note">
+              <strong>Designed for first customers.</strong><br><br>
+              Book a block of hours — start small, expand as trust builds.
+              Ideal for founders who want to ship fast without a long-term retainer.
+            </p>
+            <a href="/contact" class="btn-voltage">Book hours →</a>
+          </div>
+
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Spec detail -->
+    <section class="preview-section" aria-labelledby="spec-heading">
+      <p class="preview-heading" id="spec-heading">→ Token specs</p>
+      <div class="preview-area">
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px;">
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-500); display: block; margin-bottom: 6px;">Rate size</span>
+            <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">80px · JetBrains Mono</span>
+          </div>
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-500); display: block; margin-bottom: 6px;">Border</span>
+            <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">#C6F24E (voltage)</span>
+          </div>
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-500); display: block; margin-bottom: 6px;">Shadow</span>
+            <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">shadow-glow-soft</span>
+          </div>
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-500); display: block; margin-bottom: 6px;">Layout</span>
+            <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">3-col grid · full width</span>
+          </div>
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-500); display: block; margin-bottom: 6px;">Eyebrow</span>
+            <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">voltage text color</span>
+          </div>
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-500); display: block; margin-bottom: 6px;">CTA</span>
+            <span style="font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300);">btn-voltage → fills on hover</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Code -->
+    <section class="code-section">
+      <p class="code-heading">→ HTML — Hourly rate card</p>
+      <pre><code><span class="tok-tag">&lt;article</span> <span class="tok-attr">class</span>=<span class="tok-str">"hourly-card"</span> <span class="tok-attr">aria-labelledby</span>=<span class="tok-str">"hourly-tier-name"</span><span class="tok-tag">&gt;</span>
+
+  <span class="tok-comment">&lt;!-- Rate column --&gt;</span>
+  <span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span>=<span class="tok-str">"hourly-rate-col"</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;p</span> <span class="tok-attr">class</span>=<span class="tok-str">"hourly-eyebrow"</span><span class="tok-tag">&gt;</span>→ Early access · Pilot<span class="tok-tag">&lt;/p&gt;</span>
+    <span class="tok-tag">&lt;h2</span> <span class="tok-attr">class</span>=<span class="tok-str">"hourly-name"</span> <span class="tok-attr">id</span>=<span class="tok-str">"hourly-tier-name"</span><span class="tok-tag">&gt;</span>Billed hourly.<span class="tok-tag">&lt;/h2&gt;</span>
+    <span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span>=<span class="tok-str">"hourly-price-lockup"</span> <span class="tok-attr">aria-label</span>=<span class="tok-str">"$20 per hour"</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span>=<span class="tok-str">"hourly-currency"</span> <span class="tok-attr">aria-hidden</span>=<span class="tok-str">"true"</span><span class="tok-tag">&gt;</span>$<span class="tok-tag">&lt;/span&gt;</span>
+      <span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span>=<span class="tok-str">"hourly-amount"</span> <span class="tok-attr">aria-hidden</span>=<span class="tok-str">"true"</span><span class="tok-tag">&gt;</span>20<span class="tok-tag">&lt;/span&gt;</span>
+      <span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span>=<span class="tok-str">"hourly-unit"</span> <span class="tok-attr">aria-hidden</span>=<span class="tok-str">"true"</span><span class="tok-tag">&gt;</span>/hr<span class="tok-tag">&lt;/span&gt;</span>
+    <span class="tok-tag">&lt;/div&gt;</span>
+    <span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span>=<span class="tok-str">"hourly-qualifier"</span><span class="tok-tag">&gt;</span>No commitment · Pay as you go<span class="tok-tag">&lt;/span&gt;</span>
+  <span class="tok-tag">&lt;/div&gt;</span>
+
+  <span class="tok-comment">&lt;!-- Includes column --&gt;</span>
+  <span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span>=<span class="tok-str">"hourly-includes-col"</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;span</span> <span class="tok-attr">class</span>=<span class="tok-str">"hourly-col-label"</span><span class="tok-tag">&gt;</span>→ What's included<span class="tok-tag">&lt;/span&gt;</span>
+    <span class="tok-tag">&lt;ul</span> <span class="tok-attr">class</span>=<span class="tok-str">"hourly-bullets"</span> <span class="tok-attr">aria-label</span>=<span class="tok-str">"What's included"</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;li&gt;</span>Flexible scope per session<span class="tok-tag">&lt;/li&gt;</span>
+      <span class="tok-tag">&lt;li&gt;</span>Async collaboration via Slack<span class="tok-tag">&lt;/li&gt;</span>
+      <span class="tok-comment">&lt;!-- add more items as needed --&gt;</span>
+    <span class="tok-tag">&lt;/ul&gt;</span>
+  <span class="tok-tag">&lt;/div&gt;</span>
+
+  <span class="tok-comment">&lt;!-- Action column --&gt;</span>
+  <span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span>=<span class="tok-str">"hourly-action-col"</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;p</span> <span class="tok-attr">class</span>=<span class="tok-str">"hourly-note"</span><span class="tok-tag">&gt;</span>
+      <span class="tok-tag">&lt;strong&gt;</span>Designed for first customers.<span class="tok-tag">&lt;/strong&gt;</span><span class="tok-tag">&lt;br&gt;&lt;br&gt;</span>
+      Book a block of hours — start small, expand as trust builds.
+    <span class="tok-tag">&lt;/p&gt;</span>
+    <span class="tok-tag">&lt;a</span> <span class="tok-attr">href</span>=<span class="tok-str">"/contact"</span> <span class="tok-attr">class</span>=<span class="tok-str">"btn-voltage"</span><span class="tok-tag">&gt;</span>Book hours →<span class="tok-tag">&lt;/a&gt;</span>
+  <span class="tok-tag">&lt;/div&gt;</span>
+
+<span class="tok-tag">&lt;/article&gt;</span></code></pre>
+    </section>
+
+  </div>
+</body>
+</html>

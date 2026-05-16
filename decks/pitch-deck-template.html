@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1920" />
+  <title>Axial Labs · Pitch deck · v1.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:wght@400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            axial: {
+              black: '#0A0A0B',
+              bone: '#F4F2EC',
+              voltage: '#C6F24E',
+              'voltage-dim': '#9DC23A',
+              ion: '#3D5BFF',
+              plasma: '#FF4D2E',
+              mercury: '#B8C2CC',
+            },
+            graphite: {
+              900: '#0A0A0B', 800: '#1A1B1E', 700: '#26282D',
+              600: '#3A3D44', 500: '#5A5E68', 400: '#878C97',
+              300: '#B5B9C2', 200: '#D8DAE0', 100: '#ECEDEF',
+            },
+          },
+          fontFamily: {
+            display: ['"Inter Display"', '"Neue Haas Grotesk Display"', 'system-ui'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+            editorial: ['"Source Serif 4"', 'Georgia', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          transitionTimingFunction: {
+            axial: 'cubic-bezier(0.32, 0.72, 0, 1)',
+          },
+          boxShadow: {
+            'glow-soft': '0 0 24px rgba(198, 242, 78, 0.35)',
+            'glow-strong': '0 0 48px rgba(198, 242, 78, 0.55), 0 0 96px rgba(198, 242, 78, 0.25)',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    /* ===== CSS VARIABLES — full Axial token set ===== */
+    :root {
+      --axial-black:        #0A0A0B;
+      --axial-bone:         #F4F2EC;
+      --axial-voltage:      #C6F24E;
+      --axial-voltage-dim:  #9DC23A;
+      --axial-ion:          #3D5BFF;
+      --axial-plasma:       #FF4D2E;
+      --axial-mercury:      #B8C2CC;
+      --graphite-900: #0A0A0B; --graphite-800: #1A1B1E; --graphite-700: #26282D;
+      --graphite-600: #3A3D44; --graphite-500: #5A5E68; --graphite-400: #878C97;
+      --graphite-300: #B5B9C2; --graphite-200: #D8DAE0; --graphite-100: #ECEDEF;
+      --bone-50: #F4F2EC;
+      --alpha-voltage-35: rgba(198, 242, 78, 0.35);
+      --alpha-voltage-55: rgba(198, 242, 78, 0.55);
+      --alpha-voltage-25: rgba(198, 242, 78, 0.25);
+      --alpha-black-60:   rgba(10, 10, 11, 0.6);
+      --alpha-bone-08:    rgba(244, 242, 236, 0.08);
+      --font-display:   'Inter Display', 'Neue Haas Grotesk Display', system-ui, sans-serif;
+      --font-body:      'Inter', system-ui, sans-serif;
+      --font-editorial: 'Source Serif 4', Georgia, serif;
+      --font-mono:      'JetBrains Mono', 'Berkeley Mono', monospace;
+      --weight-regular:  400;
+      --weight-medium:   500;
+      --weight-semibold: 600;
+      --size-12: 0.75rem; --size-14: 0.875rem; --size-16: 1rem;
+      --size-20: 1.25rem; --size-24: 1.5rem;  --size-32: 2rem;
+      --size-40: 2.5rem;  --size-56: 3.5rem;  --size-72: 4.5rem;
+      --size-96: 6rem;    --size-128: 8rem;   --size-160: 10rem;
+      --lh-tight: 1.0; --lh-snug: 1.1; --lh-normal: 1.5; --lh-loose: 1.7;
+      --track-tight:  -0.02em; --track-tighter: -0.01em; --track-normal: 0em;
+      --track-wide: 0.02em; --track-wider: 0.06em;
+      --space-1: 4px; --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+      --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px;
+      --space-20: 80px; --space-24: 96px; --space-32: 128px; --space-48: 192px;
+      --radius-sm: 4px; --radius-none: 0px;
+      --shadow-glow-soft:   0 0 24px rgba(198, 242, 78, 0.35);
+      --shadow-glow-strong: 0 0 48px rgba(198, 242, 78, 0.55), 0 0 96px rgba(198, 242, 78, 0.25);
+      --shadow-focus: 0 0 0 2px var(--axial-black), 0 0 0 4px var(--axial-voltage);
+      --ease-axial: cubic-bezier(0.32, 0.72, 0, 1);
+      --duration-ui: 240ms; --duration-hero: 600ms;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background: #0A0A0B;
+      color: var(--axial-bone);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: 48px 0;
+    }
+
+    /* ===== SLIDE BASE ===== */
+    .slide {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+      background: #0A0A0B;
+      border: 1px solid var(--graphite-700);
+      overflow: hidden;
+      margin: 0 auto 48px;
+      padding: 96px;
+    }
+
+    /* ===== SLIDE CHROME ===== */
+    /* Slide index — bottom-left */
+    .slide-index {
+      position: absolute;
+      left: 96px;
+      bottom: 36px;
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      line-height: 1;
+    }
+
+    /* Wordmark — bottom-right */
+    .slide-wordmark {
+      position: absolute;
+      right: 96px;
+      bottom: 36px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .slide-wordmark-text {
+      font-family: var(--font-body);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0;
+      color: var(--graphite-400);
+      line-height: 1;
+    }
+
+    /* Inline icon mark — 16×16 cross */
+    .slide-icon {
+      flex-shrink: 0;
+    }
+
+    /* ===== EYEBROW ===== */
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      line-height: 1;
+      display: block;
+    }
+
+    /* ===== DISPLAY FONT HELPERS ===== */
+    .font-display {
+      font-family: var(--font-display);
+      letter-spacing: -0.02em;
+    }
+    .font-mono { font-family: var(--font-mono); }
+    .font-editorial { font-family: var(--font-editorial); }
+
+    /* ===== AXIS LINE ===== */
+    .axis-v {
+      position: absolute;
+      top: 0;
+      width: 1px;
+      background: var(--axial-voltage);
+      opacity: 1;
+    }
+    .axis-v-graphite {
+      position: absolute;
+      top: 0;
+      width: 1px;
+      background: var(--graphite-700);
+    }
+
+    /* ===== SERVICE GRID ===== */
+    .service-grid {
+      display: grid;
+      grid-template-columns: 4fr 1fr 7fr;
+      gap: 0 0;
+      align-items: start;
+    }
+
+    /* ===== PRINT RULES ===== */
+    @page {
+      size: 1920px 1080px landscape;
+      margin: 0;
+    }
+    @media print {
+      body { background: #0A0A0B; padding: 0; }
+      .slide {
+        page-break-after: always;
+        break-after: page;
+        margin: 0;
+        border: none;
+      }
+    }
+
+    /* ===== FOCUS ===== */
+    .slide:focus-visible {
+      outline: none;
+      box-shadow: var(--shadow-focus);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     SLIDE 01 — TITLE (COVER)
+     ============================================================ -->
+<section class="slide" id="slide-01" aria-label="Title slide — Axial Labs pitch deck cover" tabindex="0">
+
+  <!-- Voltage axis line at left edge -->
+  <div class="axis-v" style="left:0; top:96px; height:888px;"></div>
+
+  <!-- Wordmark SVG — detailed inline lockup -->
+  <div style="position:absolute; left:50%; top:50%; transform:translate(-50%,-54%); width:1200px;">
+    <!-- Detailed wordmark: axis line + tag + AXIAL LABS + caption -->
+    <svg viewBox="0 0 1200 320" xmlns="http://www.w3.org/2000/svg" width="1200" aria-label="Axial Labs detailed wordmark">
+      <!-- Left vertical axis line -->
+      <line x1="24" y1="0" x2="24" y2="320" stroke="#C6F24E" stroke-width="1" stroke-linecap="square"/>
+      <!-- Index tag -->
+      <text x="40" y="28" font-family="'JetBrains Mono', monospace" font-size="14" fill="#878C97" letter-spacing="0.06em" text-anchor="start">→ AL / WORDMARK / v1.0</text>
+      <!-- AXIAL LABS wordmark -->
+      <text x="600" y="220" font-family="'Inter Display', 'Neue Haas Grotesk Display', system-ui" font-size="160" font-weight="600" letter-spacing="-0.02em" fill="#F4F2EC" text-anchor="middle">AXIAL LABS</text>
+      <!-- Measurement rule -->
+      <line x1="120" y1="260" x2="1080" y2="260" stroke="#F4F2EC" stroke-width="1" stroke-opacity="0.4" stroke-linecap="square"/>
+      <!-- Major ticks -->
+      <line x1="120" y1="252" x2="120" y2="268" stroke="#F4F2EC" stroke-width="1" stroke-opacity="0.4" stroke-linecap="square"/>
+      <line x1="600" y1="252" x2="600" y2="268" stroke="#F4F2EC" stroke-width="1" stroke-opacity="0.4" stroke-linecap="square"/>
+      <line x1="1080" y1="252" x2="1080" y2="268" stroke="#F4F2EC" stroke-width="1" stroke-opacity="0.4" stroke-linecap="square"/>
+      <!-- Minor ticks -->
+      <line x1="280" y1="256" x2="280" y2="264" stroke="#F4F2EC" stroke-width="0.75" stroke-opacity="0.3" stroke-linecap="square"/>
+      <line x1="440" y1="256" x2="440" y2="264" stroke="#F4F2EC" stroke-width="0.75" stroke-opacity="0.3" stroke-linecap="square"/>
+      <line x1="520" y1="256" x2="520" y2="264" stroke="#F4F2EC" stroke-width="0.75" stroke-opacity="0.3" stroke-linecap="square"/>
+      <line x1="680" y1="256" x2="680" y2="264" stroke="#F4F2EC" stroke-width="0.75" stroke-opacity="0.3" stroke-linecap="square"/>
+      <line x1="840" y1="256" x2="840" y2="264" stroke="#F4F2EC" stroke-width="0.75" stroke-opacity="0.3" stroke-linecap="square"/>
+      <line x1="920" y1="256" x2="920" y2="264" stroke="#F4F2EC" stroke-width="0.75" stroke-opacity="0.3" stroke-linecap="square"/>
+      <!-- Metadata caption -->
+      <text x="600" y="300" font-family="'JetBrains Mono', monospace" font-size="14" fill="#878C97" letter-spacing="0.06em" text-anchor="middle">ENGINEERED IDENTITY  ·  EST. 2026  ·  AXIS-ALIGNED</text>
+    </svg>
+  </div>
+
+  <!-- Tagline -->
+  <div style="position:absolute; left:50%; bottom:180px; transform:translateX(-50%); text-align:center; white-space:nowrap;">
+    <span style="font-family:var(--font-display); font-size:56px; font-weight:500; letter-spacing:-0.01em; color:var(--axial-bone);">Systems for ambitious software.</span>
+  </div>
+
+  <!-- Mono row above chrome -->
+  <div style="position:absolute; left:50%; bottom:100px; transform:translateX(-50%); white-space:nowrap;">
+    <span style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-500);">EST. 2026  ·  PITCH DECK / v1.0</span>
+  </div>
+
+  <!-- Slide chrome -->
+  <div class="slide-index">01 / 16</div>
+  <div class="slide-wordmark">
+    <svg class="slide-icon" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="10" y="1" width="4" height="22" fill="#878C97"/>
+      <rect x="2" y="10" width="20" height="4" fill="#878C97"/>
+    </svg>
+    <span class="slide-wordmark-text">AXIAL LABS</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 02 — HOOK / THESIS
+     ============================================================ -->
+<section class="slide" id="slide-02" aria-label="Slide 2 — Thesis: most design systems aren't systems" tabindex="0">
+
+  <!-- Mono eyebrow top-left -->
+  <div style="position:absolute; left:96px; top:144px;">
+    <span class="eyebrow">→ THESIS</span>
+  </div>
+
+  <!-- Axis tick mark at eyebrow level -->
+  <svg style="position:absolute; left:80px; top:138px;" width="8" height="20" viewBox="0 0 8 20" aria-hidden="true">
+    <line x1="4" y1="0" x2="4" y2="20" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+  </svg>
+
+  <!-- H1 display — two lines -->
+  <div style="position:absolute; left:96px; top:220px; max-width:1700px;">
+    <div style="font-family:var(--font-display); font-size:144px; font-weight:600; line-height:1.0; letter-spacing:-0.02em; color:var(--axial-bone);">
+      Most design systems<br>aren't systems.
+    </div>
+  </div>
+
+  <!-- Subhead -->
+  <div style="position:absolute; left:96px; top:778px; max-width:1100px;">
+    <span style="font-family:var(--font-body); font-size:32px; line-height:1.4; color:var(--graphite-300);">They're style guides with grand ambitions.</span>
+  </div>
+
+  <!-- Slide chrome -->
+  <div class="slide-index">02 / 16</div>
+  <div class="slide-wordmark">
+    <svg class="slide-icon" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="10" y="1" width="4" height="22" fill="#878C97"/>
+      <rect x="2" y="10" width="20" height="4" fill="#878C97"/>
+    </svg>
+    <span class="slide-wordmark-text">AXIAL LABS</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 03 — THE SHIFT
+     ============================================================ -->
+<section class="slide" id="slide-03" aria-label="Slide 3 — The shift: brand should compile" tabindex="0">
+
+  <!-- Mono eyebrow -->
+  <div style="position:absolute; left:96px; top:144px;">
+    <span class="eyebrow">→ THE SHIFT</span>
+  </div>
+
+  <!-- H2 -->
+  <div style="position:absolute; left:96px; top:220px;">
+    <div style="font-family:var(--font-display); font-size:96px; font-weight:600; letter-spacing:-0.02em; line-height:1.0; color:var(--axial-bone);">Brand should compile.</div>
+  </div>
+
+  <!-- 1px graphite horizontal divider -->
+  <div style="position:absolute; left:96px; right:96px; top:380px; height:1px; background:var(--graphite-700);"></div>
+
+  <!-- Editorial body — two paragraphs -->
+  <div style="position:absolute; left:96px; top:416px; max-width:900px;">
+    <p style="font-family:var(--font-editorial); font-size:28px; line-height:1.6; color:var(--graphite-300); margin-bottom:40px;">Most agencies hand you a PDF. We hand you a repository. Most studios design a logo. We design the operating system the logo lives in.</p>
+    <p style="font-family:var(--font-editorial); font-size:28px; line-height:1.6; color:var(--graphite-300);">Brand-as-infrastructure. Tokenized, versionable, regeneratable. Built so anyone — including AI — can extend it without us.</p>
+  </div>
+
+  <!-- Voltage tick mark as accent -->
+  <svg style="position:absolute; right:96px; top:220px;" width="8" height="96" viewBox="0 0 8 96" aria-hidden="true">
+    <line x1="4" y1="0" x2="4" y2="96" stroke="#C6F24E" stroke-width="1" stroke-linecap="square"/>
+    <line x1="0" y1="0" x2="8" y2="0" stroke="#C6F24E" stroke-width="1" stroke-linecap="square"/>
+    <line x1="0" y1="96" x2="8" y2="96" stroke="#C6F24E" stroke-width="1" stroke-linecap="square"/>
+  </svg>
+
+  <!-- Slide chrome -->
+  <div class="slide-index">03 / 16</div>
+  <div class="slide-wordmark">
+    <svg class="slide-icon" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="10" y="1" width="4" height="22" fill="#878C97"/>
+      <rect x="2" y="10" width="20" height="4" fill="#878C97"/>
+    </svg>
+    <span class="slide-wordmark-text">AXIAL LABS</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 04 — SECTION DIVIDER: WHAT WE DO
+     ============================================================ -->
+<section class="slide" id="slide-04" aria-label="Slide 4 — Section divider: What we do" tabindex="0">
+
+  <!-- Voltage vertical line at left content edge -->
+  <div class="axis-v" style="left:96px; top:0; height:1080px;"></div>
+
+  <!-- Mono eyebrow -->
+  <div style="position:absolute; left:128px; top:144px;">
+    <span class="eyebrow">→ SECTION 01 / 03</span>
+  </div>
+
+  <!-- Tick marks on left axis -->
+  <svg style="position:absolute; left:88px; top:96px;" width="16" height="888" viewBox="0 0 16 888" aria-hidden="true">
+    <line x1="8" y1="0" x2="16" y2="0" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+    <line x1="8" y1="222" x2="16" y2="222" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+    <line x1="8" y1="444" x2="16" y2="444" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+    <line x1="8" y1="666" x2="16" y2="666" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+    <line x1="8" y1="888" x2="16" y2="888" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+  </svg>
+
+  <!-- Massive display type -->
+  <div style="position:absolute; left:128px; top:300px;">
+    <div style="font-family:var(--font-display); font-size:240px; font-weight:600; line-height:0.9; letter-spacing:-0.02em; color:var(--axial-bone);">What we do.</div>
+  </div>
+
+  <!-- Slide chrome -->
+  <div class="slide-index">04 / 16</div>
+  <div class="slide-wordmark">
+    <svg class="slide-icon" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="10" y="1" width="4" height="22" fill="#878C97"/>
+      <rect x="2" y="10" width="20" height="4" fill="#878C97"/>
+    </svg>
+    <span class="slide-wordmark-text">AXIAL LABS</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 05 — SERVICE 01: BRAND SYSTEMS
+     ============================================================ -->
+<section class="slide" id="slide-05" aria-label="Slide 5 — Service 01: Brand systems" tabindex="0">
+
+  <!-- Eyebrow -->
+  <div style="position:absolute; left:96px; top:144px;">
+    <span class="eyebrow">→ SERVICES</span>
+  </div>
+
+  <!-- Service layout: 12-col internal grid (4 left + gap + 7 right) -->
+  <!-- Left col: index + title -->
+  <div style="position:absolute; left:96px; top:240px; width:600px;">
+    <div style="font-family:var(--font-mono); font-size:88px; font-weight:400; color:var(--graphite-500); line-height:1; margin-bottom:32px;">01 / 04</div>
+    <div style="font-family:var(--font-display); font-size:72px; font-weight:600; letter-spacing:-0.02em; color:var(--axial-bone); line-height:1.0;">Brand systems.</div>
+  </div>
+
+  <!-- Vertical divider between cols -->
+  <div style="position:absolute; left:760px; top:240px; width:1px; height:600px; background:var(--graphite-700);"></div>
+
+  <!-- Right col: description -->
+  <div style="position:absolute; left:824px; top:240px; width:992px;">
+    <p style="font-family:var(--font-body); font-size:22px; line-height:1.5; color:var(--graphite-300); margin-bottom:32px;">Tokenized identity, design-system repositories, motion language, voice playbook. Once it's in tokens, it scales without us.</p>
+    <p style="font-family:var(--font-body); font-size:22px; line-height:1.5; color:var(--graphite-300);">Outputs include strategy, voice, identity system, and a repository your team can extend. We hand off a Git remote, not a PDF.</p>
+  </div>
+
+  <!-- Horizontal divider -->
+  <div style="position:absolute; left:96px; right:96px; top:760px; height:1px; background:var(--graphite-700);"></div>
+
+  <!-- 4-bullet deliverables -->
+  <div style="position:absolute; left:96px; top:800px;">
+    <div style="display:flex; gap:48px; align-items:center;">
+      <span style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage);">→ TOKENS</span>
+      <span style="color:var(--graphite-700);">·</span>
+      <span style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage);">→ VOICE PLAYBOOK</span>
+      <span style="color:var(--graphite-700);">·</span>
+      <span style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage);">→ COMPONENT LIBRARY</span>
+      <span style="color:var(--graphite-700);">·</span>
+      <span style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage);">→ REPOSITORY HANDOFF</span>
+    </div>
+  </div>
+
+  <!-- Slide chrome -->
+  <div class="slide-index">05 / 16</div>
+  <div class="slide-wordmark">
+    <svg class="slide-icon" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="10" y="1" width="4" height="22" fill="#878C97"/>
+      <rect x="2" y="10" width="20" height="4" fill="#878C97"/>
+    </svg>
+    <span class="slide-wordmark-text">AXIAL LABS</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 06 — SERVICE 02: PRODUCT UI
+     ============================================================ -->
+<section class="slide" id="slide-06" aria-label="Slide 6 — Service 02: Product UI" tabindex="0">
+
+  <!-- Eyebrow -->
+  <div style="position:absolute; left:96px; top:144px;">
+    <span class="eyebrow">→ SERVICES</span>
+  </div>
+
+  <!-- Left col -->
+  <div style="position:absolute; left:96px; top:240px; width:600px;">
+    <div style="font-family:var(--font-mono); font-size:88px; font-weight:400; color:var(--graphite-500); line-height:1; margin-bottom:32px;">02 / 04</div>
+    <div style="font-family:var(--font-display); font-size:72px; font-weight:600; letter-spacing:-0.02em; color:var(--axial-bone); line-height:1.0;">Product UI.</div>
+  </div>
+
+  <!-- Vertical divider -->
+  <div style="position:absolute; left:760px; top:240px; width:1px; height:600px; background:var(--graphite-700);"></div>
+
+  <!-- Right col -->
+  <div style="position:absolute; left:824px; top:240px; width:992px;">
+    <p style="font-family:var(--font-body); font-size:22px; line-height:1.5; color:var(--graphite-300); margin-bottom:32px;">Production-grade interfaces designed and engineered together. Dashboards, settings panels, onboarding flows.</p>
+    <p style="font-family:var(--font-body); font-size:22px; line-height:1.5; color:var(--graphite-300);">Ships in 4–8 weeks. Built in Next.js, Tailwind, shadcn/ui, or your existing stack. Storybook included.</p>
+  </div>
+
+  <!-- Horizontal divider -->
+  <div style="position:absolute; left:96px; right:96px; top:760px; height:1px; background:var(--graphite-700);"></div>
+
+  <!-- Deliverables -->
+  <div style="position:absolute; left:96px; top:800px;">
+    <div style="display:flex; gap:48px; align-items:center;">
+      <span style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage);">→ WIREFRAMES</span>
+      <span style="color:var(--graphite-700);">·</span>
+      <span style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage);">→ COMPONENT LIBRARY</span>
+      <span style="color:var(--graphite-700);">·</span>
+      <span style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage);">→ STORYBOOK</span>
+      <span style="color:var(--graphite-700);">·</span>
+      <span style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage);">→ PRODUCTION DEPLOY</span>
+    </div>
+  </div>
+
+  <!-- Slide chrome -->
+  <div class="slide-index">06 / 16</div>
+  <div class="slide-wordmark">
+    <svg class="slide-icon" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="10" y="1" width="4" height="22" fill="#878C97"/>
+      <rect x="2" y="10" width="20" height="4" fill="#878C97"/>
+    </svg>
+    <span class="slide-wordmark-text">AXIAL LABS</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 07 — SERVICE 03: TOKENS & COMPONENTS
+     ============================================================ -->
+<section class="slide" id="slide-07" aria-label="Slide 7 — Service 03: Tokens and components" tabindex="0">
+
+  <!-- Eyebrow -->
+  <div style="position:absolute; left:96px; top:144px;">
+    <span class="eyebrow">→ SERVICES</span>
+  </div>
+
+  <!-- Left col -->
+  <div style="position:absolute; left:96px; top:240px; width:600px;">
+    <div style="font-family:var(--font-mono); font-size:88px; font-weight:400; color:var(--graphite-500); line-height:1; margin-bottom:32px;">03 / 04</div>
+    <div style="font-family:var(--font-display); font-size:72px; font-weight:600; letter-spacing:-0.02em; color:var(--axial-bone); line-height:1.0;">Tokens &amp;<br>components.</div>
+  </div>
+
+  <!-- Vertical divider -->
+  <div style="position:absolute; left:760px; top:240px; width:1px; height:600px; background:var(--graphite-700);"></div>
+
+  <!-- Right col -->
+  <div style="position:absolute; left:824px; top:240px; width:992px;">
+    <p style="font-family:var(--font-body); font-size:22px; line-height:1.5; color:var(--graphite-300); margin-bottom:32px;">Design tokens in W3C format. Style Dictionary build pipeline. Figma library. Storybook. npm package.</p>
+    <p style="font-family:var(--font-body); font-size:22px; line-height:1.5; color:var(--graphite-300);">Versionable, scoped to your team, and built so anyone — including AI — can extend it.</p>
+  </div>
+
+  <!-- Horizontal divider -->
+  <div style="position:absolute; left:96px; right:96px; top:760px; height:1px; background:var(--graphite-700);"></div>
+
+  <!-- Deliverables -->
+  <div style="position:absolute; left:96px; top:800px;">
+    <div style="display:flex; gap:48px; align-items:center;">
+      <span style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage);">→ TOKEN PACKAGES</span>
+      <span style="color:var(--graphite-700);">·</span>
+      <span style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage);">→ FIGMA LIBRARY</span>
+      <span style="color:var(--graphite-700);">·</span>
+      <span style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage);">→ STORYBOOK</span>
+      <span style="color:var(--graphite-700);">·</span>
+      <span style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage);">→ NPM RELEASE</span>
+    </div>
+  </div>
+
+  <!-- Slide chrome -->
+  <div class="slide-index">07 / 16</div>
+  <div class="slide-wordmark">
+    <svg class="slide-icon" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="10" y="1" width="4" height="22" fill="#878C97"/>
+      <rect x="2" y="10" width="20" height="4" fill="#878C97"/>
+    </svg>
+    <span class="slide-wordmark-text">AXIAL LABS</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 08 — SERVICE 04: AUTOMATION
+     ============================================================ -->
+<section class="slide" id="slide-08" aria-label="Slide 8 — Service 04: Automation" tabindex="0">
+
+  <!-- Eyebrow -->
+  <div style="position:absolute; left:96px; top:144px;">
+    <span class="eyebrow">→ SERVICES</span>
+  </div>
+
+  <!-- Left col -->
+  <div style="position:absolute; left:96px; top:240px; width:600px;">
+    <div style="font-family:var(--font-mono); font-size:88px; font-weight:400; color:var(--graphite-500); line-height:1; margin-bottom:32px;">04 / 04</div>
+    <div style="font-family:var(--font-display); font-size:72px; font-weight:600; letter-spacing:-0.02em; color:var(--axial-bone); line-height:1.0;">Automation.</div>
+  </div>
+
+  <!-- Vertical divider -->
+  <div style="position:absolute; left:760px; top:240px; width:1px; height:600px; background:var(--graphite-700);"></div>
+
+  <!-- Right col -->
+  <div style="position:absolute; left:824px; top:240px; width:992px;">
+    <p style="font-family:var(--font-body); font-size:22px; line-height:1.5; color:var(--graphite-300); margin-bottom:32px;">Internal tooling, AI workflows, prompt systems, CI pipelines. Automation as a deliverable, not a side service.</p>
+    <p style="font-family:var(--font-body); font-size:22px; line-height:1.5; color:var(--graphite-300);">Common engagements: AI-native asset generation, design-system CI, content pipelines, custom internal tools.</p>
+  </div>
+
+  <!-- Horizontal divider -->
+  <div style="position:absolute; left:96px; right:96px; top:760px; height:1px; background:var(--graphite-700);"></div>
+
+  <!-- Deliverables -->
+  <div style="position:absolute; left:96px; top:800px;">
+    <div style="display:flex; gap:48px; align-items:center;">
+      <span style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage);">→ AI WORKFLOWS</span>
+      <span style="color:var(--graphite-700);">·</span>
+      <span style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage);">→ PROMPT SYSTEMS</span>
+      <span style="color:var(--graphite-700);">·</span>
+      <span style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage);">→ DESIGN-SYS CI</span>
+      <span style="color:var(--graphite-700);">·</span>
+      <span style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage);">→ INTERNAL TOOLS</span>
+    </div>
+  </div>
+
+  <!-- Slide chrome -->
+  <div class="slide-index">08 / 16</div>
+  <div class="slide-wordmark">
+    <svg class="slide-icon" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="10" y="1" width="4" height="22" fill="#878C97"/>
+      <rect x="2" y="10" width="20" height="4" fill="#878C97"/>
+    </svg>
+    <span class="slide-wordmark-text">AXIAL LABS</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 09 — SECTION DIVIDER: HOW WE WORK
+     ============================================================ -->
+<section class="slide" id="slide-09" aria-label="Slide 9 — Section divider: How we work" tabindex="0">
+
+  <!-- Voltage vertical line at left content edge -->
+  <div class="axis-v" style="left:96px; top:0; height:1080px;"></div>
+
+  <!-- Tick marks on axis -->
+  <svg style="position:absolute; left:88px; top:96px;" width="16" height="888" viewBox="0 0 16 888" aria-hidden="true">
+    <line x1="8" y1="0" x2="16" y2="0" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+    <line x1="8" y1="222" x2="16" y2="222" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+    <line x1="8" y1="444" x2="16" y2="444" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+    <line x1="8" y1="666" x2="16" y2="666" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+    <line x1="8" y1="888" x2="16" y2="888" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+  </svg>
+
+  <!-- Mono eyebrow -->
+  <div style="position:absolute; left:128px; top:144px;">
+    <span class="eyebrow">→ SECTION 02 / 03</span>
+  </div>
+
+  <!-- Massive display type -->
+  <div style="position:absolute; left:128px; top:300px;">
+    <div style="font-family:var(--font-display); font-size:240px; font-weight:600; line-height:0.9; letter-spacing:-0.02em; color:var(--axial-bone);">How we work.</div>
+  </div>
+
+  <!-- Slide chrome -->
+  <div class="slide-index">09 / 16</div>
+  <div class="slide-wordmark">
+    <svg class="slide-icon" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="10" y="1" width="4" height="22" fill="#878C97"/>
+      <rect x="2" y="10" width="20" height="4" fill="#878C97"/>
+    </svg>
+    <span class="slide-wordmark-text">AXIAL LABS</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 10 — PROCESS TIMELINE
+     ============================================================ -->
+<section class="slide" id="slide-10" aria-label="Slide 10 — Process: four-week timeline" tabindex="0">
+
+  <!-- Eyebrow -->
+  <div style="position:absolute; left:96px; top:144px;">
+    <span class="eyebrow">→ FOUR WEEKS</span>
+  </div>
+
+  <!-- 4-col process grid -->
+  <!-- Connecting line at numeral level -->
+  <div style="position:absolute; left:96px; right:96px; top:362px; height:1px; background:var(--graphite-700);"></div>
+
+  <!-- Arrow connectors between cells -->
+  <div style="position:absolute; left:430px; top:352px;">
+    <svg width="24" height="20" viewBox="0 0 24 20" aria-hidden="true">
+      <line x1="0" y1="10" x2="20" y2="10" stroke="#3A3D44" stroke-width="1" stroke-linecap="square"/>
+      <polyline points="14,4 20,10 14,16" stroke="#3A3D44" stroke-width="1" fill="none" stroke-linecap="square" stroke-linejoin="miter"/>
+    </svg>
+  </div>
+  <div style="position:absolute; left:870px; top:352px;">
+    <svg width="24" height="20" viewBox="0 0 24 20" aria-hidden="true">
+      <line x1="0" y1="10" x2="20" y2="10" stroke="#3A3D44" stroke-width="1" stroke-linecap="square"/>
+      <polyline points="14,4 20,10 14,16" stroke="#3A3D44" stroke-width="1" fill="none" stroke-linecap="square" stroke-linejoin="miter"/>
+    </svg>
+  </div>
+  <div style="position:absolute; left:1310px; top:352px;">
+    <svg width="24" height="20" viewBox="0 0 24 20" aria-hidden="true">
+      <line x1="0" y1="10" x2="20" y2="10" stroke="#3A3D44" stroke-width="1" stroke-linecap="square"/>
+      <polyline points="14,4 20,10 14,16" stroke="#3A3D44" stroke-width="1" fill="none" stroke-linecap="square" stroke-linejoin="miter"/>
+    </svg>
+  </div>
+
+  <!-- Step 01 — Discovery -->
+  <div style="position:absolute; left:96px; top:240px; width:384px;">
+    <div style="font-family:var(--font-mono); font-size:144px; font-weight:500; color:var(--graphite-500); line-height:1;">01</div>
+    <div style="font-family:var(--font-display); font-size:56px; font-weight:500; letter-spacing:-0.01em; color:var(--axial-bone); margin-top:24px; line-height:1.1;">Discovery</div>
+    <div style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage); margin-top:16px;">1 WEEK</div>
+    <div style="font-family:var(--font-body); font-size:18px; color:var(--graphite-400); margin-top:16px; line-height:1.4;">Strategy, audit, brief.</div>
+  </div>
+
+  <!-- Step 02 — Tokens -->
+  <div style="position:absolute; left:536px; top:240px; width:384px;">
+    <div style="font-family:var(--font-mono); font-size:144px; font-weight:500; color:var(--graphite-500); line-height:1;">02</div>
+    <div style="font-family:var(--font-display); font-size:56px; font-weight:500; letter-spacing:-0.01em; color:var(--axial-bone); margin-top:24px; line-height:1.1;">Tokens</div>
+    <div style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage); margin-top:16px;">3 DAYS</div>
+    <div style="font-family:var(--font-body); font-size:18px; color:var(--graphite-400); margin-top:16px; line-height:1.4;">Color, type, spacing, motion.</div>
+  </div>
+
+  <!-- Step 03 — System -->
+  <div style="position:absolute; left:976px; top:240px; width:384px;">
+    <div style="font-family:var(--font-mono); font-size:144px; font-weight:500; color:var(--graphite-500); line-height:1;">03</div>
+    <div style="font-family:var(--font-display); font-size:56px; font-weight:500; letter-spacing:-0.01em; color:var(--axial-bone); margin-top:24px; line-height:1.1;">System</div>
+    <div style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage); margin-top:16px;">2 WEEKS</div>
+    <div style="font-family:var(--font-body); font-size:18px; color:var(--graphite-400); margin-top:16px; line-height:1.4;">Components, repos, docs.</div>
+  </div>
+
+  <!-- Step 04 — Ship -->
+  <div style="position:absolute; left:1416px; top:240px; width:408px;">
+    <div style="font-family:var(--font-mono); font-size:144px; font-weight:500; color:var(--graphite-500); line-height:1;">04</div>
+    <div style="font-family:var(--font-display); font-size:56px; font-weight:500; letter-spacing:-0.01em; color:var(--axial-bone); margin-top:24px; line-height:1.1;">Ship</div>
+    <div style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage); margin-top:16px;">WEEK 4</div>
+    <div style="font-family:var(--font-body); font-size:18px; color:var(--graphite-400); margin-top:16px; line-height:1.4;">Deploy, transfer, train.</div>
+  </div>
+
+  <!-- Slide chrome -->
+  <div class="slide-index">10 / 16</div>
+  <div class="slide-wordmark">
+    <svg class="slide-icon" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="10" y="1" width="4" height="22" fill="#878C97"/>
+      <rect x="2" y="10" width="20" height="4" fill="#878C97"/>
+    </svg>
+    <span class="slide-wordmark-text">AXIAL LABS</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 11 — PRICING SUMMARY
+     ============================================================ -->
+<section class="slide" id="slide-11" aria-label="Slide 11 — Pricing: three tiers, fixed scope" tabindex="0">
+
+  <!-- Eyebrow -->
+  <div style="position:absolute; left:96px; top:144px;">
+    <span class="eyebrow">→ PRICING</span>
+  </div>
+
+  <!-- H2 -->
+  <div style="position:absolute; left:96px; top:200px;">
+    <div style="font-family:var(--font-display); font-size:64px; font-weight:600; letter-spacing:-0.02em; color:var(--axial-bone);">Three tiers. Fixed scope.</div>
+  </div>
+
+  <!-- Horizontal divider below H2 -->
+  <div style="position:absolute; left:96px; right:96px; top:310px; height:1px; background:var(--graphite-700);"></div>
+
+  <!-- 3 TIER CARDS — start at y=336 -->
+  <!-- Col width: (1920 - 96*2 - 48*2) / 3 = 544px each, gap 48px -->
+
+  <!-- TIER 1: STUDIO -->
+  <div style="position:absolute; left:96px; top:336px; width:544px; height:640px; border:1px solid var(--graphite-700); padding:32px;">
+    <div style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-400); margin-bottom:16px;">STUDIO</div>
+    <div style="font-family:var(--font-body); font-size:18px; color:var(--graphite-300); margin-bottom:32px;">Full engagement.</div>
+    <div style="font-family:var(--font-mono); font-size:64px; font-weight:400; color:var(--axial-bone); line-height:1; margin-bottom:48px;">$24,000+</div>
+    <div style="display:flex; flex-direction:column; gap:16px; margin-bottom:48px;">
+      <span style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-400);">→ STRATEGY + VOICE</span>
+      <span style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-400);">→ FULL IDENTITY SYSTEM</span>
+      <span style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-400);">→ COMPONENT LIBRARY</span>
+      <span style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-400);">→ REPOSITORY HANDOFF</span>
+    </div>
+    <!-- CTA button -->
+    <button style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage); border:1px solid var(--axial-voltage); background:transparent; padding:12px 24px; cursor:pointer;">GET IN TOUCH →</button>
+  </div>
+
+  <!-- TIER 2: OS · STARTER KIT (signature — Voltage border + glow) -->
+  <div style="position:absolute; left:688px; top:336px; width:544px; height:640px; border:1px solid var(--axial-voltage); padding:32px; box-shadow:var(--shadow-glow-soft);">
+    <div style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage); margin-bottom:16px;">OS · STARTER KIT</div>
+    <div style="font-family:var(--font-body); font-size:18px; color:var(--graphite-300); margin-bottom:32px;">Productized.</div>
+    <div style="font-family:var(--font-mono); font-size:64px; font-weight:400; color:var(--axial-bone); line-height:1; margin-bottom:48px;">$4,800/mo</div>
+    <div style="display:flex; flex-direction:column; gap:16px; margin-bottom:48px;">
+      <span style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-300);">→ TOKEN STARTER PACK</span>
+      <span style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-300);">→ FIGMA + STORYBOOK</span>
+      <span style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-300);">→ MONTHLY RETAINER</span>
+      <span style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-300);">→ PRIORITY SUPPORT</span>
+    </div>
+    <!-- CTA button — filled Voltage -->
+    <button style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-black); background:var(--axial-voltage); border:none; padding:12px 24px; cursor:pointer;">START →</button>
+  </div>
+
+  <!-- TIER 3: FOUNDRY · OPEN SOURCE (ghost) -->
+  <div style="position:absolute; left:1280px; top:336px; width:544px; height:640px; border:1px solid var(--graphite-700); padding:32px;">
+    <div style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-400); margin-bottom:16px;">FOUNDRY · OPEN SOURCE</div>
+    <div style="font-family:var(--font-body); font-size:18px; color:var(--graphite-300); margin-bottom:32px;">Free forever.</div>
+    <div style="font-family:var(--font-mono); font-size:64px; font-weight:400; color:var(--axial-bone); line-height:1; margin-bottom:48px;">$0</div>
+    <div style="display:flex; flex-direction:column; gap:16px; margin-bottom:48px;">
+      <span style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-400);">→ TOKEN PACKAGES</span>
+      <span style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-400);">→ NPM · MIT LICENSE</span>
+      <span style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-400);">→ FIGMA PLUGIN</span>
+      <span style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-400);">→ COMMUNITY SUPPORT</span>
+    </div>
+    <!-- Ghost CTA -->
+    <button style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-300); border:1px solid var(--graphite-600); background:transparent; padding:12px 24px; cursor:pointer;">GITHUB →</button>
+  </div>
+
+  <!-- Slide chrome -->
+  <div class="slide-index">11 / 16</div>
+  <div class="slide-wordmark">
+    <svg class="slide-icon" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="10" y="1" width="4" height="22" fill="#878C97"/>
+      <rect x="2" y="10" width="20" height="4" fill="#878C97"/>
+    </svg>
+    <span class="slide-wordmark-text">AXIAL LABS</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 12 — SECTION DIVIDER: PROOF
+     ============================================================ -->
+<section class="slide" id="slide-12" aria-label="Slide 12 — Section divider: Proof" tabindex="0">
+
+  <!-- Voltage vertical line at left content edge -->
+  <div class="axis-v" style="left:96px; top:0; height:1080px;"></div>
+
+  <!-- Tick marks on axis -->
+  <svg style="position:absolute; left:88px; top:96px;" width="16" height="888" viewBox="0 0 16 888" aria-hidden="true">
+    <line x1="8" y1="0" x2="16" y2="0" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+    <line x1="8" y1="222" x2="16" y2="222" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+    <line x1="8" y1="444" x2="16" y2="444" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+    <line x1="8" y1="666" x2="16" y2="666" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+    <line x1="8" y1="888" x2="16" y2="888" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+  </svg>
+
+  <!-- Mono eyebrow -->
+  <div style="position:absolute; left:128px; top:144px;">
+    <span class="eyebrow">→ SECTION 03 / 03</span>
+  </div>
+
+  <!-- Massive display type -->
+  <div style="position:absolute; left:128px; top:300px;">
+    <div style="font-family:var(--font-display); font-size:240px; font-weight:600; line-height:0.9; letter-spacing:-0.02em; color:var(--axial-bone);">Proof.</div>
+  </div>
+
+  <!-- Slide chrome -->
+  <div class="slide-index">12 / 16</div>
+  <div class="slide-wordmark">
+    <svg class="slide-icon" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="10" y="1" width="4" height="22" fill="#878C97"/>
+      <rect x="2" y="10" width="20" height="4" fill="#878C97"/>
+    </svg>
+    <span class="slide-wordmark-text">AXIAL LABS</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 13 — CASE STUDY: ANCHOR LABS
+     ============================================================ -->
+<section class="slide" id="slide-13" aria-label="Slide 13 — Case study: Anchor Labs" tabindex="0">
+
+  <!-- Eyebrow -->
+  <div style="position:absolute; left:96px; top:144px;">
+    <span class="eyebrow">→ CASE STUDY · ANCHOR LABS · 2026 · BRAND SYSTEMS</span>
+  </div>
+
+  <!-- H2 -->
+  <div style="position:absolute; left:96px; top:216px;">
+    <div style="font-family:var(--font-display); font-size:88px; font-weight:600; letter-spacing:-0.02em; color:var(--axial-bone); line-height:1;">Anchor Labs.</div>
+  </div>
+
+  <!-- Subhead -->
+  <div style="position:absolute; left:96px; top:344px;">
+    <span style="font-family:var(--font-body); font-size:24px; color:var(--graphite-300); line-height:1.4;">Series B fintech rebrand. Tokenized identity shipped to production in four weeks.</span>
+  </div>
+
+  <!-- Horizontal divider -->
+  <div style="position:absolute; left:96px; right:96px; top:424px; height:1px; background:var(--graphite-700);"></div>
+
+  <!-- 4-col metrics grid -->
+  <!-- Col width: (1920-192-144) / 4 = 396px, gap 48px -->
+
+  <!-- Metric 01 -->
+  <div style="position:absolute; left:96px; top:456px; width:396px;">
+    <div style="font-family:var(--font-mono); font-size:96px; font-weight:500; color:var(--axial-bone); line-height:1;">4 weeks</div>
+    <div style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-400); margin-top:16px;">SHIPPED ON SCHEDULE</div>
+  </div>
+
+  <!-- Metric 02 -->
+  <div style="position:absolute; left:540px; top:456px; width:396px;">
+    <div style="font-family:var(--font-mono); font-size:96px; font-weight:500; color:var(--axial-bone); line-height:1;">240</div>
+    <div style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-400); margin-top:16px;">TOKENS ACROSS THE SYSTEM</div>
+  </div>
+
+  <!-- Metric 03 -->
+  <div style="position:absolute; left:984px; top:456px; width:396px;">
+    <div style="font-family:var(--font-mono); font-size:96px; font-weight:500; color:var(--axial-bone); line-height:1;">62%</div>
+    <div style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-400); margin-top:16px;">FASTER PAGE-LOAD</div>
+  </div>
+
+  <!-- Metric 04 -->
+  <div style="position:absolute; left:1428px; top:456px; width:396px;">
+    <div style="font-family:var(--font-mono); font-size:96px; font-weight:500; color:var(--axial-bone); line-height:1;">8 → 240</div>
+    <div style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-400); margin-top:16px;">COMPONENTS IN MONTH ONE</div>
+  </div>
+
+  <!-- Voltage horizontal ornament line beneath callouts -->
+  <div style="position:absolute; left:96px; top:790px; width:240px; height:1px; background:var(--axial-voltage);"></div>
+
+  <!-- Slide chrome -->
+  <div class="slide-index">13 / 16</div>
+  <div class="slide-wordmark">
+    <svg class="slide-icon" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="10" y="1" width="4" height="22" fill="#878C97"/>
+      <rect x="2" y="10" width="20" height="4" fill="#878C97"/>
+    </svg>
+    <span class="slide-wordmark-text">AXIAL LABS</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 14 — DATA: BY THE NUMBERS
+     ============================================================ -->
+<section class="slide" id="slide-14" aria-label="Slide 14 — By the numbers: overall metrics" tabindex="0">
+
+  <!-- Eyebrow -->
+  <div style="position:absolute; left:96px; top:144px;">
+    <span class="eyebrow">→ BY THE NUMBERS · 2024 → 2026</span>
+  </div>
+
+  <!-- H2 -->
+  <div style="position:absolute; left:96px; top:216px;">
+    <div style="font-family:var(--font-display); font-size:88px; font-weight:600; letter-spacing:-0.02em; color:var(--axial-bone); line-height:1;">What we've shipped.</div>
+  </div>
+
+  <!-- Horizontal divider -->
+  <div style="position:absolute; left:96px; right:96px; top:360px; height:1px; background:var(--graphite-700);"></div>
+
+  <!-- 4-col metrics -->
+  <!-- Metric 01 -->
+  <div style="position:absolute; left:96px; top:400px; width:396px;">
+    <div style="font-family:var(--font-mono); font-size:120px; font-weight:500; color:var(--axial-bone); line-height:1;">12</div>
+    <div style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-400); margin-top:20px;">CLIENTS</div>
+  </div>
+
+  <!-- Metric 02 -->
+  <div style="position:absolute; left:540px; top:400px; width:396px;">
+    <div style="font-family:var(--font-mono); font-size:120px; font-weight:500; color:var(--axial-bone); line-height:1;">240+</div>
+    <div style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-400); margin-top:20px;">TOKEN PACKAGES SHIPPED</div>
+  </div>
+
+  <!-- Metric 03 -->
+  <div style="position:absolute; left:984px; top:400px; width:396px;">
+    <div style="font-family:var(--font-mono); font-size:120px; font-weight:500; color:var(--axial-bone); line-height:1;">8</div>
+    <div style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-400); margin-top:20px;">OPEN-SOURCE REPOS</div>
+  </div>
+
+  <!-- Metric 04 — 100% with Voltage tick -->
+  <div style="position:absolute; left:1428px; top:400px; width:396px;">
+    <div style="font-family:var(--font-mono); font-size:120px; font-weight:500; color:var(--axial-bone); line-height:1;">100%</div>
+    <div style="font-family:var(--font-mono); font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-400); margin-top:20px;">ON-TIME DELIVERY</div>
+    <!-- Voltage tick under 100% -->
+    <div style="margin-top:24px; width:80px; height:1px; background:var(--axial-voltage);"></div>
+  </div>
+
+  <!-- Slide chrome -->
+  <div class="slide-index">14 / 16</div>
+  <div class="slide-wordmark">
+    <svg class="slide-icon" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="10" y="1" width="4" height="22" fill="#878C97"/>
+      <rect x="2" y="10" width="20" height="4" fill="#878C97"/>
+    </svg>
+    <span class="slide-wordmark-text">AXIAL LABS</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 15 — PULL QUOTE
+     ============================================================ -->
+<section class="slide" id="slide-15" aria-label="Slide 15 — Testimonial from Rachel Guo, CEO Anchor Labs" tabindex="0">
+
+  <!-- Eyebrow — centered -->
+  <div style="position:absolute; left:0; right:0; top:144px; text-align:center;">
+    <span class="eyebrow" style="display:inline-block;">→ TESTIMONIAL</span>
+  </div>
+
+  <!-- Crosshair registration marks at corners -->
+  <svg style="position:absolute; left:80px; top:80px;" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+    <line x1="12" y1="0" x2="12" y2="24" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+    <line x1="0" y1="12" x2="24" y2="12" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+  </svg>
+  <svg style="position:absolute; right:80px; top:80px;" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+    <line x1="12" y1="0" x2="12" y2="24" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+    <line x1="0" y1="12" x2="24" y2="12" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+  </svg>
+  <svg style="position:absolute; left:80px; bottom:80px;" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+    <line x1="12" y1="0" x2="12" y2="24" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+    <line x1="0" y1="12" x2="24" y2="12" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+  </svg>
+  <svg style="position:absolute; right:80px; bottom:80px;" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+    <line x1="12" y1="0" x2="12" y2="24" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+    <line x1="0" y1="12" x2="24" y2="12" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+  </svg>
+
+  <!-- Quote text — Source Serif 4, centered, Bone, NOT italic -->
+  <div style="position:absolute; left:50%; top:50%; transform:translate(-50%,-60%); width:1400px; text-align:center;">
+    <blockquote style="font-family:var(--font-editorial); font-size:64px; font-weight:400; line-height:1.3; color:var(--axial-bone); font-style:normal; margin:0;">"We thought we were hiring a brand studio. We got an operating system."</blockquote>
+  </div>
+
+  <!-- 80px Voltage horizontal line beneath quote -->
+  <div style="position:absolute; left:50%; top:calc(50% + 188px); transform:translateX(-50%); width:80px; height:1px; background:var(--axial-voltage);"></div>
+
+  <!-- Attribution -->
+  <div style="position:absolute; left:50%; top:calc(50% + 220px); transform:translateX(-50%); white-space:nowrap; text-align:center;">
+    <span style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--graphite-400);">— RACHEL GUO  ·  CEO  ·  ANCHOR LABS</span>
+  </div>
+
+  <!-- Slide chrome -->
+  <div class="slide-index">15 / 16</div>
+  <div class="slide-wordmark">
+    <svg class="slide-icon" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="10" y="1" width="4" height="22" fill="#878C97"/>
+      <rect x="2" y="10" width="20" height="4" fill="#878C97"/>
+    </svg>
+    <span class="slide-wordmark-text">AXIAL LABS</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SLIDE 16 — CLOSING / CTA
+     ============================================================ -->
+<section class="slide" id="slide-16" aria-label="Slide 16 — Closing: Start a project" tabindex="0">
+
+  <!-- Eyebrow -->
+  <div style="position:absolute; left:96px; top:144px;">
+    <span class="eyebrow">→ END / 16 / 16</span>
+  </div>
+
+  <!-- Massive H1 -->
+  <div style="position:absolute; left:96px; top:220px;">
+    <div style="font-family:var(--font-display); font-size:192px; font-weight:600; letter-spacing:-0.02em; color:var(--axial-bone); line-height:0.9;">Start a project.</div>
+  </div>
+
+  <!-- Contact info — left side -->
+  <div style="position:absolute; left:96px; top:648px; display:flex; flex-direction:column; gap:20px;">
+    <div style="font-family:var(--font-mono); font-size:28px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-bone); display:flex; align-items:center; gap:16px;">
+      <span style="color:var(--graphite-500);">→ EMAIL</span>
+      <span style="color:var(--graphite-700);">·</span>
+      <a href="mailto:santiagot.roa@gmail.com" style="color:var(--axial-voltage); text-decoration:none;">santiagot.roa@gmail.com</a>
+    </div>
+    <div style="font-family:var(--font-mono); font-size:28px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-bone); display:flex; align-items:center; gap:16px;">
+      <span style="color:var(--graphite-500);">→ WEB</span>
+      <span style="color:var(--graphite-700);">·</span>
+      <span style="color:var(--axial-bone);">axiallabs.com</span>
+    </div>
+    <div style="font-family:var(--font-mono); font-size:28px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-bone); display:flex; align-items:center; gap:16px;">
+      <span style="color:var(--graphite-500);">→ CITY</span>
+      <span style="color:var(--graphite-700);">·</span>
+      <span style="color:var(--axial-bone);">Mexico City</span>
+    </div>
+  </div>
+
+  <!-- Voltage outline button -->
+  <div style="position:absolute; left:96px; top:900px;">
+    <button style="font-family:var(--font-mono); font-size:18px; letter-spacing:0.06em; text-transform:uppercase; color:var(--axial-voltage); border:1px solid var(--axial-voltage); background:transparent; padding:16px 40px; cursor:pointer;">BOOK A CALL →</button>
+  </div>
+
+  <!-- Right side: "live signal" — axis line + Voltage filled circle -->
+  <div style="position:absolute; right:200px; top:200px;">
+    <svg width="24" height="648" viewBox="0 0 24 648" aria-hidden="true">
+      <!-- Axis line -->
+      <line x1="12" y1="0" x2="12" y2="624" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+      <!-- Tick marks along the axis -->
+      <line x1="8" y1="0"   x2="16" y2="0"   stroke="#3A3D44" stroke-width="1" stroke-linecap="square"/>
+      <line x1="8" y1="156" x2="16" y2="156" stroke="#3A3D44" stroke-width="1" stroke-linecap="square"/>
+      <line x1="8" y1="312" x2="16" y2="312" stroke="#3A3D44" stroke-width="1" stroke-linecap="square"/>
+      <line x1="8" y1="468" x2="16" y2="468" stroke="#3A3D44" stroke-width="1" stroke-linecap="square"/>
+      <line x1="8" y1="624" x2="16" y2="624" stroke="#3A3D44" stroke-width="1" stroke-linecap="square"/>
+      <!-- Voltage filled circle — live signal — at midpoint -->
+      <circle cx="12" cy="624" r="12" fill="#C6F24E"/>
+    </svg>
+  </div>
+
+  <!-- Slide chrome -->
+  <div class="slide-index">16 / 16</div>
+  <div class="slide-wordmark">
+    <svg class="slide-icon" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="10" y="1" width="4" height="22" fill="#878C97"/>
+      <rect x="2" y="10" width="20" height="4" fill="#878C97"/>
+    </svg>
+    <span class="slide-wordmark-text">AXIAL LABS</span>
+  </div>
+</section>
+
+</body>
+</html>

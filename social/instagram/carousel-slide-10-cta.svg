@@ -1,0 +1,18 @@
+<svg viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+<rect width="1080" height="1350" fill="#0A0A0B"/>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="22" letter-spacing="0.06em" fill="#878C97" x="72" y="96">09 / 09  CTA</text>
+<line x1="72" y1="116" x2="960" y2="116" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+<text font-family="'Inter Display', 'Neue Haas Grotesk Display', system-ui, sans-serif" font-weight="600" font-size="144" letter-spacing="-0.02em" fill="#F4F2EC" x="540" y="480" text-anchor="middle">AXIAL LABS</text>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="28" letter-spacing="0.06em" fill="#878C97" x="540" y="548" text-anchor="middle">ENGINEERED IDENTITY  ·  EST. 2026</text>
+<line x1="120" y1="620" x2="960" y2="620" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="64" letter-spacing="0.06em" fill="#C6F24E" x="540" y="820" text-anchor="middle">AXIALLABS.COM</text>
+<line x1="72" y1="856" x2="960" y2="856" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="24" letter-spacing="0.06em" fill="#878C97" x="540" y="940" text-anchor="middle">→ INSTAGRAM @AXIALLABS</text>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="24" letter-spacing="0.06em" fill="#878C97" x="540" y="990" text-anchor="middle">→ X / TWITTER @AXIALLABS</text>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="24" letter-spacing="0.06em" fill="#878C97" x="540" y="1040" text-anchor="middle">→ GITHUB /AXIALLABS</text>
+<g transform="translate(540,1180)">
+<rect x="-16" y="-16" width="32" height="32" fill="#F4F2EC"/>
+<rect x="-6" y="-16" width="4" height="32" fill="#0A0A0B"/>
+<rect x="-16" y="-6" width="32" height="4" fill="#0A0A0B"/>
+</g>
+</svg>

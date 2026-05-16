@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Axial Labs — Contact</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              axial: {
+                black: "#0A0A0B",
+                bone: "#F4F2EC",
+                voltage: "#C6F24E",
+                "voltage-dim": "#9DC23A",
+                ion: "#3D5BFF",
+                plasma: "#FF4D2E",
+                mercury: "#B8C2CC",
+              },
+              graphite: {
+                900: "#0A0A0B",
+                800: "#1A1B1E",
+                700: "#26282D",
+                600: "#3A3D44",
+                500: "#5A5E68",
+                400: "#878C97",
+                300: "#B5B9C2",
+                200: "#D8DAE0",
+                100: "#ECEDEF",
+              },
+            },
+            fontFamily: {
+              display: [
+                '"Inter Display"',
+                '"Neue Haas Grotesk Display"',
+                "system-ui",
+              ],
+              body: ["Inter", "system-ui", "sans-serif"],
+              editorial: ['"Source Serif 4"', "Georgia", "serif"],
+              mono: ['"JetBrains Mono"', "monospace"],
+            },
+            transitionTimingFunction: {
+              axial: "cubic-bezier(0.32, 0.72, 0, 1)",
+            },
+            boxShadow: {
+              "glow-soft": "0 0 24px rgba(198, 242, 78, 0.35)",
+              "glow-strong":
+                "0 0 48px rgba(198, 242, 78, 0.55), 0 0 96px rgba(198, 242, 78, 0.25)",
+            },
+            screens: {
+              sm: "480px",
+              md: "768px",
+              lg: "1024px",
+              xl: "1280px",
+              "2xl": "1440px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --axial-black: #0a0a0b;
+        --axial-bone: #f4f2ec;
+        --axial-voltage: #c6f24e;
+        --axial-voltage-dim: #9dc23a;
+        --axial-ion: #3d5bff;
+        --axial-plasma: #ff4d2e;
+        --axial-mercury: #b8c2cc;
+        --graphite-900: #0a0a0b;
+        --graphite-800: #1a1b1e;
+        --graphite-700: #26282d;
+        --graphite-600: #3a3d44;
+        --graphite-500: #5a5e68;
+        --graphite-400: #878c97;
+        --graphite-300: #b5b9c2;
+        --graphite-200: #d8dae0;
+        --graphite-100: #ecedef;
+        --bone-50: #f4f2ec;
+        --alpha-voltage-35: rgba(198, 242, 78, 0.35);
+        --alpha-voltage-55: rgba(198, 242, 78, 0.55);
+        --alpha-voltage-25: rgba(198, 242, 78, 0.25);
+        --alpha-black-60: rgba(10, 10, 11, 0.6);
+        --alpha-black-80: rgba(10, 10, 11, 0.8);
+        --alpha-bone-08: rgba(244, 242, 236, 0.08);
+        --font-display:
+          "Inter Display", "Neue Haas Grotesk Display", system-ui, sans-serif;
+        --font-body: "Inter", system-ui, sans-serif;
+        --font-editorial: "Source Serif 4", Georgia, serif;
+        --font-mono: "JetBrains Mono", monospace;
+        --ease-axial: cubic-bezier(0.32, 0.72, 0, 1);
+        --duration-instant: 120ms;
+        --duration-ui: 240ms;
+        --duration-hero: 600ms;
+        --duration-epic: 1200ms;
+        --space-1: 4px;
+        --space-2: 8px;
+        --space-3: 12px;
+        --space-4: 16px;
+        --space-6: 24px;
+        --space-8: 32px;
+        --space-12: 48px;
+        --space-16: 64px;
+        --space-24: 96px;
+        --space-32: 128px;
+        --space-48: 192px;
+        --radius-sm: 4px;
+        --shadow-glow-soft: 0 0 24px rgba(198, 242, 78, 0.35);
+        --shadow-glow-strong:
+          0 0 48px rgba(198, 242, 78, 0.55), 0 0 96px rgba(198, 242, 78, 0.25);
+        --shadow-focus:
+          0 0 0 2px var(--axial-black), 0 0 0 4px var(--axial-voltage);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--axial-black);
+        color: var(--axial-bone);
+        font-family: var(--font-body);
+        font-size: 16px;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      :focus-visible {
+        outline: none;
+        box-shadow: var(--shadow-focus);
+      }
+
+      /* Fixed vertical axis line */
+      .page-axis-line {
+        position: fixed;
+        left: clamp(24px, 5vw, 96px);
+        top: 0;
+        width: 1px;
+        height: 100vh;
+        background: var(--graphite-700);
+        pointer-events: none;
+        z-index: 5;
+      }
+
+      .page-wrapper {
+        padding-left: clamp(48px, 7vw, 120px);
+        padding-right: clamp(24px, 5vw, 96px);
+        max-width: 1280px;
+        margin-left: 24px;
+      }
+
+      /* NAV */
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 clamp(24px, 5vw, 96px);
+        background: rgba(10, 10, 11, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--graphite-700);
+        z-index: 100;
+      }
+
+      .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: var(--axial-bone);
+      }
+
+      .nav-wordmark {
+        font-family: var(--font-body);
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--axial-bone);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .nav-links a {
+        color: var(--graphite-400);
+        text-decoration: none;
+        padding: 0 16px;
+        transition: color var(--duration-ui) var(--ease-axial);
+      }
+
+      .nav-links a:hover {
+        color: var(--axial-bone);
+      }
+
+      .nav-sep {
+        color: var(--graphite-700);
+        font-size: 10px;
+      }
+
+      .nav-cta {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--axial-voltage);
+        border: 1px solid var(--axial-voltage);
+        background: transparent;
+        padding: 8px 16px;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          background var(--duration-ui) var(--ease-axial),
+          color var(--duration-ui) var(--ease-axial),
+          box-shadow var(--duration-ui) var(--ease-axial);
+      }
+
+      .nav-cta:hover {
+        background: var(--axial-voltage);
+        color: var(--axial-black);
+        box-shadow: var(--shadow-glow-soft);
+      }
+
+      /* HERO */
+      .hero {
+        position: relative;
+        min-height: 480px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding-top: 120px;
+        padding-bottom: 72px;
+        overflow: hidden;
+      }
+
+      /* Voltage vertical axis line in hero — left edge */
+      .hero-voltage-axis {
+        position: absolute;
+        left: 0;
+        top: 56px;
+        width: 1px;
+        background: var(--axial-voltage);
+        bottom: 0;
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      /* Voltage dot at end of axis line */
+      .hero-voltage-axis::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: -3px;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--axial-voltage);
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 3;
+      }
+
+      .hero-eyebrow {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--graphite-400);
+        margin: 0 0 32px 0;
+      }
+
+      .hero-h1 {
+        font-family: var(--font-display);
+        font-size: clamp(72px, 10vw, 128px);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        color: var(--axial-bone);
+        margin: 0 0 32px 0;
+      }
+
+      .hero-subhead {
+        font-family: var(--font-body);
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 1.5;
+        color: var(--graphite-300);
+        max-width: 60ch;
+        margin: 0;
+      }
+
+      /* SECTIONS */
+      .section {
+        padding: 96px 0;
+        border-top: 1px solid var(--graphite-700);
+      }
+
+      .section-eyebrow {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--graphite-400);
+        margin: 0 0 48px 0;
+      }
+
+      /* CHANNELS */
+      .channels-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+      }
+
+      @media (max-width: 768px) {
+        .channels-grid {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+      }
+
+      .channels-col {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .channel-block {
+      }
+
+      .channel-label {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--graphite-400);
+        margin: 0 0 8px 0;
+      }
+
+      .channel-value {
+        font-family: var(--font-body);
+        font-size: 18px;
+        color: var(--graphite-300);
+        margin: 0;
+      }
+
+      .channel-value a {
+        color: var(--graphite-300);
+        text-decoration: none;
+        transition: color var(--duration-ui) var(--ease-axial);
+      }
+
+      .channel-value a:hover {
+        color: var(--axial-voltage);
+      }
+
+      /* FORM */
+      .brief-form {
+        display: flex;
+        flex-direction: column;
+        max-width: 720px;
+      }
+
+      .form-row {
+        border-bottom: 1px solid var(--graphite-700);
+        padding: 16px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        transition: border-color var(--duration-ui) var(--ease-axial);
+      }
+
+      .form-row:focus-within {
+        border-color: var(--axial-voltage);
+      }
+
+      .form-label {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--graphite-400);
+        display: block;
+      }
+
+      .form-input,
+      .form-select,
+      .form-textarea {
+        background: transparent;
+        border: none;
+        outline: none;
+        color: var(--axial-bone);
+        font-family: var(--font-body);
+        font-size: 18px;
+        padding: 8px 0;
+        width: 100%;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+
+      .form-select {
+        cursor: pointer;
+        color: var(--axial-bone);
+      }
+
+      .form-select option {
+        background: var(--graphite-800);
+        color: var(--axial-bone);
+      }
+
+      .form-textarea {
+        resize: vertical;
+        min-height: 80px;
+        line-height: 1.5;
+      }
+
+      .form-input::placeholder,
+      .form-textarea::placeholder {
+        color: var(--graphite-600);
+      }
+
+      .form-submit-row {
+        margin-top: 32px;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .btn-submit {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--axial-voltage);
+        border: 1px solid var(--axial-voltage);
+        background: transparent;
+        padding: 12px 24px;
+        cursor: pointer;
+        transition:
+          background var(--duration-ui) var(--ease-axial),
+          color var(--duration-ui) var(--ease-axial),
+          box-shadow var(--duration-ui) var(--ease-axial);
+      }
+
+      .btn-submit:hover {
+        background: var(--axial-voltage);
+        color: var(--axial-black);
+        box-shadow: var(--shadow-glow-soft);
+      }
+
+      /* FOOTER */
+      footer {
+        padding-top: 64px;
+        padding-bottom: 32px;
+        border-top: 1px solid var(--graphite-700);
+      }
+
+      .footer-wordmark {
+        display: block;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 0 64px 0;
+        color: var(--axial-bone);
+      }
+
+      .footer-wordmark svg {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .footer-columns {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 48px;
+        margin-bottom: 48px;
+      }
+
+      @media (max-width: 768px) {
+        .footer-columns {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+      }
+
+      .footer-col-eyebrow {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--graphite-400);
+        margin: 0 0 16px 0;
+      }
+
+      .footer-col ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-col ul li {
+        margin-bottom: 8px;
+      }
+
+      .footer-col ul li a {
+        font-size: 14px;
+        color: var(--graphite-300);
+        text-decoration: none;
+        transition: color var(--duration-ui) var(--ease-axial);
+      }
+
+      .footer-col ul li a:hover {
+        color: var(--axial-bone);
+      }
+
+      .footer-bottom {
+        padding-top: 24px;
+        border-top: 1px solid var(--graphite-700);
+      }
+
+      .footer-legal {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--graphite-400);
+        margin: 0;
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Fixed left axis line -->
+    <div class="page-axis-line" aria-hidden="true"></div>
+
+    <!-- NAV -->
+    <header>
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a class="nav-brand" href="/" aria-label="Axial Labs home">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <rect x="10" y="1" width="4" height="22" fill="currentColor" />
+            <rect x="2" y="10" width="20" height="4" fill="currentColor" />
+          </svg>
+          <span class="nav-wordmark">Axial Labs</span>
+        </a>
+        <div class="nav-links" role="list" aria-label="Site navigation">
+          <a href="index.html" role="listitem">Work</a>
+          <span class="nav-sep" aria-hidden="true">·</span>
+          <a href="services.html" role="listitem">Services</a>
+          <span class="nav-sep" aria-hidden="true">·</span>
+          <a href="#" role="listitem">Pricing</a>
+          <span class="nav-sep" aria-hidden="true">·</span>
+          <a href="#" role="listitem">Writing</a>
+          <span class="nav-sep" aria-hidden="true">·</span>
+          <a href="about.html" role="listitem">About</a>
+        </div>
+        <a
+          href="contact.html"
+          class="nav-cta"
+          aria-label="Get in touch with Axial Labs"
+          >Get in touch</a
+        >
+      </nav>
+    </header>
+
+    <main>
+      <div class="page-wrapper">
+        <!-- HERO -->
+        <section class="hero" aria-labelledby="contact-hero-heading">
+          <!-- Voltage axis line on left -->
+          <div class="hero-voltage-axis" aria-hidden="true"></div>
+
+          <div class="hero-content">
+            <p class="hero-eyebrow">→ CONTACT · LET'S TALK</p>
+            <h1 class="hero-h1" id="contact-hero-heading">Get in touch.</h1>
+            <p class="hero-subhead">
+              Briefs, questions, NDAs, project notes. Email is best. Two-week
+              response time.
+            </p>
+          </div>
+        </section>
+
+        <!-- CHANNELS -->
+        <section class="section" aria-labelledby="channels-heading">
+          <p class="section-eyebrow" id="channels-heading">
+            → 01 / 02&nbsp;&nbsp;&nbsp;CHANNELS
+          </p>
+          <div class="channels-grid">
+            <div class="channels-col">
+              <div class="channel-block">
+                <p class="channel-label">→ EMAIL</p>
+                <p class="channel-value">
+                  <a href="mailto:santiagot.roa@gmail.com"
+                    >santiagot.roa@gmail.com</a
+                  >
+                </p>
+              </div>
+              <div class="channel-block">
+                <p class="channel-label">→ LOCATION</p>
+                <p class="channel-value">Mexico City · UTC−6</p>
+              </div>
+              <div class="channel-block">
+                <p class="channel-label">→ RESPONSE TIME</p>
+                <p class="channel-value">Within 2 weeks</p>
+              </div>
+            </div>
+
+            <div class="channels-col">
+              <div class="channel-block">
+                <p class="channel-label">→ GITHUB</p>
+                <p class="channel-value">
+                  <a
+                    href="https://github.com/axiallabs"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >github.com/axiallabs</a
+                  >
+                </p>
+              </div>
+              <div class="channel-block">
+                <p class="channel-label">→ X / TWITTER</p>
+                <p class="channel-value">
+                  <a
+                    href="https://x.com/axiallabs"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >x.com/axiallabs</a
+                  >
+                </p>
+              </div>
+              <div class="channel-block">
+                <p class="channel-label">→ LINKEDIN</p>
+                <p class="channel-value">
+                  <a
+                    href="https://linkedin.com/company/axiallabs"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >linkedin.com/company/axiallabs</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PROJECT BRIEF FORM -->
+        <section class="section" aria-labelledby="brief-heading">
+          <p class="section-eyebrow" id="brief-heading">
+            → 02 / 02&nbsp;&nbsp;&nbsp;PROJECT BRIEF
+          </p>
+
+          <form
+            class="brief-form"
+            method="post"
+            action="#"
+            aria-label="Project brief submission form"
+            novalidate
+          >
+            <div class="form-row">
+              <label class="form-label" for="contact-name">→ NAME</label>
+              <input
+                class="form-input"
+                type="text"
+                id="contact-name"
+                name="name"
+                autocomplete="name"
+                placeholder="Your name"
+              />
+            </div>
+
+            <div class="form-row">
+              <label class="form-label" for="contact-email">→ EMAIL</label>
+              <input
+                class="form-input"
+                type="email"
+                id="contact-email"
+                name="email"
+                required
+                autocomplete="email"
+                placeholder="your@email.com"
+                aria-required="true"
+              />
+            </div>
+
+            <div class="form-row">
+              <label class="form-label" for="contact-company">→ COMPANY</label>
+              <input
+                class="form-input"
+                type="text"
+                id="contact-company"
+                name="company"
+                autocomplete="organization"
+                placeholder="Company or project name"
+              />
+            </div>
+
+            <div class="form-row">
+              <label class="form-label" for="contact-type"
+                >→ PROJECT TYPE</label
+              >
+              <select class="form-select" id="contact-type" name="type">
+                <option value="" disabled selected>Select a type</option>
+                <option value="studio">Studio</option>
+                <option value="os">OS</option>
+                <option value="foundry">Foundry</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label class="form-label" for="contact-budget">→ BUDGET</label>
+              <select class="form-select" id="contact-budget" name="budget">
+                <option value="" disabled selected>Select a range</option>
+                <option value="sub50k">&lt;$50k</option>
+                <option value="50k-100k">$50k–100k</option>
+                <option value="100k-250k">$100k–250k</option>
+                <option value="250k+">$250k+</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label class="form-label" for="contact-message">→ MESSAGE</label>
+              <textarea
+                class="form-textarea"
+                id="contact-message"
+                name="message"
+                rows="4"
+                placeholder="Brief description of the project, timeline, or question."
+              ></textarea>
+            </div>
+
+            <div class="form-submit-row">
+              <button class="btn-submit" type="submit">SEND BRIEF →</button>
+            </div>
+          </form>
+        </section>
+      </div>
+      <!-- /page-wrapper -->
+
+      <!-- FOOTER -->
+      <footer role="contentinfo">
+        <div class="page-wrapper">
+          <div class="footer-wordmark" role="img" aria-label="Axial Labs">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 800 240"
+              aria-hidden="true"
+            >
+              <line
+                x1="80"
+                y1="40"
+                x2="80"
+                y2="200"
+                stroke="currentColor"
+                stroke-width="1"
+                stroke-linecap="square"
+                stroke-opacity="0.4"
+              />
+              <text
+                font-family="'JetBrains Mono', monospace"
+                font-weight="400"
+                font-size="12"
+                letter-spacing="0.06em"
+                fill="currentColor"
+                fill-opacity="0.6"
+                x="100"
+                y="32"
+              >
+                → AL / WORDMARK / v1.0
+              </text>
+              <text
+                font-family="'Inter Display', 'Neue Haas Grotesk Display', system-ui, sans-serif"
+                font-weight="600"
+                font-size="96"
+                letter-spacing="-0.02em"
+                fill="currentColor"
+                x="400"
+                y="140"
+                text-anchor="middle"
+              >
+                AXIAL LABS
+              </text>
+              <text
+                font-family="'JetBrains Mono', monospace"
+                font-weight="400"
+                font-size="12"
+                letter-spacing="0.06em"
+                fill="currentColor"
+                fill-opacity="0.6"
+                x="400"
+                y="180"
+                text-anchor="middle"
+              >
+                ENGINEERED IDENTITY · EST. 2026 · AXIS-ALIGNED
+              </text>
+            </svg>
+          </div>
+          <div class="footer-columns">
+            <div class="footer-col">
+              <p class="footer-col-eyebrow">Services</p>
+              <ul>
+                <li><a href="services.html">Brand systems</a></li>
+                <li><a href="services.html">Product UI</a></li>
+                <li><a href="services.html">Tokens</a></li>
+                <li><a href="services.html">Automation</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <p class="footer-col-eyebrow">Company</p>
+              <ul>
+                <li><a href="#">Work</a></li>
+                <li><a href="#">Writing</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <p class="footer-col-eyebrow">Contact</p>
+              <ul>
+                <li>
+                  <a href="mailto:santiagot.roa@gmail.com"
+                    >santiagot.roa@gmail.com</a
+                  >
+                </li>
+                <li><a href="#">Mexico City</a></li>
+                <li>
+                  <a
+                    href="https://github.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >GitHub</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >LinkedIn</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p class="footer-legal">
+              © 2026 — AXIAL LABS // SYSTEMS FOR AMBITIOUS SOFTWARE
+            </p>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>

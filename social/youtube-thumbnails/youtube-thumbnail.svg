@@ -1,0 +1,15 @@
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
+<rect width="1280" height="720" fill="#0A0A0B"/>
+<rect x="48" y="48" width="220" height="56" fill="#C6F24E"/>
+<text font-family="'Inter Display', 'Inter', system-ui, sans-serif" font-weight="600" font-size="22" letter-spacing="0.06em" fill="#0A0A0B" x="60" y="84" text-transform="uppercase">EP. 01 · TOKENS</text>
+<text font-family="'Inter Display', 'Inter', system-ui, sans-serif" font-weight="600" font-size="144" letter-spacing="-0.02em" fill="#F4F2EC" text-anchor="middle">
+  <tspan x="640" y="400">WHY TOKENS</tspan>
+  <tspan x="640" y="540">BEAT STYLES.</tspan>
+</text>
+<line x1="48" y1="620" x2="1232" y2="620" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+<g transform="translate(48, 636)">
+  <rect x="10" y="1" width="4" height="22" fill="#F4F2EC"/>
+  <rect x="2" y="10" width="20" height="4" fill="#F4F2EC"/>
+</g>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="18" letter-spacing="0.06em" fill="#878C97" x="1232" y="672" text-anchor="end">AXIALLABS.COM</text>
+</svg>

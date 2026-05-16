@@ -1,0 +1,22 @@
+<svg viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+<rect width="1080" height="1350" fill="#0A0A0B"/>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="22" letter-spacing="0.06em" fill="#878C97" x="72" y="88">→ INSIGHT  ·  02 / 05</text>
+<text font-family="'JetBrains Mono', monospace" font-weight="500" font-size="360" letter-spacing="-0.02em" fill="#F4F2EC" x="540" y="760" text-anchor="middle">37%</text>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="28" letter-spacing="0.06em" fill="#878C97" x="540" y="840" text-anchor="middle">FASTER PAGE-LOAD AFTER TOKENIZATION</text>
+<line x1="120" y1="1080" x2="960" y2="1080" stroke="#5A5E68" stroke-width="1" stroke-linecap="square"/>
+<line x1="120" y1="1070" x2="120" y2="1090" stroke="#5A5E68" stroke-width="1" stroke-linecap="square"/>
+<line x1="540" y1="1075" x2="540" y2="1085" stroke="#5A5E68" stroke-width="1" stroke-linecap="square"/>
+<line x1="960" y1="1070" x2="960" y2="1090" stroke="#5A5E68" stroke-width="1" stroke-linecap="square"/>
+<line x1="240" y1="1077" x2="240" y2="1083" stroke="#5A5E68" stroke-width="1" stroke-linecap="square"/>
+<line x1="360" y1="1077" x2="360" y2="1083" stroke="#5A5E68" stroke-width="1" stroke-linecap="square"/>
+<line x1="660" y1="1077" x2="660" y2="1083" stroke="#5A5E68" stroke-width="1" stroke-linecap="square"/>
+<line x1="780" y1="1077" x2="780" y2="1083" stroke="#5A5E68" stroke-width="1" stroke-linecap="square"/>
+<line x1="900" y1="1077" x2="900" y2="1083" stroke="#5A5E68" stroke-width="1" stroke-linecap="square"/>
+<circle cx="864" cy="1080" r="8" fill="#C6F24E"/>
+<g transform="translate(72,1218)">
+<rect x="0" y="-12" width="24" height="24" fill="#F4F2EC"/>
+<rect x="10" y="-12" width="4" height="24" fill="#0A0A0B"/>
+<rect x="0" y="-2" width="24" height="4" fill="#0A0A0B"/>
+</g>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="22" letter-spacing="0.06em" fill="#878C97" x="108" y="1236">AXIALLABS.COM</text>
+</svg>

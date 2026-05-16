@@ -1,0 +1,23 @@
+<svg viewBox="0 0 1200 628" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern id="grid64" x="0" y="0" width="64" height="64" patternUnits="userSpaceOnUse">
+<path d="M 64 0 L 0 0 0 64" fill="none" stroke="#26282D" stroke-width="1" stroke-opacity="0.4" stroke-linecap="square"/>
+</pattern>
+</defs>
+<rect width="1200" height="628" fill="#0A0A0B"/>
+<rect width="1200" height="628" fill="url(#grid64)"/>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="18" letter-spacing="0.06em" fill="#878C97" x="64" y="88">→ AXIAL LABS  ·  POST  ·  WHY TOKENS</text>
+<text font-family="'Inter Display', 'Inter', system-ui, sans-serif" font-weight="600" font-size="80" letter-spacing="-0.02em" fill="#F4F2EC" x="64">
+  <tspan x="64" y="320">Most design systems</tspan>
+  <tspan x="64" y="400">aren't systems.</tspan>
+</text>
+<text font-family="'Inter', system-ui, sans-serif" font-weight="400" font-size="22" fill="#B5B9C2" x="64" y="460">Why we treat brand as infrastructure.</text>
+<line x1="1024" y1="80" x2="1024" y2="554" stroke="#C6F24E" stroke-width="1" stroke-linecap="square"/>
+<circle cx="1024" cy="554" r="6" fill="#C6F24E"/>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="18" letter-spacing="0.06em" fill="#878C97" x="1136" y="580" text-anchor="end">AXIALLABS.COM</text>
+<g transform="translate(1096, 544)">
+  <rect x="10" y="1" width="4" height="22" fill="#F4F2EC" transform="scale(1.333)"/>
+  <rect x="2" y="10" width="20" height="4" fill="#F4F2EC" transform="scale(1.333)"/>
+</g>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="14" fill="#5A5E68" x="64" y="600">X 0  Y 628</text>
+</svg>

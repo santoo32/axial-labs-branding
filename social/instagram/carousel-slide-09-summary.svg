@@ -1,0 +1,19 @@
+<svg viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+<rect width="1080" height="1350" fill="#0A0A0B"/>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="22" letter-spacing="0.06em" fill="#878C97" x="72" y="96">08 / 09  SUMMARY</text>
+<line x1="72" y1="116" x2="960" y2="116" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+<line x1="72" y1="116" x2="72" y2="128" stroke="#5A5E68" stroke-width="1" stroke-linecap="square"/>
+<line x1="960" y1="116" x2="960" y2="128" stroke="#5A5E68" stroke-width="1" stroke-linecap="square"/>
+<text font-family="'Inter Display', 'Neue Haas Grotesk Display', system-ui, sans-serif" font-weight="600" font-size="160" letter-spacing="-0.02em" fill="#F4F2EC" text-anchor="middle">
+<tspan x="540" y="560">Token</tspan>
+<tspan x="540" dy="180">everything.</tspan>
+<tspan x="540" dy="180">Always.</tspan>
+</text>
+<line x1="460" y1="1020" x2="540" y2="1020" stroke="#C6F24E" stroke-width="1" stroke-linecap="square"/>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="22" letter-spacing="0.06em" fill="#5A5E68" x="72" y="1230">→ FINAL SLIDE</text>
+<g transform="translate(1008,1278)">
+<rect x="-16" y="-16" width="32" height="32" fill="#878C97"/>
+<rect x="-6" y="-16" width="4" height="32" fill="#0A0A0B"/>
+<rect x="-16" y="-6" width="32" height="4" fill="#0A0A0B"/>
+</g>
+</svg>

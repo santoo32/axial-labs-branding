@@ -1,0 +1,19 @@
+<svg viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+<rect width="1080" height="1350" fill="#0A0A0B"/>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="28" letter-spacing="0.06em" fill="#878C97" x="540" y="128" text-anchor="middle">→ THE WORK  ·  03 / 05</text>
+<line x1="540" y1="200" x2="540" y2="1150" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="28" letter-spacing="0.06em" fill="#878C97" x="120" y="320">→ INPUT</text>
+<text font-family="'Inter Display', 'Neue Haas Grotesk Display', system-ui, sans-serif" font-weight="600" font-size="200" letter-spacing="-0.02em" fill="#3A3D44" x="120" y="560">PDF</text>
+<line x1="120" y1="498" x2="380" y2="498" stroke="#3A3D44" stroke-width="12" stroke-linecap="square"/>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="22" letter-spacing="0.06em" fill="#5A5E68" x="120" y="628">STATIC  ·  ONE-OFF  ·  DEAD</text>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="28" letter-spacing="0.06em" fill="#C6F24E" x="600" y="320">→ OUTPUT</text>
+<text font-family="'Inter Display', 'Neue Haas Grotesk Display', system-ui, sans-serif" font-weight="600" font-size="200" letter-spacing="-0.02em" fill="#F4F2EC" x="600" y="560">REPO</text>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="22" letter-spacing="0.06em" fill="#B5B9C2" x="600" y="628">TOKENIZED  ·  VERSIONED  ·  LIVE</text>
+<line x1="600" y1="1100" x2="960" y2="1100" stroke="#C6F24E" stroke-width="1" stroke-linecap="square"/>
+<g transform="translate(72,1218)">
+<rect x="0" y="-12" width="24" height="24" fill="#F4F2EC"/>
+<rect x="10" y="-12" width="4" height="24" fill="#0A0A0B"/>
+<rect x="0" y="-2" width="24" height="4" fill="#0A0A0B"/>
+</g>
+<text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="22" letter-spacing="0.06em" fill="#878C97" x="108" y="1236">AXIALLABS.COM</text>
+</svg>

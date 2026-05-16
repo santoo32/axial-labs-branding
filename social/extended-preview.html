@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Axial Labs · Extended Social Preview · v1.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Display:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          axial: {
+            black: '#0A0A0B',
+            bone: '#F4F2EC',
+            voltage: '#C6F24E',
+            'voltage-dim': '#9DC23A',
+            ion: '#3D5BFF',
+            plasma: '#FF4D2E',
+            mercury: '#B8C2CC',
+          },
+          graphite: {
+            900: '#0A0A0B', 800: '#1A1B1E', 700: '#26282D',
+            600: '#3A3D44', 500: '#5A5E68', 400: '#878C97',
+            300: '#B5B9C2', 200: '#D8DAE0', 100: '#ECEDEF',
+          },
+        },
+        fontFamily: {
+          display: ['"Inter Display"', '"Neue Haas Grotesk Display"', 'system-ui'],
+          body: ['"Inter"', 'system-ui', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        },
+        transitionTimingFunction: {
+          axial: 'cubic-bezier(0.32, 0.72, 0, 1)',
+        },
+      },
+    },
+  };
+</script>
+<style>
+  :root {
+    --axial-black: #0A0A0B;
+    --axial-bone: #F4F2EC;
+    --axial-voltage: #C6F24E;
+    --axial-voltage-dim: #9DC23A;
+    --graphite-900: #0A0A0B; --graphite-800: #1A1B1E; --graphite-700: #26282D;
+    --graphite-600: #3A3D44; --graphite-500: #5A5E68; --graphite-400: #878C97;
+    --graphite-300: #B5B9C2; --graphite-200: #D8DAE0; --graphite-100: #ECEDEF;
+    --font-display: 'Inter Display', 'Neue Haas Grotesk Display', system-ui;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --ease-axial: cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--axial-black);
+    color: var(--axial-bone);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .axis-fixed {
+    position: fixed;
+    top: 0;
+    left: clamp(24px, 5vw, 96px);
+    width: 1px;
+    height: 100vh;
+    background: var(--graphite-700);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .page-content {
+    position: relative;
+    z-index: 1;
+    padding: clamp(24px, 5vw, 96px);
+    max-width: 1440px;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--graphite-400);
+  }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--axial-bone);
+    line-height: 1.0;
+    margin: 0 0 16px 0;
+  }
+
+  .page-subhead {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--graphite-400);
+    margin: 0 0 80px 0;
+  }
+
+  .asset-card {
+    margin-bottom: 64px;
+  }
+
+  .asset-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--graphite-400);
+    margin: 0 0 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .asset-eyebrow span.dim {
+    color: var(--graphite-600);
+  }
+
+  .asset-frame {
+    width: 100%;
+    border: 1px solid var(--graphite-700);
+    overflow: hidden;
+    background: var(--graphite-900);
+  }
+
+  .asset-frame svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .asset-frame iframe {
+    display: block;
+    width: 100%;
+    border: none;
+    background: #ffffff;
+  }
+
+  .asset-caption {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--graphite-600);
+    margin: 8px 0 0 0;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--graphite-700);
+    margin: 0 0 64px 0;
+  }
+
+  .page-footer {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--graphite-600);
+    padding: 32px 0 48px 0;
+    border-top: 1px solid var(--graphite-700);
+    margin-top: 32px;
+  }
+
+  .email-preview-wrapper {
+    background: #F4F2EC;
+    padding: 32px;
+  }
+</style>
+</head>
+<body>
+
+<div class="axis-fixed"></div>
+
+<div class="page-content">
+
+  <!-- Header -->
+  <div style="margin-bottom: 16px;">
+    <p class="eyebrow">→ AXIAL LABS  ·  EXTENDED SOCIAL  ·  v1.0</p>
+  </div>
+  <h1 class="page-title">Extended /<br>social.</h1>
+  <p class="page-subhead">Email signature, LinkedIn post, X card, YouTube thumbnail.</p>
+
+  <div class="divider"></div>
+
+  <!-- Card 1: Email Signature -->
+  <div class="asset-card">
+    <p class="asset-eyebrow">→ EMAIL SIGNATURE <span class="dim">·  600 × ~180  ·  HTML TABLE</span></p>
+    <div class="asset-frame">
+      <div class="email-preview-wrapper">
+        <iframe
+          srcdoc="<!-- Axial Labs · Email signature · v1.0 -->
+<table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; width=&quot;600&quot; style=&quot;width:600px;max-width:600px;border-collapse:collapse;font-family:'Inter Display','Inter','Helvetica Neue',Arial,sans-serif;background-color:#ffffff;&quot;>
+  <tbody>
+    <tr>
+      <td width=&quot;2&quot; style=&quot;width:2px;padding:0;&quot;>
+        <table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; width=&quot;2&quot; height=&quot;180&quot; style=&quot;width:2px;height:180px;border-collapse:collapse;&quot;>
+          <tbody>
+            <tr>
+              <td style=&quot;width:2px;height:180px;background-color:#9DC23A;font-size:0;line-height:0;&quot;&gt;&amp;nbsp;&lt;/td&gt;
+            </tr>
+          </tbody>
+        </table>
+      </td>
+      <td width=&quot;20&quot; style=&quot;width:20px;padding:0;&quot;&gt;&amp;nbsp;&lt;/td&gt;
+      <td style=&quot;padding:0;vertical-align:top;&quot;>
+        <table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; style=&quot;border-collapse:collapse;&quot;>
+          <tbody>
+            <tr>
+              <td style=&quot;padding:16px 0 4px 0;vertical-align:middle;&quot;>
+                <table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; style=&quot;border-collapse:collapse;&quot;>
+                  <tbody>
+                    <tr>
+                      <td style=&quot;vertical-align:middle;padding-right:7px;&quot;>
+                        <svg width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 24 24&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; style=&quot;display:block;&quot;>
+                          <rect x=&quot;10&quot; y=&quot;1&quot; width=&quot;4&quot; height=&quot;22&quot; fill=&quot;#0A0A0B&quot;/>
+                          <rect x=&quot;2&quot; y=&quot;10&quot; width=&quot;20&quot; height=&quot;4&quot; fill=&quot;#0A0A0B&quot;/>
+                        </svg>
+                      </td>
+                      <td style=&quot;vertical-align:middle;&quot;>
+                        <span style=&quot;font-family:'Inter Display','Inter','Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:600;letter-spacing:0.06em;color:#0A0A0B;text-transform:uppercase;&quot;>AXIAL LABS</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style=&quot;padding:0 0 2px 0;&quot;>
+                <span style=&quot;font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:18px;font-weight:600;color:#0A0A0B;line-height:1.2;&quot;>Santiago Roa</span>
+              </td>
+            </tr>
+            <tr>
+              <td style=&quot;padding:0 0 10px 0;&quot;>
+                <span style=&quot;font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:14px;font-weight:400;color:#5A5E68;line-height:1.4;&quot;>Founder &middot; Designer-engineer</span>
+              </td>
+            </tr>
+            <tr>
+              <td style=&quot;padding:0 0 10px 0;font-size:0;line-height:0;&quot;></td>
+            </tr>
+            <tr>
+              <td style=&quot;padding:0 0 10px 0;&quot;>
+                <table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; width=&quot;200&quot; style=&quot;border-collapse:collapse;&quot;>
+                  <tbody>
+                    <tr>
+                      <td style=&quot;height:1px;background-color:#D8DAE0;font-size:0;line-height:0;&quot;&gt;&amp;nbsp;&lt;/td&gt;
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style=&quot;padding:0 0 4px 0;font-size:0;line-height:0;&quot;></td>
+            </tr>
+            <tr>
+              <td style=&quot;padding:0 0 16px 0;&quot;>
+                <table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; style=&quot;border-collapse:collapse;&quot;>
+                  <tbody>
+                    <tr>
+                      <td style=&quot;padding:0 0 3px 0;&quot;>
+                        <span style=&quot;font-family:'JetBrains Mono','Menlo','Courier New',monospace;font-size:11px;font-weight:400;letter-spacing:0.06em;color:#5A5E68;text-transform:uppercase;&quot;>&rarr; EMAIL&amp;nbsp;&amp;nbsp;</span><a href=&quot;mailto:santiagot.roa@gmail.com&quot; style=&quot;font-family:'JetBrains Mono','Menlo','Courier New',monospace;font-size:11px;font-weight:400;letter-spacing:0.06em;color:#0A0A0B;text-decoration:none;text-transform:lowercase;&quot;>santiagot.roa@gmail.com</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style=&quot;padding:0 0 3px 0;&quot;>
+                        <span style=&quot;font-family:'JetBrains Mono','Menlo','Courier New',monospace;font-size:11px;font-weight:400;letter-spacing:0.06em;color:#5A5E68;text-transform:uppercase;&quot;>&rarr; WEB&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</span><a href=&quot;https://axiallabs.com&quot; style=&quot;font-family:'JetBrains Mono','Menlo','Courier New',monospace;font-size:11px;font-weight:400;letter-spacing:0.06em;color:#0A0A0B;text-decoration:none;text-transform:lowercase;&quot;>axiallabs.com</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style=&quot;padding:0;&quot;>
+                        <span style=&quot;font-family:'JetBrains Mono','Menlo','Courier New',monospace;font-size:11px;font-weight:400;letter-spacing:0.06em;color:#5A5E68;text-transform:uppercase;&quot;>&rarr; CITY&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;MEXICO CITY &middot; UTC&minus;6</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>"
+          height="220"
+          scrolling="no"
+          title="Email Signature Preview"
+          style="width:100%;max-width:660px;display:block;border:none;background:#ffffff;"
+        ></iframe>
+      </div>
+    </div>
+    <p class="asset-caption">→ PLAIN HTML TABLE · INLINE STYLES ONLY · PASTE INTO GMAIL / APPLE MAIL / OUTLOOK</p>
+  </div>
+
+  <!-- Card 2: LinkedIn Post -->
+  <div class="asset-card">
+    <p class="asset-eyebrow">→ LINKEDIN POST <span class="dim">·  1200 × 628</span></p>
+    <div class="asset-frame">
+      <svg viewBox="0 0 1200 628" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto;">
+        <defs>
+          <pattern id="grid64-li" x="0" y="0" width="64" height="64" patternUnits="userSpaceOnUse">
+            <path d="M 64 0 L 0 0 0 64" fill="none" stroke="#26282D" stroke-width="1" stroke-opacity="0.4" stroke-linecap="square"/>
+          </pattern>
+        </defs>
+        <rect width="1200" height="628" fill="#0A0A0B"/>
+        <rect width="1200" height="628" fill="url(#grid64-li)"/>
+        <text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="18" letter-spacing="0.06em" fill="#878C97" x="64" y="88">→ AXIAL LABS  ·  POST  ·  WHY TOKENS</text>
+        <text font-family="'Inter Display', 'Inter', system-ui, sans-serif" font-weight="600" font-size="80" letter-spacing="-0.02em" fill="#F4F2EC" x="64">
+          <tspan x="64" y="320">Most design systems</tspan>
+          <tspan x="64" y="400">aren't systems.</tspan>
+        </text>
+        <text font-family="'Inter', system-ui, sans-serif" font-weight="400" font-size="22" fill="#B5B9C2" x="64" y="460">Why we treat brand as infrastructure.</text>
+        <line x1="1024" y1="80" x2="1024" y2="554" stroke="#C6F24E" stroke-width="1" stroke-linecap="square"/>
+        <circle cx="1024" cy="554" r="6" fill="#C6F24E"/>
+        <text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="18" letter-spacing="0.06em" fill="#878C97" x="1136" y="580" text-anchor="end">AXIALLABS.COM</text>
+        <g transform="translate(1096, 544)">
+          <rect x="10" y="1" width="4" height="22" fill="#F4F2EC" transform="scale(1.333)"/>
+          <rect x="2" y="10" width="20" height="4" fill="#F4F2EC" transform="scale(1.333)"/>
+        </g>
+        <text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="14" fill="#5A5E68" x="64" y="600">X 0  Y 628</text>
+      </svg>
+    </div>
+    <p class="asset-caption">→ LANDSCAPE LINK-PREVIEW CARD · USE AS OG IMAGE FOR LINKEDIN POSTS</p>
+  </div>
+
+  <!-- Card 3: X / Twitter Card -->
+  <div class="asset-card">
+    <p class="asset-eyebrow">→ X / TWITTER CARD <span class="dim">·  1600 × 900</span></p>
+    <div class="asset-frame">
+      <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto;">
+        <rect width="1600" height="900" fill="#0A0A0B"/>
+        <line x1="40" y1="40" x2="52" y2="40" stroke="#5A5E68" stroke-width="1.5" stroke-linecap="square" stroke-opacity="0.5"/>
+        <line x1="40" y1="40" x2="40" y2="52" stroke="#5A5E68" stroke-width="1.5" stroke-linecap="square" stroke-opacity="0.5"/>
+        <line x1="1560" y1="40" x2="1548" y2="40" stroke="#5A5E68" stroke-width="1.5" stroke-linecap="square" stroke-opacity="0.5"/>
+        <line x1="1560" y1="40" x2="1560" y2="52" stroke="#5A5E68" stroke-width="1.5" stroke-linecap="square" stroke-opacity="0.5"/>
+        <line x1="40" y1="860" x2="52" y2="860" stroke="#5A5E68" stroke-width="1.5" stroke-linecap="square" stroke-opacity="0.5"/>
+        <line x1="40" y1="860" x2="40" y2="848" stroke="#5A5E68" stroke-width="1.5" stroke-linecap="square" stroke-opacity="0.5"/>
+        <line x1="1560" y1="860" x2="1548" y2="860" stroke="#5A5E68" stroke-width="1.5" stroke-linecap="square" stroke-opacity="0.5"/>
+        <line x1="1560" y1="860" x2="1560" y2="848" stroke="#5A5E68" stroke-width="1.5" stroke-linecap="square" stroke-opacity="0.5"/>
+        <text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="14" letter-spacing="0.06em" fill="#5A5E68" x="56" y="60">X 0  Y 0</text>
+        <text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="14" letter-spacing="0.06em" fill="#5A5E68" x="1544" y="60" text-anchor="end">X 1600  Y 0</text>
+        <text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="14" letter-spacing="0.06em" fill="#5A5E68" x="56" y="880">X 0  Y 900</text>
+        <text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="14" letter-spacing="0.06em" fill="#5A5E68" x="1544" y="880" text-anchor="end">X 1600  Y 900</text>
+        <text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="22" letter-spacing="0.06em" fill="#878C97" x="800" y="200" text-anchor="middle">→ AXIAL LABS  ·  EST. 2026</text>
+        <text font-family="'Inter Display', 'Inter', system-ui, sans-serif" font-weight="600" font-size="128" letter-spacing="-0.02em" fill="#F4F2EC" text-anchor="middle">
+          <tspan x="800" y="440">Systems for</tspan>
+          <tspan x="800" y="580">ambitious software.</tspan>
+        </text>
+        <text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="28" letter-spacing="0.06em" fill="#C6F24E" x="800" y="680" text-anchor="middle">AXIALLABS.COM</text>
+        <g transform="translate(780, 740) scale(1.667)">
+          <rect x="10" y="1" width="4" height="22" fill="#F4F2EC"/>
+          <rect x="2" y="10" width="20" height="4" fill="#F4F2EC"/>
+        </g>
+        <line x1="760" y1="820" x2="840" y2="820" stroke="#C6F24E" stroke-width="2" stroke-linecap="square"/>
+      </svg>
+    </div>
+    <p class="asset-caption">→ CINEMATIC 16:9 CARD · USE AS OPEN GRAPH IMAGE FOR X SHARE</p>
+  </div>
+
+  <!-- Card 4: YouTube Thumbnail -->
+  <div class="asset-card">
+    <p class="asset-eyebrow">→ YOUTUBE THUMBNAIL <span class="dim">·  1280 × 720</span></p>
+    <div class="asset-frame">
+      <svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto;">
+        <rect width="1280" height="720" fill="#0A0A0B"/>
+        <rect x="48" y="48" width="220" height="56" fill="#C6F24E"/>
+        <text font-family="'Inter Display', 'Inter', system-ui, sans-serif" font-weight="600" font-size="22" letter-spacing="0.06em" fill="#0A0A0B" x="60" y="84">EP. 01 · TOKENS</text>
+        <text font-family="'Inter Display', 'Inter', system-ui, sans-serif" font-weight="600" font-size="144" letter-spacing="-0.02em" fill="#F4F2EC" text-anchor="middle">
+          <tspan x="640" y="400">WHY TOKENS</tspan>
+          <tspan x="640" y="540">BEAT STYLES.</tspan>
+        </text>
+        <line x1="48" y1="620" x2="1232" y2="620" stroke="#26282D" stroke-width="1" stroke-linecap="square"/>
+        <g transform="translate(48, 636)">
+          <rect x="10" y="1" width="4" height="22" fill="#F4F2EC"/>
+          <rect x="2" y="10" width="20" height="4" fill="#F4F2EC"/>
+        </g>
+        <text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="18" letter-spacing="0.06em" fill="#878C97" x="1232" y="672" text-anchor="end">AXIALLABS.COM</text>
+      </svg>
+    </div>
+    <p class="asset-caption">→ THUMBNAIL FOR EP. 01 · READS AT 180×100 THUMBNAIL SIZE · VOLTAGE BADGE ≤5% CANVAS</p>
+  </div>
+
+  <!-- Footer -->
+  <p class="page-footer">© 2026 — AXIAL LABS  //  EXTENDED SOCIAL  //  v1.0</p>
+
+</div>
+
+</body>
+</html>

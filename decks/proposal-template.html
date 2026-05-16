@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axial Labs — Proposal Template</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Display:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── TOKENS ────────────────────────────────────────────── */
+    :root {
+      --axial-black:       #0A0A0B;
+      --axial-bone:        #F4F2EC;
+      --axial-voltage:     #C6F24E;
+      --axial-voltage-dim: #9DC23A;
+      --axial-ion:         #3D5BFF;
+      --axial-plasma:      #FF4D2E;
+      --axial-mercury:     #B8C2CC;
+      --graphite-900: #0A0A0B; --graphite-800: #1A1B1E; --graphite-700: #26282D;
+      --graphite-600: #3A3D44; --graphite-500: #5A5E68; --graphite-400: #878C97;
+      --graphite-300: #B5B9C2; --graphite-200: #D8DAE0; --graphite-100: #ECEDEF;
+      --font-display:  'Inter Display', 'Inter', system-ui, sans-serif;
+      --font-body:     'Inter', system-ui, sans-serif;
+      --font-mono:     'JetBrains Mono', monospace;
+      --ease-axial:    cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    /* ─── SHELL ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #E2E0DA;
+      font-family: var(--font-body);
+      color: var(--axial-black);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── A4 PAGE ───────────────────────────────────────────── */
+    .doc-page {
+      width: 210mm;
+      min-height: 297mm;
+      background: var(--axial-bone);
+      color: var(--axial-black);
+      margin: 32px auto;
+      padding: 18mm 22mm 18mm 34mm;
+      position: relative;
+      box-sizing: border-box;
+      break-after: page;
+      box-shadow: 0 2px 16px rgba(10,10,11,0.10), 0 1px 4px rgba(10,10,11,0.06);
+    }
+
+    /* Axis line — left margin */
+    .doc-page::before {
+      content: '';
+      position: absolute;
+      left: 22mm;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--graphite-200);
+    }
+
+    /* Axis tick marks */
+    .axis-ticks {
+      position: absolute;
+      left: calc(22mm - 3px);
+      top: 0;
+      bottom: 0;
+      width: 7px;
+      pointer-events: none;
+    }
+    .axis-ticks svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 7px;
+      height: 100%;
+    }
+
+    /* Cover page flex column */
+    .doc-page--cover {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── TYPE SCALE ────────────────────────────────────────── */
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-500);
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .h1 {
+      font-family: var(--font-display);
+      font-size: 64px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      color: var(--axial-black);
+      margin: 0 0 20px 0;
+    }
+
+    .h2 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--axial-black);
+      margin: 0 0 20px 0;
+    }
+
+    .h3 {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--axial-black);
+      margin: 0 0 6px 0;
+    }
+
+    .body-text {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--axial-black);
+      margin: 0 0 14px 0;
+    }
+    .body-text:last-child { margin-bottom: 0; }
+
+    .caption {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--graphite-500);
+      letter-spacing: 0.02em;
+    }
+
+    /* ─── RULE ──────────────────────────────────────────────── */
+    .rule {
+      height: 1px;
+      background: var(--graphite-200);
+      border: none;
+      margin: 0;
+    }
+
+    /* ─── RUNNING HEADER ────────────────────────────────────── */
+    .running-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--graphite-200);
+      margin-bottom: 36px;
+    }
+    .running-header .rh-wordmark {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--axial-black);
+    }
+    .running-header .rh-ref {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-400);
+    }
+
+    /* ─── RUNNING FOOTER ────────────────────────────────────── */
+    .running-footer {
+      position: absolute;
+      bottom: 14mm;
+      left: 34mm;
+      right: 22mm;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 8px;
+      border-top: 1px solid var(--graphite-200);
+    }
+    .running-footer .rf-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-400);
+    }
+    .running-footer .rf-page {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.04em;
+      color: var(--graphite-400);
+    }
+
+    /* ─── SECTION HEAD ──────────────────────────────────────── */
+    .section-head {
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--graphite-200);
+      margin-bottom: 28px;
+    }
+
+    /* ─── COVER ─────────────────────────────────────────────── */
+    .cover-wordmark { margin-bottom: 40px; }
+    .cover-wordmark svg { display: block; width: 100%; height: auto; }
+
+    .cover-meta {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 0;
+    }
+    .cover-meta-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-500);
+    }
+    .cover-meta-sep {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--graphite-300);
+    }
+
+    .cover-spacer { flex: 1; }
+
+    .cover-title {
+      margin-bottom: 0;
+    }
+    .cover-codename {
+      font-family: var(--font-display);
+      font-size: 56px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      color: var(--axial-black);
+      margin: 0 0 16px 0;
+    }
+    .cover-subtitle {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--graphite-500);
+      margin: 0;
+    }
+
+    .cover-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px 40px;
+      padding-top: 28px;
+      border-top: 1px solid var(--graphite-200);
+      margin-top: 32px;
+    }
+    .cover-info-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      display: block;
+      margin-bottom: 3px;
+    }
+    .cover-info-value {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--axial-black);
+      display: block;
+    }
+
+    /* ─── SCOPE LIST ────────────────────────────────────────── */
+    .scope-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .scope-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--graphite-100);
+    }
+    .scope-item:last-child { border-bottom: none; }
+    .scope-check {
+      flex-shrink: 0;
+      width: 15px;
+      height: 15px;
+      margin-top: 1px;
+    }
+    .scope-item-body { flex: 1; }
+    .scope-item-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--axial-black);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .scope-item-sub {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--graphite-400);
+    }
+    .scope-item-tag {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ─── TIMELINE ──────────────────────────────────────────── */
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--graphite-200);
+      margin-bottom: 32px;
+    }
+    .timeline-step {
+      padding: 16px 14px;
+      border-right: 1px solid var(--graphite-200);
+    }
+    .timeline-step:last-child { border-right: none; }
+    .timeline-num {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--graphite-400);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .timeline-name {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--axial-black);
+      margin: 0 0 4px 0;
+    }
+    .timeline-duration {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--axial-voltage-dim);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .timeline-desc {
+      font-size: 11px;
+      line-height: 1.5;
+      color: var(--graphite-500);
+      margin: 0;
+    }
+
+    /* ─── MONO TABLE ────────────────────────────────────────── */
+    .mono-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--graphite-200);
+    }
+    .mono-table th {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--graphite-200);
+      text-align: left;
+      background: var(--graphite-100);
+    }
+    .mono-table th:last-child { text-align: right; }
+    .mono-table td {
+      font-size: 12px;
+      color: var(--axial-black);
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--graphite-100);
+    }
+    .mono-table td:last-child { text-align: right; }
+    .mono-table tr:last-child td { border-bottom: none; }
+    .mono-table .mono-val {
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    /* ─── PRICING ───────────────────────────────────────────── */
+    .pricing-tiers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--graphite-200);
+      margin-bottom: 28px;
+    }
+    .pricing-tier {
+      padding: 18px 16px;
+      border-right: 1px solid var(--graphite-200);
+    }
+    .pricing-tier:last-child { border-right: none; }
+    .pricing-tier--selected {
+      border-left: 2px solid var(--axial-voltage-dim);
+      background: rgba(157, 194, 58, 0.03);
+    }
+    .pricing-tier-name {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-500);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .pricing-tier--selected .pricing-tier-name {
+      color: var(--axial-voltage-dim);
+    }
+    .pricing-amount {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--axial-black);
+      margin: 0 0 6px 0;
+    }
+    .pricing-desc {
+      font-size: 11px;
+      line-height: 1.5;
+      color: var(--graphite-500);
+      margin: 0;
+    }
+
+    .breakdown {
+      border: 1px solid var(--graphite-200);
+      margin-bottom: 12px;
+    }
+    .breakdown-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--graphite-100);
+    }
+    .breakdown-row:last-child { border-bottom: none; }
+    .breakdown-label { font-size: 12px; color: var(--axial-black); }
+    .breakdown-amount {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--axial-black);
+    }
+    .breakdown-row--total {
+      background: rgba(157, 194, 58, 0.05);
+    }
+    .breakdown-row--total .breakdown-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--axial-voltage-dim);
+    }
+    .breakdown-row--total .breakdown-amount {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--axial-voltage-dim);
+    }
+
+    /* ─── TERMS ─────────────────────────────────────────────── */
+    .terms-item { margin-bottom: 20px; }
+    .terms-item h3 {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--axial-black);
+      margin: 0 0 5px 0;
+    }
+    .terms-item p {
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--graphite-600);
+      margin: 0;
+    }
+
+    /* ─── SIGN-OFF ───────────────────────────────────────────── */
+    .signoff-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 40px;
+    }
+    .signoff-party {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      display: block;
+      margin-bottom: 20px;
+    }
+    .sig-line {
+      height: 1px;
+      background: var(--axial-black);
+      margin-bottom: 6px;
+    }
+    .sig-line--light {
+      background: var(--graphite-300);
+    }
+    .sig-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      display: block;
+      margin-bottom: 18px;
+    }
+
+    /* ─── PRINT ──────────────────────────────────────────────── */
+    @page { size: A4 portrait; margin: 0; }
+
+    @media print {
+      body { background: transparent; }
+      .doc-page {
+        margin: 0;
+        box-shadow: none;
+        break-after: page;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════
+     01 / 07 — COVER
+═══════════════════════════════════ -->
+<div class="doc-page doc-page--cover">
+
+  <!-- Axis ticks -->
+  <div class="axis-ticks" aria-hidden="true">
+    <svg viewBox="0 0 7 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Ticks every ~10% of page height, 5px wide from axis -->
+      <line x1="3" y1="100" x2="7" y2="100" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="200" x2="7" y2="200" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="300" x2="7" y2="300" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="400" x2="7" y2="400" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="500" x2="7" y2="500" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="600" x2="7" y2="600" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="700" x2="7" y2="700" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="800" x2="7" y2="800" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="900" x2="7" y2="900" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+    </svg>
+  </div>
+
+  <!-- Detailed wordmark -->
+  <div class="cover-wordmark">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" aria-label="Axial Labs" role="img">
+      <line x1="80" y1="36" x2="80" y2="204" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-opacity="0.35"/>
+      <text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="11" letter-spacing="0.06em" fill="currentColor" fill-opacity="0.45" x="100" y="30">→ AL / WORDMARK / v1.0</text>
+      <text font-family="'Inter Display', 'Inter', system-ui, sans-serif" font-weight="600" font-size="92" letter-spacing="-0.02em" fill="currentColor" x="400" y="140" text-anchor="middle">AXIAL LABS</text>
+      <text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="11" letter-spacing="0.06em" fill="currentColor" fill-opacity="0.45" x="400" y="176" text-anchor="middle">ENGINEERED IDENTITY  ·  EST. 2026  ·  AXIS-ALIGNED</text>
+    </svg>
+  </div>
+
+  <hr class="rule" />
+
+  <!-- Document metadata -->
+  <div class="cover-meta" style="margin-top: 14px;">
+    <span class="cover-meta-tag">→ PROPOSAL</span>
+    <span class="cover-meta-sep">·</span>
+    <span class="cover-meta-tag">[CLIENT NAME]</span>
+    <span class="cover-meta-sep">·</span>
+    <span class="cover-meta-tag">YYYY-MM-DD</span>
+  </div>
+
+  <div class="cover-spacer"></div>
+
+  <!-- Project title -->
+  <div>
+    <span class="eyebrow">→ PROJECT CODENAME</span>
+    <h1 class="cover-codename">Project [Codename].</h1>
+    <p class="cover-subtitle">A brand and product engagement for [Client Name].</p>
+  </div>
+
+  <!-- Meta grid -->
+  <div class="cover-info">
+    <div>
+      <span class="cover-info-label">Prepared for</span>
+      <span class="cover-info-value">[Client Name]</span>
+      <span class="caption" style="display:block; margin-top:3px;">[client@company.com]</span>
+    </div>
+    <div>
+      <span class="cover-info-label">Prepared by</span>
+      <span class="cover-info-value">Axial Labs</span>
+      <span class="caption" style="display:block; margin-top:3px;">santiagot.roa@gmail.com</span>
+    </div>
+    <div>
+      <span class="cover-info-label">Date</span>
+      <span class="cover-info-value">YYYY-MM-DD</span>
+    </div>
+    <div>
+      <span class="cover-info-label">Version</span>
+      <span class="cover-info-value">v1.0</span>
+    </div>
+  </div>
+
+  <div class="running-footer" style="position:static; border-top: 1px solid var(--graphite-200); padding-top: 8px; margin-top: 24px; display:flex; justify-content:space-between;">
+    <span class="rf-label">Confidential — Axial Labs</span>
+    <span class="rf-page">01 / 07</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     02 / 07 — BRIEF + APPROACH
+═══════════════════════════════════ -->
+<div class="doc-page">
+  <div class="axis-ticks" aria-hidden="true">
+    <svg viewBox="0 0 7 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="3" y1="100" x2="7" y2="100" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="200" x2="7" y2="200" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="300" x2="7" y2="300" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="400" x2="7" y2="400" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="500" x2="7" y2="500" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="600" x2="7" y2="600" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="700" x2="7" y2="700" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="800" x2="7" y2="800" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="900" x2="7" y2="900" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+    </svg>
+  </div>
+
+  <div class="running-header">
+    <span class="rh-wordmark">AXIAL LABS</span>
+    <span class="rh-ref">→ PROPOSAL · [CLIENT NAME] · YYYY-MM-DD</span>
+  </div>
+
+  <div class="section-head">
+    <span class="eyebrow">→ 01 / 06 · BRIEF</span>
+    <h2 class="h2">What we understand.</h2>
+  </div>
+
+  <p class="body-text">[Client Name] is building [a short description — e.g., "a Series A fintech enabling SMB lending across Latin America"]. The company has reached a stage where the brand needs to match the product's maturity: structured, tokenized, and built to scale.</p>
+
+  <p class="body-text">The existing visual identity [does not exist / needs to be rebuilt / needs to be extended]. The team [has no design system in place / is working from inconsistent Figma files / ships on a tight cadence and needs repeatable components].</p>
+
+  <h3 class="h3" style="margin-top:24px;">Core challenge</h3>
+  <p class="body-text">[Describe the primary problem in one or two sentences. Example: "Every new surface requires a design decision from scratch. There is no source of truth for color, type, or spacing — which slows the team down and produces inconsistent results."]</p>
+
+  <h3 class="h3" style="margin-top:20px;">Success looks like</h3>
+  <p class="body-text">[Concrete outcome. Example: "A production-ready token system that compiles to CSS and Figma. A landing page and two product surfaces. A repository the team can extend without us."]</p>
+
+  <hr class="rule" style="margin: 28px 0;" />
+
+  <div class="section-head">
+    <span class="eyebrow">→ 02 / 06 · APPROACH</span>
+    <h2 class="h2">How we'll solve it.</h2>
+  </div>
+
+  <p class="body-text">Tokens first. Surfaces second. Systems always. We do not hand off PDFs — we hand off repositories. The brand compiles: any developer or AI can extend it from day one.</p>
+
+  <p class="body-text">[Describe the specific approach for this client. Example: "For [Client], we'll start with a two-day discovery sprint to align on visual direction, then move directly to token definition. Every decision gets documented as a token before it touches any surface."]</p>
+
+  <p class="body-text">[Optional second paragraph: tools, stack, rationale.]</p>
+
+  <div class="running-footer">
+    <span class="rf-label">Confidential — Axial Labs</span>
+    <span class="rf-page">02 / 07</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     03 / 07 — SCOPE
+═══════════════════════════════════ -->
+<div class="doc-page">
+  <div class="axis-ticks" aria-hidden="true">
+    <svg viewBox="0 0 7 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="3" y1="100" x2="7" y2="100" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="200" x2="7" y2="200" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="300" x2="7" y2="300" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="400" x2="7" y2="400" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="500" x2="7" y2="500" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="600" x2="7" y2="600" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="700" x2="7" y2="700" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="800" x2="7" y2="800" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="900" x2="7" y2="900" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+    </svg>
+  </div>
+
+  <div class="running-header">
+    <span class="rh-wordmark">AXIAL LABS</span>
+    <span class="rh-ref">→ PROPOSAL · [CLIENT NAME] · YYYY-MM-DD</span>
+  </div>
+
+  <div class="section-head">
+    <span class="eyebrow">→ 03 / 06 · SCOPE</span>
+    <h2 class="h2">What's included.</h2>
+  </div>
+
+  <p class="body-text" style="margin-bottom: 20px;">All deliverables below are included in this engagement. Nothing is billable beyond what's listed here.</p>
+
+  <ul class="scope-list" role="list" aria-label="Deliverables">
+
+    <li class="scope-item">
+      <svg class="scope-check" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x=".5" y=".5" width="14" height="14" stroke="#D8DAE0"/>
+        <polyline points="2.5,7.5 6,11 12.5,4" stroke="#9DC23A" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/>
+      </svg>
+      <div class="scope-item-body">
+        <span class="scope-item-name">Design tokens</span>
+        <span class="scope-item-sub">Color, type, spacing, motion · W3C format + Style Dictionary build</span>
+      </div>
+      <span class="scope-item-tag">INCL.</span>
+    </li>
+
+    <li class="scope-item">
+      <svg class="scope-check" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x=".5" y=".5" width="14" height="14" stroke="#D8DAE0"/>
+        <polyline points="2.5,7.5 6,11 12.5,4" stroke="#9DC23A" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/>
+      </svg>
+      <div class="scope-item-body">
+        <span class="scope-item-name">Logo system</span>
+        <span class="scope-item-sub">Wordmark, icon, monogram, favicon set · SVG + construction spec</span>
+      </div>
+      <span class="scope-item-tag">INCL.</span>
+    </li>
+
+    <li class="scope-item">
+      <svg class="scope-check" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x=".5" y=".5" width="14" height="14" stroke="#D8DAE0"/>
+        <polyline points="2.5,7.5 6,11 12.5,4" stroke="#9DC23A" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/>
+      </svg>
+      <div class="scope-item-body">
+        <span class="scope-item-name">Voice and tone playbook</span>
+        <span class="scope-item-sub">Vocabulary, examples, channel guides · Markdown in repo</span>
+      </div>
+      <span class="scope-item-tag">INCL.</span>
+    </li>
+
+    <li class="scope-item">
+      <svg class="scope-check" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x=".5" y=".5" width="14" height="14" stroke="#D8DAE0"/>
+        <polyline points="2.5,7.5 6,11 12.5,4" stroke="#9DC23A" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/>
+      </svg>
+      <div class="scope-item-body">
+        <span class="scope-item-name">Marketing pages (3)</span>
+        <span class="scope-item-sub">Landing, services, about · Single-file HTML, tokenized</span>
+      </div>
+      <span class="scope-item-tag">INCL.</span>
+    </li>
+
+    <li class="scope-item">
+      <svg class="scope-check" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x=".5" y=".5" width="14" height="14" stroke="#D8DAE0"/>
+        <polyline points="2.5,7.5 6,11 12.5,4" stroke="#9DC23A" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/>
+      </svg>
+      <div class="scope-item-body">
+        <span class="scope-item-name">Component library</span>
+        <span class="scope-item-sub">Button, card, input, nav, footer · Storybook + npm package</span>
+      </div>
+      <span class="scope-item-tag">INCL.</span>
+    </li>
+
+    <li class="scope-item">
+      <svg class="scope-check" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x=".5" y=".5" width="14" height="14" stroke="#D8DAE0"/>
+        <polyline points="2.5,7.5 6,11 12.5,4" stroke="#9DC23A" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/>
+      </svg>
+      <div class="scope-item-body">
+        <span class="scope-item-name">Social media templates</span>
+        <span class="scope-item-sub">Instagram: 5 posts + carousel · SVG, editable</span>
+      </div>
+      <span class="scope-item-tag">INCL.</span>
+    </li>
+
+    <li class="scope-item">
+      <svg class="scope-check" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x=".5" y=".5" width="14" height="14" stroke="#D8DAE0"/>
+        <polyline points="2.5,7.5 6,11 12.5,4" stroke="#9DC23A" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/>
+      </svg>
+      <div class="scope-item-body">
+        <span class="scope-item-name">Repository handoff</span>
+        <span class="scope-item-sub">Structured, documented, extendable · GitHub + README</span>
+      </div>
+      <span class="scope-item-tag">INCL.</span>
+    </li>
+
+    <li class="scope-item">
+      <!-- Unchecked — optional -->
+      <svg class="scope-check" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x=".5" y=".5" width="14" height="14" stroke="#D8DAE0"/>
+      </svg>
+      <div class="scope-item-body">
+        <span class="scope-item-name" style="color: var(--graphite-400);">Pitch deck template (16 slides)</span>
+        <span class="scope-item-sub">Optional add-on · Not included in base scope</span>
+      </div>
+      <span class="scope-item-tag" style="color: var(--graphite-300);">OPT.</span>
+    </li>
+
+    <li class="scope-item">
+      <!-- Excluded — billed directly by vendor to client -->
+      <svg class="scope-check" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x=".5" y=".5" width="14" height="14" stroke="#D8DAE0"/>
+        <line x1="3" y1="7.5" x2="12" y2="7.5" stroke="#878C97" stroke-width="1.5" stroke-linecap="square"/>
+      </svg>
+      <div class="scope-item-body">
+        <span class="scope-item-name" style="color: var(--graphite-400);">Third-party infrastructure</span>
+        <span class="scope-item-sub">Domain, hosting, email, analytics · Billed by vendors directly to [Client]</span>
+      </div>
+      <span class="scope-item-tag" style="color: var(--graphite-300);">EXCL.</span>
+    </li>
+
+  </ul>
+
+  <div class="running-footer">
+    <span class="rf-label">Confidential — Axial Labs</span>
+    <span class="rf-page">03 / 07</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     04 / 07 — TIMELINE
+═══════════════════════════════════ -->
+<div class="doc-page">
+  <div class="axis-ticks" aria-hidden="true">
+    <svg viewBox="0 0 7 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="3" y1="100" x2="7" y2="100" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="200" x2="7" y2="200" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="300" x2="7" y2="300" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="400" x2="7" y2="400" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="500" x2="7" y2="500" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="600" x2="7" y2="600" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="700" x2="7" y2="700" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="800" x2="7" y2="800" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="900" x2="7" y2="900" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+    </svg>
+  </div>
+
+  <div class="running-header">
+    <span class="rh-wordmark">AXIAL LABS</span>
+    <span class="rh-ref">→ PROPOSAL · [CLIENT NAME] · YYYY-MM-DD</span>
+  </div>
+
+  <div class="section-head">
+    <span class="eyebrow">→ 04 / 06 · TIMELINE</span>
+    <h2 class="h2">Four weeks.</h2>
+  </div>
+
+  <p class="body-text" style="margin-bottom:28px;">Fixed timeline. Every stage produces a shippable output — you are not waiting until week four to see results.</p>
+
+  <div class="timeline-grid" role="list">
+    <div class="timeline-step" role="listitem">
+      <span class="timeline-num">01 / 04</span>
+      <h3 class="timeline-name">Discovery</h3>
+      <span class="timeline-duration">1 week</span>
+      <p class="timeline-desc">Strategy audit, brand brief, visual direction. Deliverable: brief document.</p>
+    </div>
+    <div class="timeline-step" role="listitem">
+      <span class="timeline-num">02 / 04</span>
+      <h3 class="timeline-name">Tokens</h3>
+      <span class="timeline-duration">3 days</span>
+      <p class="timeline-desc">Color, type, spacing, motion. Deliverable: tokens.css + Figma library.</p>
+    </div>
+    <div class="timeline-step" role="listitem">
+      <span class="timeline-num">03 / 04</span>
+      <h3 class="timeline-name">System</h3>
+      <span class="timeline-duration">2 weeks</span>
+      <p class="timeline-desc">Logo, pages, components, social templates. Deliverable: full asset set + repo.</p>
+    </div>
+    <div class="timeline-step" role="listitem" style="border-right:none;">
+      <span class="timeline-num">04 / 04</span>
+      <h3 class="timeline-name">Ship</h3>
+      <span class="timeline-duration">2 days</span>
+      <p class="timeline-desc">Final review, repository transfer, handoff call.</p>
+    </div>
+  </div>
+
+  <span class="eyebrow" style="margin-top:32px; margin-bottom:14px;">→ MILESTONES</span>
+  <table class="mono-table" role="table" aria-label="Project milestones">
+    <thead>
+      <tr>
+        <th>Milestone</th>
+        <th>Week</th>
+        <th>Checkpoint</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Brief and direction confirmed</td>
+        <td class="mono-val">01</td>
+        <td class="mono-val" style="text-align:right;">→ 01 / 04</td>
+      </tr>
+      <tr>
+        <td>Tokens approved</td>
+        <td class="mono-val">01.5</td>
+        <td class="mono-val" style="text-align:right;">→ 02 / 04</td>
+      </tr>
+      <tr>
+        <td>First build review</td>
+        <td class="mono-val">03</td>
+        <td class="mono-val" style="text-align:right;">→ 03 / 04</td>
+      </tr>
+      <tr>
+        <td>Handoff complete</td>
+        <td class="mono-val">04</td>
+        <td class="mono-val" style="text-align:right;">→ FINAL</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="running-footer">
+    <span class="rf-label">Confidential — Axial Labs</span>
+    <span class="rf-page">04 / 07</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     05 / 07 — PRICING
+═══════════════════════════════════ -->
+<div class="doc-page">
+  <div class="axis-ticks" aria-hidden="true">
+    <svg viewBox="0 0 7 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="3" y1="100" x2="7" y2="100" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="200" x2="7" y2="200" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="300" x2="7" y2="300" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="400" x2="7" y2="400" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="500" x2="7" y2="500" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="600" x2="7" y2="600" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="700" x2="7" y2="700" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="800" x2="7" y2="800" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="900" x2="7" y2="900" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+    </svg>
+  </div>
+
+  <div class="running-header">
+    <span class="rh-wordmark">AXIAL LABS</span>
+    <span class="rh-ref">→ PROPOSAL · [CLIENT NAME] · YYYY-MM-DD</span>
+  </div>
+
+  <div class="section-head">
+    <span class="eyebrow">→ 05 / 06 · PRICING</span>
+    <h2 class="h2">Investment.</h2>
+  </div>
+
+  <p class="body-text" style="margin-bottom:24px;">This proposal is scoped to the Studio tier. No upsells, no surprise scope — everything in the previous section is included at the price below.</p>
+
+  <div class="pricing-tiers">
+    <div class="pricing-tier">
+      <span class="pricing-tier-name">OS</span>
+      <p class="pricing-amount">$4,800</p>
+      <p class="pricing-desc">Token system + logo + one marketing page. For teams that need a foundation fast.</p>
+    </div>
+    <div class="pricing-tier pricing-tier--selected">
+      <span class="pricing-tier-name">→ STUDIO · SELECTED</span>
+      <p class="pricing-amount">$12,000</p>
+      <p class="pricing-desc">Full brand system + components + marketing pages + social. For teams ready to ship the whole stack.</p>
+    </div>
+    <div class="pricing-tier">
+      <span class="pricing-tier-name">FOUNDRY</span>
+      <p class="pricing-amount">Custom</p>
+      <p class="pricing-desc">Extended build, open source tooling, or a multi-quarter retainer.</p>
+    </div>
+  </div>
+
+  <span class="eyebrow" style="margin-bottom:14px;">→ STUDIO · BREAKDOWN</span>
+  <div class="breakdown">
+    <div class="breakdown-row">
+      <span class="breakdown-label">Discovery and strategy</span>
+      <span class="breakdown-amount">$1,500</span>
+    </div>
+    <div class="breakdown-row">
+      <span class="breakdown-label">Design tokens + build pipeline</span>
+      <span class="breakdown-amount">$1,200</span>
+    </div>
+    <div class="breakdown-row">
+      <span class="breakdown-label">Logo system (5 files)</span>
+      <span class="breakdown-amount">$1,800</span>
+    </div>
+    <div class="breakdown-row">
+      <span class="breakdown-label">Marketing pages (3)</span>
+      <span class="breakdown-amount">$2,400</span>
+    </div>
+    <div class="breakdown-row">
+      <span class="breakdown-label">Component library + Storybook</span>
+      <span class="breakdown-amount">$2,100</span>
+    </div>
+    <div class="breakdown-row">
+      <span class="breakdown-label">Social templates + voice playbook</span>
+      <span class="breakdown-amount">$1,200</span>
+    </div>
+    <div class="breakdown-row">
+      <span class="breakdown-label">Repository handoff + documentation</span>
+      <span class="breakdown-amount">$800</span>
+    </div>
+    <div class="breakdown-row breakdown-row--total">
+      <span class="breakdown-label">TOTAL</span>
+      <span class="breakdown-amount">$12,000</span>
+    </div>
+  </div>
+
+  <p class="caption" style="margin-top:10px;">Payment: 50% on signature, 50% on handoff. Wire transfer or Stripe. All prices in USD.</p>
+
+  <div class="running-footer">
+    <span class="rf-label">Confidential — Axial Labs</span>
+    <span class="rf-page">05 / 07</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     06 / 07 — TERMS
+═══════════════════════════════════ -->
+<div class="doc-page">
+  <div class="axis-ticks" aria-hidden="true">
+    <svg viewBox="0 0 7 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="3" y1="100" x2="7" y2="100" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="200" x2="7" y2="200" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="300" x2="7" y2="300" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="400" x2="7" y2="400" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="500" x2="7" y2="500" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="600" x2="7" y2="600" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="700" x2="7" y2="700" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="800" x2="7" y2="800" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="900" x2="7" y2="900" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+    </svg>
+  </div>
+
+  <div class="running-header">
+    <span class="rh-wordmark">AXIAL LABS</span>
+    <span class="rh-ref">→ PROPOSAL · [CLIENT NAME] · YYYY-MM-DD</span>
+  </div>
+
+  <div class="section-head">
+    <span class="eyebrow">→ 06 / 06 · TERMS</span>
+    <h2 class="h2">Terms.</h2>
+  </div>
+
+  <div class="terms-item">
+    <h3>Payment</h3>
+    <p>50% due on contract signature to begin work. Remaining 50% due on final handoff. Invoiced via Stripe or wire transfer. Late payments (more than 14 days) pause the engagement without penalty to either party until settled.</p>
+  </div>
+
+  <div class="terms-item">
+    <h3>Intellectual property</h3>
+    <p>All final deliverables transfer to [Client Name] on receipt of final payment. Working files, intermediate explorations, and the Axial Labs production system remain property of Axial Labs. We retain the right to display the work in our portfolio unless otherwise agreed in writing.</p>
+  </div>
+
+  <div class="terms-item">
+    <h3>Third-party services</h3>
+    <p>The site runs on third-party infrastructure: domain registrar, hosting (Vercel or equivalent), transactional email, analytics, and rate-limiting. These accounts are created in [Client Name]'s name and billed directly by the vendor — typically $15–40/month total. Axial Labs is added as an admin or team member for operational access, but [Client Name] owns the accounts, the data, and the billing relationship. We do not mark up or rebill vendor charges.</p>
+  </div>
+
+  <div class="terms-item">
+    <h3>Revisions</h3>
+    <p>Two rounds of structured feedback are included per deliverable stage. Additional revision rounds are billed at $150/hour. Revisions are for refinement within the agreed brief — not scope changes. Scope changes are quoted separately before work begins.</p>
+  </div>
+
+  <div class="terms-item">
+    <h3>Confidentiality</h3>
+    <p>Both parties agree to keep non-public information shared during this engagement confidential. This includes client strategy, product roadmap, and unreleased brand assets.</p>
+  </div>
+
+  <div class="terms-item">
+    <h3>Termination</h3>
+    <p>Either party may terminate with 7 days written notice. Work completed to date is invoiced and due. If the client terminates after the first milestone, the 50% deposit is non-refundable.</p>
+  </div>
+
+  <div class="terms-item">
+    <h3>Governing law</h3>
+    <p>[Jurisdiction, e.g., "State of California, USA"]. Any disputes are resolved through binding arbitration before litigation.</p>
+  </div>
+
+  <div class="running-footer">
+    <span class="rf-label">Confidential — Axial Labs</span>
+    <span class="rf-page">06 / 07</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     07 / 07 — SIGN-OFF
+═══════════════════════════════════ -->
+<div class="doc-page">
+  <div class="axis-ticks" aria-hidden="true">
+    <svg viewBox="0 0 7 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="3" y1="100" x2="7" y2="100" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="200" x2="7" y2="200" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="300" x2="7" y2="300" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="400" x2="7" y2="400" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="500" x2="7" y2="500" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="600" x2="7" y2="600" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="700" x2="7" y2="700" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="800" x2="7" y2="800" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="900" x2="7" y2="900" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+    </svg>
+  </div>
+
+  <div class="running-header">
+    <span class="rh-wordmark">AXIAL LABS</span>
+    <span class="rh-ref">→ PROPOSAL · [CLIENT NAME] · YYYY-MM-DD</span>
+  </div>
+
+  <div class="section-head">
+    <span class="eyebrow">→ SIGN-OFF</span>
+    <h2 class="h2">Ready to proceed.</h2>
+  </div>
+
+  <p class="body-text">This document constitutes a binding proposal. Signing below indicates agreement to the scope, timeline, pricing, and terms on the preceding pages. Work begins within 48 hours of receipt of signed agreement and initial payment.</p>
+
+  <p class="body-text" style="margin-bottom:40px;">Questions before signing? Email <span style="font-family:var(--font-mono); font-size:12px;">santiagot.roa@gmail.com</span></p>
+
+  <hr class="rule" style="margin-bottom:40px;" />
+
+  <div class="signoff-grid">
+    <div>
+      <span class="signoff-party">→ CLIENT</span>
+      <div class="sig-line"></div>
+      <span class="sig-label">Signature</span>
+      <div class="sig-line sig-line--light"></div>
+      <span class="sig-label">Printed name</span>
+      <div class="sig-line sig-line--light"></div>
+      <span class="sig-label">Title</span>
+      <div class="sig-line sig-line--light"></div>
+      <span class="sig-label">Date</span>
+    </div>
+    <div>
+      <span class="signoff-party">→ AXIAL LABS</span>
+      <div class="sig-line"></div>
+      <span class="sig-label">Signature</span>
+      <div class="sig-line sig-line--light"></div>
+      <span class="sig-label">Santiago Roa · Founder</span>
+      <div class="sig-line sig-line--light"></div>
+      <span class="sig-label">Title</span>
+      <div class="sig-line sig-line--light"></div>
+      <span class="sig-label">Date</span>
+    </div>
+  </div>
+
+  <hr class="rule" style="margin-top:40px; margin-bottom:20px;" />
+
+  <p class="caption" style="text-align:center; line-height:2;">
+    AXIAL LABS  ·  ENGINEERED IDENTITY STUDIO  ·  AXIALLABS.COM<br/>
+    SYSTEMS FOR AMBITIOUS SOFTWARE.  ·  v1.0
+  </p>
+
+  <div class="running-footer">
+    <span class="rf-label">Confidential — Axial Labs</span>
+    <span class="rf-page">07 / 07</span>
+  </div>
+</div>
+
+</body>
+</html>

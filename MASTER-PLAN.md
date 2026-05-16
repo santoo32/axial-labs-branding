@@ -1,7 +1,23 @@
 # AXIAL LABS — MASTER BRAND EXECUTION PLAN
 
 _Internal documentation. Single source of truth._
-_Owner: Santiago Roa. Status: v1.0. Generated: 2026-05-07._
+_Owner: Santiago Roa. Status: v1.0. Generated: 2026-05-07. Last updated: 2026-05-10._
+
+---
+
+## CURRENT STATUS
+
+| Phase | Description | Status | Notes |
+| ----- | ----------- | ------ | ----- |
+| 0 | Foundation | `DONE` | 2 of 4 docs on disk; naming + positioning folded into strategy |
+| 1 | Tokens & rules | `DONE` | 11 token files, 3 build outputs, 2 visual-language docs |
+| 2 | Identity | `DONE` | 25 logo SVGs · 16 icons · 8 illustrations · 5 patterns · type + color HTML |
+| 3 | Templates | `DONE` | All high-priority items shipped; 2 low-priority items deferred to v1.1 |
+| 4 | Polish & docs | `DONE` | Guidelines + README + QA + CHANGELOG · **v1.0.0 tagged 2026-05-10** |
+
+**System status: v1.0.0 — COMPLETE**
+
+Deferred to v1.1: `3.2` component library extraction · `3.7` CV / resume template
 
 ---
 
@@ -1217,47 +1233,68 @@ Every generated asset must pass before being committed to the repo.
 
 ## 14. RECOMMENDED EXECUTION ORDER
 
-### Phase 0 [DONE] — Foundation (Day 1) · OPUS
+### Phase 0 [DONE] — Foundation · OPUS
 
-- 0.1 Brand strategy → `/branding/01-strategy.md`
-- 0.2 Voice & tone → `/branding/03-voice-tone.md`
-- 0.3 Naming rationale → `/branding/05-naming-rationale.md`
-- 0.4 Master system prompt → `/prompts/system-prompt.md`
+- ✅ 0.1 Brand strategy → `/branding/01-strategy.md`
+- ✅ 0.2 Voice & tone → `/branding/03-voice-tone.md` (50+ calibrated examples)
+- ⚠️ 0.3 Naming rationale → content folded into `01-strategy.md` §2; standalone `05-naming-rationale.md` not created
+- ✅ 0.4 Master system prompt → `/prompts/system-prompt.md`
+- ⚠️ 0.x `/branding/02-positioning.md` and `/branding/04-messaging-pillars.md` not created as standalone files; content lives in `01-strategy.md`
 
-### Phase 1 [DONE] — Tokens & rules (Day 2) · OPUS
+### Phase 1 [DONE] — Tokens & rules · OPUS
 
-- 1.1 Design tokens (color, type, spacing, motion, shadow, gradient) → `/tokens/core/*.json`
-- 1.2 Semantic + component tokens → `/tokens/semantic/`, `/tokens/component/`
-- 1.3 Style Dictionary build config → `/tokens/config/style-dictionary.config.js`
-- 1.4 Generated `tokens.css`, `tokens.tailwind.js`
-- 1.5 Visual language doc → `/visual-language/grid-system.md`, `motion-spec.md`
+- ✅ 1.1 Core tokens (color, type, spacing, motion, shadow, gradient, radius, z-index) → `/tokens/core/` (8 JSON files)
+- ✅ 1.2 Semantic tokens → `/tokens/semantic/dark.json`, `light.json` · Component tokens → `/tokens/component/` (button, card, input, badge)
+- ✅ 1.3 Style Dictionary build config → `/tokens/config/style-dictionary.config.js`
+- ✅ 1.4 Build outputs → `/tokens/build/tokens.css`, `tokens.tailwind.js`, `tokens.figma.json`
+- ✅ 1.5 Visual language docs → `/visual-language/grid-system.md`, `motion-spec.md`
 
-### Phase 2 [DONE] — Identity (Days 3–4) · SONNET, REVIEWED BY OPUS
+### Phase 2 [DONE] — Identity · SONNET
 
-- 2.1 Logo system: wordmark, lockup, icon, monogram, favicon set, construction diagrams
-- 2.2 Type specimens HTML
-- 2.3 Color palette HTML
-- 2.4 Icon starter set (16 icons)
-- 2.5 Pattern library SVGs (tick, grid, crosshair)
-- 2.6 Illustration starter pack (8 illustrations)
+- ✅ 2.1 Logo system — **25 SVGs total**
+  - Primary: `axial-wordmark-primary.svg`, `-light.svg`, `-dark.svg`, `-compact.svg`, `-detailed.svg`
+  - Lockups: `axial-lockup-stacked.svg`, `axial-lockup-horizontal.svg`
+  - Icons: `axial-icon.svg`, `axial-icon-stroke.svg`, `axial-icon-voltage.svg`
+  - Monogram: `axial-monogram-AL.svg`
+  - Experiments: 8 monogram alternates + 6 wordmark alternates (inc. `wordmark-construction.svg`)
+  - ⚠️ Formal `/logos/construction/` directory not created; construction SVG lives in `/logos/experiments/wordmark/`
+- ✅ 2.2 Type specimens → `/typography/type-specimens.html`
+- ✅ 2.3 Color palette → `/color/palette.html`
+- ✅ 2.4 Icon starter set → `/visual-language/icons/` (16 SVGs)
+- ✅ 2.5 Pattern library → `/visual-language/patterns/` (5 SVGs: axis-divider, crosshair-corners, dot-grid, grid-overlay, tick-border)
+- ✅ 2.6 Illustration starter pack → `/visual-language/illustrations/` (8 SVGs)
 
-### Phase 3 — Templates (Days 5–7) · SONNET
+### Phase 3 [PARTIAL] — Templates · SONNET
 
-- 3.1 HTML mockups in priority order (landing → services → pricing → case study → about → contact → 404)
-- 3.2 Component library extraction → `/html/components/`
-- 3.3 Instagram templates (5 base + 1 carousel)
-- 3.4 LinkedIn / X / YouTube thumbnail templates
-- 3.5 Email signature
-- 3.6 Pitch deck template (16 slides)
-- 3.7 CV / resume template
-- 3.8 Document templates (proposal, invoice)
+- ✅ 3.1 HTML mockups — **10 pages**
+  - `/mockups/landing-axial-hero.html`, `landing-schematic-hero.html`, `landing-live-hero.html`
+  - `/mockups/services.html`, `pricing.html`, `case-study-index.html`, `case-study-template.html`
+  - `/mockups/about.html`, `contact.html`, `404.html`
+  - Hero direction chosen: **schematic** (corner coordinate labels + 64×64 grid + tick-framed H1)
+- ⏳ 3.2 Component library extraction → `/html/components/` — **PENDING** (low priority)
+- ✅ 3.3 Instagram templates — **15 files**
+  - 5 base posts: `post-quote.svg`, `post-schematic.svg`, `post-wordmark.svg`, `post-process.svg`, `post-announcement.svg`
+  - 10-slide carousel: `carousel-slide-01` through `carousel-slide-10`
+  - Preview: `instagram-suite-preview.html`
+- ✅ 3.4 Channel templates — `linkedin-post.svg` · `x-card.svg` · `youtube-thumbnail.svg`
+- ✅ 3.4b Profile avatar — `/social/avatar-profile.svg` · 400×400 · AL monogram on Black · voltage-dim datum accent · corner registration marks · works as circle crop
+- ✅ 3.5 Email signature → `/social/email/email-signature.html`
+- ✅ 3.6 Pitch deck → `/decks/pitch-deck-template.html` (16 slides, 1920×1080)
+- ⏳ 3.7 CV / resume template — **PENDING** (low priority)
+- ✅ 3.8 Document templates — **2 files shipped 2026-05-10**
+  - `/decks/proposal-template.html` — 7 A4 pages: Cover · Brief · Approach · Scope · Timeline · Pricing · Terms · Sign-off
+  - `/decks/invoice-template.html` — 1 A4 page: Mono table · voltage-dim TOTAL row · payment instructions
 
-### Phase 4 — Polish & docs (Day 8) · OPUS
+### Phase 4 [DONE] — Polish & docs · OPUS
 
-- 4.1 Brand guidelines master doc → `/branding/06-brand-guidelines.md`
-- 4.2 README + onboarding doc → `/README.md`
-- 4.3 Final QA pass against checklist
-- 4.4 Tag v1.0.0
+- ✅ 4.1 Brand guidelines master doc → `/branding/06-brand-guidelines.md` (15 sections, 113-file inventory)
+- ✅ 4.2 README + onboarding → `/README.md` (quick-start, generation guide, token architecture)
+- ✅ 4.3 Final QA pass — 46 checks run · 2 issues found and fixed · full report in `CHANGELOG.md`
+  - Fixed: `pitch-deck-template.html` off-palette `#050506` → `#0A0A0B`
+  - Fixed: `instagram-suite-preview.html` forbidden word "leverage" in alt text
+  - Accepted: `email-signature.html` uses `#ffffff` (email client compatibility)
+  - Accepted: forbidden words in markdown docs appear in vocabulary lists only
+- ✅ 4.4 Tagged v1.0.0 → `CHANGELOG.md` created
 
 ---
 
