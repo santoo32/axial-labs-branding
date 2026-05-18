@@ -1,65 +1,178 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Axial Labs — Component: Footer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
   <style>
     /* ── TOKENS ─────────────────────────────────────────── */
     :root {
-      --axial-black: #0A0A0B; --axial-bone: #F4F2EC;
-      --axial-voltage: #C6F24E; --axial-voltage-dim: #9DC23A;
-      --graphite-900: #0A0A0B; --graphite-800: #1A1B1E; --graphite-700: #26282D;
-      --graphite-600: #3A3D44; --graphite-500: #5A5E68; --graphite-400: #878C97;
-      --graphite-300: #B5B9C2; --graphite-200: #D8DAE0; --graphite-100: #ECEDEF;
+      --axial-black: #0A0A0B;
+      --axial-bone: #F4F2EC;
+      --axial-voltage: #C6F24E;
+      --axial-voltage-dim: #9DC23A;
+      --graphite-900: #0A0A0B;
+      --graphite-800: #1A1B1E;
+      --graphite-700: #26282D;
+      --graphite-600: #3A3D44;
+      --graphite-500: #5A5E68;
+      --graphite-400: #878C97;
+      --graphite-300: #B5B9C2;
+      --graphite-200: #D8DAE0;
+      --graphite-100: #ECEDEF;
       --font-display: 'Inter Display', 'Inter', system-ui, sans-serif;
       --font-body: 'Inter', system-ui, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
-      --track-tight: -0.02em; --track-wider: 0.06em;
+      --track-tight: -0.02em;
+      --track-wider: 0.06em;
       --ease-axial: cubic-bezier(0.32, 0.72, 0, 1);
       --duration-ui: 240ms;
       --shadow-focus: 0 0 0 2px var(--axial-black), 0 0 0 4px var(--axial-voltage);
     }
 
     /* ── RESET ──────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
     body {
-      margin: 0; background: var(--axial-black); color: var(--axial-bone);
-      font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+      margin: 0;
+      background: var(--axial-black);
+      color: var(--axial-bone);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }
-    :focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
+    :focus-visible {
+      outline: none;
+      box-shadow: var(--shadow-focus);
+    }
 
     /* ── PREVIEW SHELL ──────────────────────────────────── */
-    .shell { padding: 64px clamp(48px, 8vw, 128px) 0; max-width: 1280px; margin: 0 auto; }
-    .comp-meta { margin-bottom: 56px; padding-bottom: 28px; border-bottom: 1px solid var(--graphite-700); }
-    .comp-eyebrow { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
-      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-400);
-      margin: 0 0 12px; display: block; }
-    .comp-name { font-family: var(--font-display); font-size: 48px; font-weight: 600;
-      letter-spacing: var(--track-tight); line-height: 1.1; margin: 0 0 8px; }
-    .comp-desc { font-size: 16px; color: var(--graphite-300); margin: 0; }
-    .preview-section { margin-bottom: 64px; }
-    .preview-heading { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
-      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-500);
-      margin: 0 0 20px; padding-bottom: 12px; border-bottom: 1px solid var(--graphite-700); }
-    .code-section { padding: 0 clamp(48px, 8vw, 128px) 96px; max-width: 1280px; margin: 0 auto; }
-    .code-heading { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
-      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-400);
-      margin: 0 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--graphite-700); }
-    pre { background: var(--graphite-800); border: 1px solid var(--graphite-700);
-      padding: 24px; overflow-x: auto; margin: 0 0 48px; }
-    code { font-family: var(--font-mono); font-size: 12px; line-height: 1.8; color: var(--graphite-200); }
-    .tok-comment { color: var(--graphite-500); }
-    .tok-prop { color: var(--axial-voltage-dim); }
-    .tok-val { color: var(--graphite-300); }
-    .tok-sel { color: var(--axial-bone); }
-    .tok-tag { color: var(--axial-voltage-dim); }
-    .tok-attr { color: var(--graphite-400); }
-    .tok-str { color: var(--graphite-200); }
+    .shell {
+      padding: 64px clamp(48px, 8vw, 128px) 0;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .comp-meta {
+      margin-bottom: 56px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--graphite-700);
+    }
+
+    .comp-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      margin: 0 0 12px;
+      display: block;
+    }
+
+    .comp-name {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 600;
+      letter-spacing: var(--track-tight);
+      line-height: 1.1;
+      margin: 0 0 8px;
+    }
+
+    .comp-desc {
+      font-size: 16px;
+      color: var(--graphite-300);
+      margin: 0;
+    }
+
+    .preview-section {
+      margin-bottom: 64px;
+    }
+
+    .preview-heading {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-500);
+      margin: 0 0 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--graphite-700);
+    }
+
+    .code-section {
+      padding: 0 clamp(48px, 8vw, 128px) 96px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .code-heading {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      margin: 0 0 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--graphite-700);
+    }
+
+    pre {
+      background: var(--graphite-800);
+      border: 1px solid var(--graphite-700);
+      padding: 24px;
+      overflow-x: auto;
+      margin: 0 0 48px;
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.8;
+      color: var(--graphite-200);
+    }
+
+    .tok-comment {
+      color: var(--graphite-500);
+    }
+
+    .tok-prop {
+      color: var(--axial-voltage-dim);
+    }
+
+    .tok-val {
+      color: var(--graphite-300);
+    }
+
+    .tok-sel {
+      color: var(--axial-bone);
+    }
+
+    .tok-tag {
+      color: var(--axial-voltage-dim);
+    }
+
+    .tok-attr {
+      color: var(--graphite-400);
+    }
+
+    .tok-str {
+      color: var(--graphite-200);
+    }
 
     /* ── COMPONENT: FOOTER ──────────────────────────────── */
     .site-footer {
@@ -161,13 +274,15 @@
     }
   </style>
 </head>
+
 <body>
 
   <div class="shell">
     <header class="comp-meta">
       <span class="comp-eyebrow">→ COMPONENT LIBRARY · v1.0</span>
       <h1 class="comp-name">Footer</h1>
-      <p class="comp-desc">Full-width footer. Detailed wordmark SVG at top, 3-column links grid, Mono copyright line at bottom.</p>
+      <p class="comp-desc">Full-width footer. Detailed wordmark SVG at top, 3-column links grid, Mono copyright line at
+        bottom.</p>
     </header>
     <section class="preview-section" aria-labelledby="footer-preview-heading">
       <p class="preview-heading" id="footer-preview-heading">→ Preview</p>
@@ -183,24 +298,19 @@
         <div class="footer-wordmark" role="img" aria-label="Axial Labs">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" aria-hidden="true">
             <!-- Axis instrumentation line -->
-            <line x1="80" y1="40" x2="80" y2="200"
-                  stroke="currentColor" stroke-width="1"
-                  stroke-linecap="square" stroke-opacity="0.4"/>
+            <line x1="80" y1="40" x2="80" y2="200" stroke="currentColor" stroke-width="1" stroke-linecap="square"
+              stroke-opacity="0.4" />
             <!-- Index label -->
-            <text font-family="'JetBrains Mono', monospace"
-                  font-weight="400" font-size="12" letter-spacing="0.06em"
-                  fill="currentColor" fill-opacity="0.6"
-                  x="100" y="32">→ AL / WORDMARK / v1.0</text>
+            <text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="12" letter-spacing="0.06em"
+              fill="currentColor" fill-opacity="0.6" x="100" y="32">→ AL / WORDMARK / v1.0</text>
             <!-- Wordmark -->
-            <text font-family="'Inter Display', 'Neue Haas Grotesk Display', system-ui, sans-serif"
-                  font-weight="600" font-size="96" letter-spacing="-0.02em"
-                  fill="currentColor"
-                  x="400" y="140" text-anchor="middle">AXIAL LABS</text>
+            <text font-family="'Inter Display', 'Neue Haas Grotesk Display', system-ui, sans-serif" font-weight="600"
+              font-size="96" letter-spacing="-0.02em" fill="currentColor" x="400" y="140" text-anchor="middle">AXIAL
+              LABS</text>
             <!-- Tagline -->
-            <text font-family="'JetBrains Mono', monospace"
-                  font-weight="400" font-size="12" letter-spacing="0.06em"
-                  fill="currentColor" fill-opacity="0.6"
-                  x="400" y="180" text-anchor="middle">ENGINEERED IDENTITY  ·  EST. 2026  ·  AXIS-ALIGNED</text>
+            <text font-family="'JetBrains Mono', monospace" font-weight="400" font-size="12" letter-spacing="0.06em"
+              fill="currentColor" fill-opacity="0.6" x="400" y="180" text-anchor="middle">ENGINEERED IDENTITY · EST.
+              2026 · AXIS-ALIGNED</text>
           </svg>
         </div>
       </div>
@@ -221,7 +331,7 @@
           <ul class="footer-links" role="list">
             <li><a href="/about">About</a></li>
             <li><a href="/work">Work</a></li>
-            <li><a href="/writing">Writing</a></li>
+            <!-- <li><a href="/writing">Writing</a></li> -->
             <li><a href="/pricing">Pricing</a></li>
           </ul>
         </div>
@@ -277,4 +387,5 @@
   </div>
 
 </body>
+
 </html>

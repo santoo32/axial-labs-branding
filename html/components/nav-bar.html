@@ -1,24 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Axial Labs — Component: Nav Bar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
   <style>
     /* ── TOKENS ─────────────────────────────────────────── */
     :root {
-      --axial-black: #0A0A0B; --axial-bone: #F4F2EC;
-      --axial-voltage: #C6F24E; --axial-voltage-dim: #9DC23A;
-      --graphite-900: #0A0A0B; --graphite-800: #1A1B1E; --graphite-700: #26282D;
-      --graphite-600: #3A3D44; --graphite-500: #5A5E68; --graphite-400: #878C97;
-      --graphite-300: #B5B9C2; --graphite-200: #D8DAE0; --graphite-100: #ECEDEF;
+      --axial-black: #0A0A0B;
+      --axial-bone: #F4F2EC;
+      --axial-voltage: #C6F24E;
+      --axial-voltage-dim: #9DC23A;
+      --graphite-900: #0A0A0B;
+      --graphite-800: #1A1B1E;
+      --graphite-700: #26282D;
+      --graphite-600: #3A3D44;
+      --graphite-500: #5A5E68;
+      --graphite-400: #878C97;
+      --graphite-300: #B5B9C2;
+      --graphite-200: #D8DAE0;
+      --graphite-100: #ECEDEF;
       --font-display: 'Inter Display', 'Inter', system-ui, sans-serif;
       --font-body: 'Inter', system-ui, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
-      --track-tight: -0.02em; --track-wider: 0.06em;
+      --track-tight: -0.02em;
+      --track-wider: 0.06em;
       --ease-axial: cubic-bezier(0.32, 0.72, 0, 1);
       --duration-ui: 240ms;
       --shadow-glow-soft: 0 0 24px rgba(198, 242, 78, 0.35);
@@ -27,45 +39,157 @@
     }
 
     /* ── RESET ──────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
     body {
-      margin: 0; background: var(--axial-black); color: var(--axial-bone);
-      font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+      margin: 0;
+      background: var(--axial-black);
+      color: var(--axial-bone);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }
-    :focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
+    :focus-visible {
+      outline: none;
+      box-shadow: var(--shadow-focus);
+    }
 
     /* ── PREVIEW SHELL ──────────────────────────────────── */
-    .shell { padding: 64px clamp(48px, 8vw, 128px) 96px; max-width: 1280px; margin: 0 auto; }
-    .comp-meta { margin-bottom: 56px; padding-bottom: 28px; border-bottom: 1px solid var(--graphite-700); }
-    .comp-eyebrow { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
-      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-400);
-      margin: 0 0 12px; display: block; }
-    .comp-name { font-family: var(--font-display); font-size: 48px; font-weight: 600;
-      letter-spacing: var(--track-tight); line-height: 1.1; margin: 0 0 8px; }
-    .comp-desc { font-size: 16px; color: var(--graphite-300); margin: 0; }
-    .preview-section { margin-bottom: 64px; }
-    .preview-heading { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
-      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-500);
-      margin: 0 0 20px; padding-bottom: 12px; border-bottom: 1px solid var(--graphite-700); }
-    .preview-area { border: 1px solid var(--graphite-700); background: var(--graphite-800); overflow: hidden; }
-    .preview-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--track-wider);
-      text-transform: uppercase; color: var(--graphite-500); display: block;
-      padding: 12px 24px; border-top: 1px solid var(--graphite-700); }
-    .code-section { margin-top: 16px; }
-    .code-heading { font-family: var(--font-mono); font-size: 11px; font-weight: 500;
-      letter-spacing: var(--track-wider); text-transform: uppercase; color: var(--graphite-400);
-      margin: 0 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--graphite-700); }
-    pre { background: var(--graphite-800); border: 1px solid var(--graphite-700);
-      padding: 24px; overflow-x: auto; margin: 0 0 48px; }
-    code { font-family: var(--font-mono); font-size: 12px; line-height: 1.8; color: var(--graphite-200); }
-    .tok-comment { color: var(--graphite-500); }
-    .tok-prop { color: var(--axial-voltage-dim); }
-    .tok-val { color: var(--graphite-300); }
-    .tok-sel { color: var(--axial-bone); }
-    .tok-tag { color: var(--axial-voltage-dim); }
-    .tok-attr { color: var(--graphite-400); }
-    .tok-str { color: var(--graphite-200); }
+    .shell {
+      padding: 64px clamp(48px, 8vw, 128px) 96px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .comp-meta {
+      margin-bottom: 56px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--graphite-700);
+    }
+
+    .comp-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      margin: 0 0 12px;
+      display: block;
+    }
+
+    .comp-name {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 600;
+      letter-spacing: var(--track-tight);
+      line-height: 1.1;
+      margin: 0 0 8px;
+    }
+
+    .comp-desc {
+      font-size: 16px;
+      color: var(--graphite-300);
+      margin: 0;
+    }
+
+    .preview-section {
+      margin-bottom: 64px;
+    }
+
+    .preview-heading {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-500);
+      margin: 0 0 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--graphite-700);
+    }
+
+    .preview-area {
+      border: 1px solid var(--graphite-700);
+      background: var(--graphite-800);
+      overflow: hidden;
+    }
+
+    .preview-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-500);
+      display: block;
+      padding: 12px 24px;
+      border-top: 1px solid var(--graphite-700);
+    }
+
+    .code-section {
+      margin-top: 16px;
+    }
+
+    .code-heading {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      margin: 0 0 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--graphite-700);
+    }
+
+    pre {
+      background: var(--graphite-800);
+      border: 1px solid var(--graphite-700);
+      padding: 24px;
+      overflow-x: auto;
+      margin: 0 0 48px;
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.8;
+      color: var(--graphite-200);
+    }
+
+    .tok-comment {
+      color: var(--graphite-500);
+    }
+
+    .tok-prop {
+      color: var(--axial-voltage-dim);
+    }
+
+    .tok-val {
+      color: var(--graphite-300);
+    }
+
+    .tok-sel {
+      color: var(--axial-bone);
+    }
+
+    .tok-tag {
+      color: var(--axial-voltage-dim);
+    }
+
+    .tok-attr {
+      color: var(--graphite-400);
+    }
+
+    .tok-str {
+      color: var(--graphite-200);
+    }
 
     /* ── COMPONENT: NAV BAR ─────────────────────────────── */
     /* Position relative (not fixed) for component preview */
@@ -141,22 +265,39 @@
     }
 
     .btn-voltage {
-      font-family: var(--font-mono); font-size: 12px; font-weight: 500;
-      letter-spacing: var(--track-wider); text-transform: uppercase;
-      color: var(--axial-voltage); border: 1px solid var(--axial-voltage);
-      background: transparent; padding: 8px 16px; cursor: pointer;
-      text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
-      line-height: 1; white-space: nowrap;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--axial-voltage);
+      border: 1px solid var(--axial-voltage);
+      background: transparent;
+      padding: 8px 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      line-height: 1;
+      white-space: nowrap;
       transition: background var(--duration-ui) var(--ease-axial),
-                  box-shadow var(--duration-ui) var(--ease-axial);
+        box-shadow var(--duration-ui) var(--ease-axial);
     }
-    .btn-voltage:hover { background: rgba(198,242,78,0.08); box-shadow: var(--shadow-glow-soft); }
+
+    .btn-voltage:hover {
+      background: rgba(198, 242, 78, 0.08);
+      box-shadow: var(--shadow-glow-soft);
+    }
 
     /* Production usage: position fixed */
     .nav-fixed {
       position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: var(--z-3); /* 1000 */
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: var(--z-3);
+      /* 1000 */
     }
 
     /* Spec grid */
@@ -166,11 +307,25 @@
       gap: 24px;
       padding: 32px;
     }
-    .spec-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--track-wider);
-      text-transform: uppercase; color: var(--graphite-500); display: block; margin-bottom: 6px; }
-    .spec-val { font-family: var(--font-mono); font-size: 13px; color: var(--graphite-300); }
+
+    .spec-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--graphite-500);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .spec-val {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--graphite-300);
+    }
   </style>
 </head>
+
 <body>
 
   <div class="shell">
@@ -178,7 +333,8 @@
     <header class="comp-meta">
       <span class="comp-eyebrow">→ COMPONENT LIBRARY · v1.0</span>
       <h1 class="comp-name">Nav Bar</h1>
-      <p class="comp-desc">56px fixed navigation. Mono links, Display wordmark, Voltage CTA. Backdrop blur + bottom border. z-index 1000.</p>
+      <p class="comp-desc">56px fixed navigation. Mono links, Display wordmark, Voltage CTA. Backdrop blur + bottom
+        border. z-index 1000.</p>
     </header>
 
     <!-- Default state -->
@@ -189,8 +345,8 @@
           <div class="nav-inner">
             <a href="/" class="nav-brand" aria-label="Axial Labs home">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
-                <rect x="10" y="1" width="4" height="22" fill="currentColor"/>
-                <rect x="1" y="10" width="22" height="4" fill="currentColor"/>
+                <rect x="10" y="1" width="4" height="22" fill="currentColor" />
+                <rect x="1" y="10" width="22" height="4" fill="currentColor" />
               </svg>
               <span class="nav-wordmark">AXIAL LABS</span>
             </a>
@@ -198,7 +354,7 @@
               <li><a href="/work">Work</a></li>
               <li><a href="/services">Services</a></li>
               <li><a href="/pricing">Pricing</a></li>
-              <li><a href="/writing">Writing</a></li>
+              <!-- <li><a href="/writing">Writing</a></li> -->
               <li><a href="/about">About</a></li>
             </ul>
             <a href="/contact" class="btn-voltage">Get in touch →</a>
@@ -216,8 +372,8 @@
           <div class="nav-inner">
             <a href="/" class="nav-brand" aria-label="Axial Labs home">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
-                <rect x="10" y="1" width="4" height="22" fill="currentColor"/>
-                <rect x="1" y="10" width="22" height="4" fill="currentColor"/>
+                <rect x="10" y="1" width="4" height="22" fill="currentColor" />
+                <rect x="1" y="10" width="22" height="4" fill="currentColor" />
               </svg>
               <span class="nav-wordmark">AXIAL LABS</span>
             </a>
@@ -225,7 +381,7 @@
               <li><a href="/work">Work</a></li>
               <li><a href="/services" aria-current="page">Services</a></li>
               <li><a href="/pricing">Pricing</a></li>
-              <li><a href="/writing">Writing</a></li>
+              <!-- <li><a href="/writing">Writing</a></li> -->
               <li><a href="/about">About</a></li>
             </ul>
             <a href="/contact" class="btn-voltage">Get in touch →</a>
@@ -241,11 +397,14 @@
       <div class="preview-area">
         <div class="spec-grid">
           <div><span class="spec-label">Height</span><span class="spec-val">56px</span></div>
-          <div><span class="spec-label">Position (production)</span><span class="spec-val">fixed, top 0, z-index 1000</span></div>
+          <div><span class="spec-label">Position (production)</span><span class="spec-val">fixed, top 0, z-index
+              1000</span></div>
           <div><span class="spec-label">Background</span><span class="spec-val">transparent</span></div>
           <div><span class="spec-label">Backdrop filter</span><span class="spec-val">blur(12px)</span></div>
-          <div><span class="spec-label">Border bottom</span><span class="spec-label" style="color: var(--graphite-300);">1px graphite-700</span></div>
-          <div><span class="spec-label">Wordmark font</span><span class="spec-val">Inter Display 16px, weight 600</span></div>
+          <div><span class="spec-label">Border bottom</span><span class="spec-label"
+              style="color: var(--graphite-300);">1px graphite-700</span></div>
+          <div><span class="spec-label">Wordmark font</span><span class="spec-val">Inter Display 16px, weight 600</span>
+          </div>
           <div><span class="spec-label">Link font</span><span class="spec-val">JetBrains Mono 12px</span></div>
           <div><span class="spec-label">Link tracking</span><span class="spec-val">+6% uppercase</span></div>
           <div><span class="spec-label">Link color (default)</span><span class="spec-val">graphite-400</span></div>
@@ -288,4 +447,5 @@
 
   </div>
 </body>
+
 </html>
