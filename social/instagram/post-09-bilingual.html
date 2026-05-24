@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Axial Labs — 09 Bilingual PM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Inter+Display:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --axial-black: #0A0A0B;
+    --axial-bone: #F4F2EC;
+    --axial-voltage: #C6F24E;
+    --graphite-600: #3A3D44;
+    --graphite-500: #5A5E68;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1080px; height: 1080px;
+    overflow: hidden; background: var(--axial-black);
+    -webkit-font-smoothing: antialiased;
+  }
+  .post {
+    width: 1080px; height: 1080px;
+    background: var(--axial-black);
+    position: relative; overflow: hidden;
+    container-type: inline-size;
+  }
+  .grid-overlay { position: absolute; inset: 0; pointer-events: none; }
+  .gl-v { position: absolute; top: 0; bottom: 0; width: 1px; background: #131416; }
+  .gl-h { position: absolute; left: 0; right: 0; height: 1px; background: #131416; }
+  .reg-mark {
+    position: absolute; bottom: 40px; right: 40px;
+    width: 16px; height: 16px;
+    border-right: 1px solid #26282D; border-bottom: 1px solid #26282D;
+  }
+  .post-content {
+    position: absolute; inset: 0;
+    padding: 76px 76px 60px;
+    display: flex; flex-direction: column;
+  }
+  .post-index {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px; text-transform: uppercase;
+    letter-spacing: 0.07em; color: var(--graphite-600); line-height: 1;
+  }
+  .post-service {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px; text-transform: uppercase;
+    letter-spacing: 0.07em; color: var(--axial-voltage);
+    margin-top: 10px; line-height: 1;
+  }
+  /* Very large — short lines ("En." / "Es.") */
+  .post-headline {
+    font-family: 'Inter Display', 'Inter', system-ui, sans-serif;
+    font-weight: 700; font-size: 240px;
+    color: var(--axial-bone);
+    letter-spacing: -0.03em; line-height: 0.88;
+    margin-top: 28px;
+  }
+  .post-bottom { margin-top: auto; }
+  .post-divider { height: 1px; background: #1E2024; margin-bottom: 24px; }
+  .spec-row {
+    display: flex; justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px; text-transform: uppercase;
+    letter-spacing: 0.04em; margin-bottom: 12px; line-height: 1;
+  }
+  .spec-key { color: #26282D; }
+  .spec-val { color: var(--graphite-500); }
+  .tick-strip { display: flex; gap: 4px; margin-top: 28px; }
+  .tk { width: 3px; height: 16px; background: #1E2024; }
+  .tk.on { background: var(--axial-voltage); }
+  .wordmark {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px; text-transform: uppercase;
+    letter-spacing: 0.08em; color: #1E2024; margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="post">
+  <div class="grid-overlay">
+    <div class="gl-v" style="left:25%"></div><div class="gl-v" style="left:50%"></div><div class="gl-v" style="left:75%"></div>
+    <div class="gl-h" style="top:25%"></div><div class="gl-h" style="top:50%"></div><div class="gl-h" style="top:75%"></div>
+  </div>
+  <div class="reg-mark"></div>
+  <div class="post-content">
+    <div>
+      <div class="post-index">// BILINGUAL PROJECT MANAGEMENT</div>
+      <div class="post-service">→ 03 / 04</div>
+    </div>
+    <div class="post-headline">En.<br>Es.</div>
+    <div class="post-bottom">
+      <div class="post-divider"></div>
+      <div class="spec-row">
+        <span class="spec-key">LANGUAGES</span>
+        <span class="spec-val">English + Spanish</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-key">COORDINATION</span>
+        <span class="spec-val">Async-first</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-key">SCOPE</span>
+        <span class="spec-val">End-to-end delivery</span>
+      </div>
+      <div class="tick-strip">
+        <div class="tk on"></div><div class="tk on"></div><div class="tk on"></div>
+        <div class="tk on"></div><div class="tk on"></div><div class="tk on"></div>
+        <div class="tk"></div><div class="tk"></div><div class="tk"></div>
+        <div class="tk"></div><div class="tk"></div><div class="tk"></div>
+      </div>
+      <div class="wordmark">Axial Labs · Systems for ambitious software</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
