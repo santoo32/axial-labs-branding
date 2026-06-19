@@ -40,14 +40,15 @@
     /* ─── A4 PAGE ───────────────────────────────────────────── */
     .doc-page {
       width: 210mm;
-      min-height: 297mm;
+      height: 297mm;          /* NOT min-height — that lets content overflow A4 */
       background: var(--axial-bone);
       color: var(--axial-black);
       margin: 32px auto;
-      padding: 18mm 22mm 18mm 34mm;
+      padding: 18mm 22mm 32mm 34mm; /* bottom 32mm = 18mm clearance above footer at 14mm */
       position: relative;
       box-sizing: border-box;
       break-after: page;
+      overflow: hidden;       /* clip anything that escapes A4 bounds */
       box-shadow: 0 2px 16px rgba(10,10,11,0.10), 0 1px 4px rgba(10,10,11,0.06);
     }
 
@@ -287,7 +288,7 @@
       display: flex;
       align-items: flex-start;
       gap: 12px;
-      padding: 11px 0;
+      padding: 5px 0;
       border-bottom: 1px solid var(--graphite-100);
     }
     .scope-item:last-child { border-bottom: none; }
@@ -310,7 +311,7 @@
       font-size: 9px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: var(--graphite-400);
+      color: var(--graphite-600);
     }
     .scope-item-tag {
       font-family: var(--font-mono);
@@ -450,7 +451,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 9px 12px;
+      padding: 7px 12px;
       border-bottom: 1px solid var(--graphite-100);
     }
     .breakdown-row:last-child { border-bottom: none; }
@@ -526,6 +527,226 @@
       color: var(--graphite-400);
       display: block;
       margin-bottom: 18px;
+    }
+
+    /* ─── ROI HERO ──────────────────────────────────────────── */
+    /* CONTRAST RULE: labels inside green-bordered block must use graphite,
+       never --axial-voltage-dim. Green text on green-tinted bg = unreadable.
+       Only the outer border gets the voltage color. */
+    .roi-hero {
+      border: 1px solid var(--axial-voltage-dim);
+      padding: 18px 20px 20px;
+      margin-bottom: 24px;
+    }
+    .roi-hero-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-500);
+      display: block;
+      margin-bottom: 14px;
+    }
+    .roi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border: 1px solid var(--graphite-200);
+    }
+    .roi-metric {
+      padding: 12px 14px;
+      border-right: 1px solid var(--graphite-200);
+    }
+    .roi-metric:last-child { border-right: none; }
+    .roi-metric-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-500);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .roi-metric-value {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--axial-black);
+      margin: 0 0 2px;
+    }
+    .roi-metric-sub {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.04em;
+      color: var(--graphite-400);
+    }
+    .roi-hero-body {
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--graphite-600);
+      margin: 14px 0 0;
+    }
+
+    /* ─── PHASE CARDS (ROADMAP PAGE) ────────────────────────── */
+    .phase-card {
+      border: 1px solid var(--graphite-200);
+      padding: 14px 16px;
+      margin-bottom: 10px;
+    }
+    .phase-card--active { border-left: 3px solid var(--axial-voltage-dim); }
+    .phase-card-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .phase-card-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-400);
+    }
+    .phase-card--active .phase-card-eyebrow { color: var(--axial-voltage-dim); }
+    .phase-card-badge {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--graphite-400);
+    }
+    .phase-card-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--axial-black);
+      margin: 0 0 6px;
+    }
+    .phase-card-desc {
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--graphite-600);
+      margin: 0 0 6px;
+    }
+    .phase-card-trigger {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.04em;
+      color: var(--graphite-500);
+    }
+
+    /* ─── SCOPE SEPARATOR ───────────────────────────────────── */
+    .scope-separator {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0 4px;
+    }
+    .scope-separator-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      white-space: nowrap;
+    }
+    .scope-separator-line {
+      flex: 1;
+      height: 1px;
+      background: var(--graphite-200);
+    }
+
+    /* ─── PRICE 2-COL (SINGLE-PRICE PROPOSALS) ──────────────── */
+    /* Use instead of .pricing-tiers when there's only one price.
+       The 3-col tier grid showing the same amount twice looks like two charges. */
+    .price-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--graphite-200);
+      margin-bottom: 20px;
+    }
+    .price-main {
+      padding: 18px 20px;
+      border-right: 1px solid var(--graphite-200);
+      border-left: 3px solid var(--axial-voltage-dim);
+    }
+    .price-future {
+      padding: 18px 20px;
+      background: var(--graphite-100);
+    }
+    .price-main-label,
+    .price-future-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-500);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .price-main-amount {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: var(--axial-black);
+      margin: 0 0 8px;
+    }
+    .price-future-amount {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--graphite-500);
+      margin: 0 0 6px;
+    }
+    .price-main-desc,
+    .price-future-desc {
+      font-size: 11px;
+      line-height: 1.5;
+      color: var(--graphite-500);
+      margin: 0;
+    }
+
+    /* ─── PAYMENT SPLIT ─────────────────────────────────────── */
+    .payment-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--graphite-200);
+      margin-bottom: 12px;
+    }
+    .payment-block {
+      padding: 12px 14px;
+      border-right: 1px solid var(--graphite-200);
+    }
+    .payment-block:last-child { border-right: none; }
+    .payment-block-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite-400);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .payment-block-amount {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--axial-black);
+      margin: 0 0 2px;
+    }
+    .payment-block-desc {
+      font-size: 10px;
+      color: var(--graphite-500);
+      margin: 0;
     }
 
     /* ─── PRINT ──────────────────────────────────────────────── */
@@ -797,6 +1018,13 @@
       <span class="scope-item-tag">INCL.</span>
     </li>
 
+    <!-- ── Separator between included and not-included items ── -->
+    <li class="scope-separator" aria-hidden="true">
+      <span class="scope-separator-line"></span>
+      <span class="scope-separator-label">Not included in this engagement</span>
+      <span class="scope-separator-line"></span>
+    </li>
+
     <li class="scope-item">
       <!-- Unchecked — optional -->
       <svg class="scope-check" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -929,6 +1157,94 @@
 
 
 <!-- ═══════════════════════════════════
+     OPTIONAL: ROADMAP PAGE
+     Insert between Timeline and Pricing when the project has a multi-phase
+     product roadmap. Renumber all subsequent pages (X / N+1).
+     Phase 01 = current build (green border). Phases 02+ = future (grey).
+     Each card needs a concrete trigger so client understands phases aren't
+     automatic — they activate when a specific business condition is met.
+═══════════════════════════════════
+<div class="doc-page">
+  <div class="axis-ticks" aria-hidden="true">
+    <svg viewBox="0 0 7 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="3" y1="100" x2="7" y2="100" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="200" x2="7" y2="200" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="300" x2="7" y2="300" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="400" x2="7" y2="400" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="500" x2="7" y2="500" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="600" x2="7" y2="600" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="700" x2="7" y2="700" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="800" x2="7" y2="800" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+      <line x1="3" y1="900" x2="7" y2="900" stroke="#D8DAE0" stroke-width="1" stroke-linecap="square"/>
+    </svg>
+  </div>
+
+  <div class="running-header">
+    <span class="rh-wordmark">AXIAL LABS</span>
+    <span class="rh-ref">→ PROPOSAL · [CLIENT NAME] · YYYY-MM-DD</span>
+  </div>
+
+  <div class="section-head">
+    <span class="eyebrow">→ 05 / 07 · ROADMAP</span>
+    <h2 class="h2">Where the platform grows.</h2>
+  </div>
+
+  <p class="body-text">What we build today is complete and ready to operate from day one. It is also the foundation for what comes next. Each future phase has a concrete trigger — nothing is added until the business or context justifies it.</p>
+
+  <div class="phase-card phase-card--active">
+    <div class="phase-card-header">
+      <span class="phase-card-eyebrow">→ PHASE 01 · BUILDING NOW</span>
+      <span class="phase-card-badge">X WEEKS</span>
+    </div>
+    <h3 class="phase-card-title">[Phase title]</h3>
+    <p class="phase-card-desc">[What gets built in this phase. One or two sentences max. Non-technical language.]</p>
+    <span class="phase-card-trigger">Activates: now.</span>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-card-header">
+      <span class="phase-card-eyebrow">→ PHASE 02 · NEXT</span>
+      <span class="phase-card-badge">TO QUOTE</span>
+    </div>
+    <h3 class="phase-card-title">[Phase title]</h3>
+    <p class="phase-card-desc">[What gets built.]</p>
+    <span class="phase-card-trigger">Activates when: [specific external condition — access granted, legal approval, volume threshold].</span>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-card-header">
+      <span class="phase-card-eyebrow">→ PHASE 03 · FUTURE</span>
+      <span class="phase-card-badge">TO QUOTE</span>
+    </div>
+    <h3 class="phase-card-title">[Phase title]</h3>
+    <p class="phase-card-desc">[What gets built.]</p>
+    <span class="phase-card-trigger">Activates when: [condition].</span>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-card-header">
+      <span class="phase-card-eyebrow">→ PHASE 04 · EXPANSION</span>
+      <span class="phase-card-badge">TO QUOTE</span>
+    </div>
+    <h3 class="phase-card-title">[Phase title]</h3>
+    <p class="phase-card-desc">[What gets built.]</p>
+    <span class="phase-card-trigger">Activates when: [condition].</span>
+  </div>
+
+  <div style="border: 1px solid var(--graphite-200); padding: 14px 16px; margin-top: 4px;">
+    <p class="body-text" style="font-weight:600; margin-bottom:4px;">Phase order may change based on business reality.</p>
+    <p class="caption">If one trigger arrives before another, phases resequence accordingly. Each phase is quoted separately when its trigger is active.</p>
+  </div>
+
+  <div class="running-footer">
+    <span class="rf-label">Confidential — Axial Labs</span>
+    <span class="rf-page">05 / 07</span>
+  </div>
+</div>
+-->
+
+
+<!-- ═══════════════════════════════════
      05 / 07 — PRICING
 ═══════════════════════════════════ -->
 <div class="doc-page">
@@ -956,27 +1272,71 @@
     <h2 class="h2">Investment.</h2>
   </div>
 
-  <p class="body-text" style="margin-bottom:24px;">This proposal is scoped to the Studio tier. No upsells, no surprise scope — everything in the previous section is included at the price below.</p>
+  <p class="body-text" style="margin-bottom:24px;">Fixed price. No upsells, no surprise scope — everything in the previous section is included at the price below.</p>
 
+  <!-- ROI HERO — lead with return-on-investment, not the cost.
+       Recovery period is the primary signing driver for clients who already
+       have revenue. Show: investment / payback period / profit-from-month-N.
+       DO NOT use voltage-dim on labels inside — green on green-tinted bg = unreadable. -->
+  <div class="roi-hero">
+    <span class="roi-hero-label">→ RETORNO DE INVERSIÓN</span>
+    <div class="roi-grid">
+      <div class="roi-metric">
+        <span class="roi-metric-label">Inversión única</span>
+        <p class="roi-metric-value">$[X]</p>
+        <span class="roi-metric-sub">precio fijo · sin sorpresas</span>
+      </div>
+      <div class="roi-metric">
+        <span class="roi-metric-label">Se recupera en</span>
+        <p class="roi-metric-value">~[N] meses</p>
+        <span class="roi-metric-sub">[N] clientes · $[Y]/mes</span>
+      </div>
+      <div class="roi-metric">
+        <span class="roi-metric-label">Ganancia libre</span>
+        <p class="roi-metric-value">Mes [N+1] en adelante</p>
+        <span class="roi-metric-sub">sin costo de desarrollo adicional</span>
+      </div>
+    </div>
+    <p class="roi-hero-body">[One sentence connecting the ROI math to the client's existing revenue stream. e.g. "The platform does not generate new customers — it transforms existing revenue into automated income."]</p>
+  </div>
+
+  <!-- PRICE 2-COL: use when there's one price (current engagement) + a future tier.
+       NEVER repeat the same dollar amount in two columns — it looks like two charges.
+       For genuine multi-tier proposals, use .pricing-tiers (3-col) below instead. -->
+  <div class="price-2col" style="margin-bottom:20px;">
+    <div class="price-main">
+      <span class="price-main-label">→ [TIER NAME] · PRECIO FIJO</span>
+      <p class="price-main-amount">$[X]</p>
+      <p class="price-main-desc">[Scope summary in one line. Everything in the previous section, no surprises.]</p>
+    </div>
+    <div class="price-future">
+      <span class="price-future-label">[NEXT TIER] · PRÓXIMA ETAPA</span>
+      <p class="price-future-amount">A cotizar</p>
+      <p class="price-future-desc">[What the next phase adds. Quoted separately when its trigger is active.]</p>
+    </div>
+  </div>
+
+  <!-- ALTERNATIVE: 3-tier grid — use only when tiers have genuinely different prices.
   <div class="pricing-tiers">
     <div class="pricing-tier">
       <span class="pricing-tier-name">OS</span>
       <p class="pricing-amount">$4,800</p>
-      <p class="pricing-desc">Token system + logo + one marketing page. For teams that need a foundation fast.</p>
+      <p class="pricing-desc">Token system + logo + one marketing page.</p>
     </div>
     <div class="pricing-tier pricing-tier--selected">
       <span class="pricing-tier-name">→ STUDIO · SELECTED</span>
       <p class="pricing-amount">$12,000</p>
-      <p class="pricing-desc">Full brand system + components + marketing pages + social. For teams ready to ship the whole stack.</p>
+      <p class="pricing-desc">Full brand system + components + marketing pages + social.</p>
     </div>
     <div class="pricing-tier">
       <span class="pricing-tier-name">FOUNDRY</span>
       <p class="pricing-amount">Custom</p>
-      <p class="pricing-desc">Extended build, open source tooling, or a multi-quarter retainer.</p>
+      <p class="pricing-desc">Extended build or multi-quarter retainer.</p>
     </div>
   </div>
+  -->
 
-  <span class="eyebrow" style="margin-bottom:14px;">→ STUDIO · BREAKDOWN</span>
+  <span class="eyebrow" style="margin-bottom:14px;">→ [TIER NAME] · DESGLOSE</span>
   <div class="breakdown">
     <div class="breakdown-row">
       <span class="breakdown-label">Discovery and strategy</span>
@@ -1012,7 +1372,20 @@
     </div>
   </div>
 
-  <p class="caption" style="margin-top:10px;">Payment: 50% on signature, 50% on handoff. Wire transfer or Stripe. All prices in USD.</p>
+  <div class="payment-split" style="margin-top:16px;">
+    <div class="payment-block">
+      <span class="payment-block-label">PAGO 1 · AL FIRMAR</span>
+      <p class="payment-block-amount">$[X] <span style="font-size:12px; font-weight:400; color:var(--graphite-500);">50%</span></p>
+      <p class="payment-block-desc">para iniciar el trabajo</p>
+    </div>
+    <div class="payment-block">
+      <span class="payment-block-label">PAGO 2 · CONTRA ENTREGA</span>
+      <p class="payment-block-amount">$[Y] <span style="font-size:12px; font-weight:400; color:var(--graphite-500);">50%</span></p>
+      <p class="payment-block-desc">sistema funcionando en producción</p>
+    </div>
+  </div>
+  <p class="caption" style="margin-top:6px;">Pagos en pesos argentinos al tipo de cambio del día. Transferencia bancaria. Tipo de cambio fijado al momento de cada pago.</p>
+  <p class="caption" style="margin-top:4px;">[If post-delivery costs apply, add one line here. e.g. "Costo mensual estimado post-entrega: $X–Y/mes. Ver Condiciones para detalle."]</p>
 
   <div class="running-footer">
     <span class="rf-label">Confidential — Axial Labs</span>
